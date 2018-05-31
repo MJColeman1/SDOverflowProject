@@ -17,14 +17,6 @@ public class ProfileDTO {
 	
 	
 	
-	private String userUsername;
-	
-	private String userPassword;
-	
-	private String userRole;
-	
-	private boolean userEnabled;
-	
 	private Profile userProfile;
 	
 	private String addressStreet;
@@ -49,8 +41,8 @@ public class ProfileDTO {
 	
 	private String technologyPayscale;
 	
-	private String pofileFirstName;
-
+	private String profileFirstName;
+	
 	private String profileLastName;
 
 	private String profileEmail;
@@ -58,39 +50,70 @@ public class ProfileDTO {
 	private String profileCohort;
 
 	private boolean profileEmployed;
+	
+	private String employerAddressStreet;
+	
+	private String employerAddressStreet2;
+	
+	private String employerAddressCity;
+	
+	private String employerAddressState;
+	
+	private String employerAddressCountry;
+	
+	private String employerAddressZip;
+	
+	
+	
 
 	
 
-	public String getUserUsername() {
-		return userUsername;
+	public String getEmployerAddressStreet() {
+		return employerAddressStreet;
 	}
 
-	public void setUserUsername(String userUsername) {
-		this.userUsername = userUsername;
+	public void setEmployerAddressStreet(String employerAddressStreet) {
+		this.employerAddressStreet = employerAddressStreet;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getEmployerAddressStreet2() {
+		return employerAddressStreet2;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setEmployerAddressStreet2(String employerAddressStreet2) {
+		this.employerAddressStreet2 = employerAddressStreet2;
 	}
 
-	public String getUserRole() {
-		return userRole;
+	public String getEmployerAddressCity() {
+		return employerAddressCity;
 	}
 
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
+	public void setEmployerAddressCity(String employerAddressCity) {
+		this.employerAddressCity = employerAddressCity;
 	}
 
-	public boolean isUserEnabled() {
-		return userEnabled;
+	public String getEmployerAddressState() {
+		return employerAddressState;
 	}
 
-	public void setUserEnabled(boolean userEnabled) {
-		this.userEnabled = userEnabled;
+	public void setEmployerAddressState(String employerAddressState) {
+		this.employerAddressState = employerAddressState;
+	}
+
+	public String getEmployerAddressCountry() {
+		return employerAddressCountry;
+	}
+
+	public void setEmployerAddressCountry(String employerAddressCountry) {
+		this.employerAddressCountry = employerAddressCountry;
+	}
+
+	public String getEmployerAddressZip() {
+		return employerAddressZip;
+	}
+
+	public void setEmployerAddressZip(String employerAddressZip) {
+		this.employerAddressZip = employerAddressZip;
 	}
 
 	public Profile getUserProfile() {
@@ -189,7 +212,45 @@ public class ProfileDTO {
 		this.technologyPayscale = technologyPayscale;
 	}
 
-	
-	
+	public String getProfileFirstName() {
+		return profileFirstName;
+	}
+
+	public void setProfileFirstName(String profileFirstName) {
+		this.profileFirstName = profileFirstName;
+	}
+
+	public String getProfileLastName() {
+		return profileLastName;
+	}
+
+	public void setProfileLastName(String profileLastName) {
+		this.profileLastName = profileLastName;
+	}
+
+	public String getProfileEmail() {
+		return profileEmail;
+	}
+
+	public void setProfileEmail(String profileEmail) {
+		this.profileEmail = profileEmail;
+	}
+
+	public String getProfileCohort() {
+		return profileCohort;
+	}
+
+	public void setProfileCohort(String profileCohort) {
+		this.profileCohort = profileCohort;
+	}
+
+	public boolean isProfileEmployed() {
+		return profileEmployed;
+	}
+
+	public void setProfileEmployed(boolean profileEmployed) {
+		this.profileEmployed = profileEmployed;
+	}
+
 
 }
