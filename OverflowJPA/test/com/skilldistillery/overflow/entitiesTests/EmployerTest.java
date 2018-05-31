@@ -21,7 +21,7 @@ class EmployerTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		employer = em.find(Employer.class, 1);
 	}
@@ -36,10 +36,9 @@ class EmployerTest {
 	@Test
 	@DisplayName("Test Employer is correctly mapped")
 	void test_employer_mappings() {
-		assertEquals("", employer.getId());
-		assertEquals("", employer.getName());
-		assertEquals("", employer.getHiring());
-		assertEquals("", employer.getAddress());
+		assertEquals("Taco Bell", employer.getName());
+		assertEquals("No", employer.getHiring());
+		assertEquals("123 Hello World Lane", employer.getAddress().getStreet());
 	}
 
 }
