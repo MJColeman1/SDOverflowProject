@@ -15,7 +15,7 @@ import com.skilldistillery.overflow.respositories.UserRepository;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	public UserRepository userRepo;
+	private UserRepository userRepo;
 
 	@Override
 	public User createUser(UserDTO dto) {
@@ -35,30 +35,18 @@ public class UserServiceImpl implements UserService{
 		 return user;
 	}
 
-	@Override
-	public User updateUser(ProfileDTO dto, Address address, Employer employer, 
-			Technology technology, Profile profile, Address employerAddress) {
-		
-	address.setStreet(dto.getAddressStreet());
-	address.setStreet2(dto.getAddressStreet2());
-	address.setCity(dto.getAddressCity());
-	address.setState(dto.getAddressState());
-	address.setCountry(dto.getAddressCountry());
-	address.setZip(dto.getAddressZip());
-	
-	profile.setFirstName(dto.getProfileFirstName());
-	profile.setLastName(dto.getProfileLastName());
-	profile.setEmail(dto.getProfileEmail());
-	profile.setCohort(dto.getProfileCohort());
-	profile.setEmployed(dto.isProfileEmployed());
-	
-		return null;
-	}
+
 
 	@Override
-	public boolean deleteUser(int id) {
-		// TODO Auto-generated method stub
+	public boolean deleteUser(int userId) {
+		try {
+			userRepo.deleteById(userId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
+	
 	}
 
 	@Override
