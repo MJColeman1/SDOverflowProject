@@ -22,7 +22,7 @@ class CommentTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		comment = em.find(Comment.class, 1);
 	}
@@ -37,12 +37,10 @@ class CommentTest {
 	@Test
 	@DisplayName("Test Comment is correctly mapped")
 	void test_comment_mappings() {
-		assertEquals("", comment.getId());
-		assertEquals("", comment.getDescription());
-		assertEquals("", comment.getCreatedAt());
-		assertEquals("", comment.getUpdatedAt());
-		assertEquals("", comment.getPost());
-		assertEquals("", comment.getUser());
+		assertEquals(1, comment.getId());
+		assertEquals("Java is awesome", comment.getDescription());
+		assertEquals("Java question", comment.getPost().getName());
+		assertEquals("jackson", comment.getUser().getUsername());
 	}
 
 }
