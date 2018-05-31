@@ -18,35 +18,35 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Autowired
 	private UserRepository userRepo;
+
+	@Override
+	public List<Comment> getAllComments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Comment findCommentById(int commentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Comment createCommentByLoggedInUser(Comment comment, String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Comment updateCommentByLoggedInUse(int commentId, Comment comment, String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean destroyCommentByLoggedInUse(int commentId, String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	@Override
-	public List<Comment> index(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Comment show(int commentId, User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Comment create(Comment comment, User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Comment update(int commentId, Comment comment, User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean destroy(int commentId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

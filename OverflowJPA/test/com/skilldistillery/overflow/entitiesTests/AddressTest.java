@@ -1,7 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,7 +8,6 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.overflow.entities.Address;
@@ -22,7 +20,7 @@ class AddressTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		address = em.find(Address.class, 1);
 	}
@@ -35,14 +33,9 @@ class AddressTest {
 	}
 
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
-		assertEquals("", address.getId());
-		assertEquals("", address.getStreet());
-		assertEquals("", address.getCity());
-		assertEquals("", address.getState());
-		assertEquals("", address.getCountry());
-		assertEquals("", address.getZip());
+	void test() {
+		assertEquals("123 Hello World Lane", address.getStreet());
+		assertEquals("Denver", address.getCity());
 	}
 
 }

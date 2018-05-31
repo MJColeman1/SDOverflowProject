@@ -20,29 +20,31 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
+	private String username = "";
+	
 	@RequestMapping(path = "/posts", method = RequestMethod.GET)
-	public List<Post> index(User user) {
-		return postService.index(user);
+	public List<Post> index() {
+		return postService.getAllPosts();
 	}
 	
 	@RequestMapping(path = "/posts/{postId}", method = RequestMethod.GET)
-	public Post show(@PathVariable int postId, User user) {
-		return postService.show(postId, user);
+	public Post show(@PathVariable int postId) {
+		return postService.findPostsByPostId(postId);
 	}
 	
 	@RequestMapping(path = "/posts", method = RequestMethod.POST)
-	public Post create(User user, @RequestBody Post post) {
-		return postService.create(post, user);
+	public Post create(@RequestBody Post post) {
+		return postService.createPostByLoggedInUser(post, username);
 	}
 	
 	@RequestMapping(path = "/posts/{postId}", method = RequestMethod.PUT)
-	public Post update(@PathVariable int postId, User user, @RequestBody Post post) {
-		return postService.update(postId, post, user);
+	public Post update(@PathVariable int postId, @RequestBody Post post) {
+		return postService.updatePostByLoggedInUser(postId, post, username);
 	}
 	
 	@RequestMapping(path = "/posts/{postId}", method = RequestMethod.DELETE)
 	public Boolean delete(@PathVariable int postId) {
-		return postService.destroy(postId);
+		return postService.destroyPostByLoggedInUser(postId, username);
 	}
 	
 }

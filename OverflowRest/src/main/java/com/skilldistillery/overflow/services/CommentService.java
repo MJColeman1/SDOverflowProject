@@ -3,18 +3,17 @@ package com.skilldistillery.overflow.services;
 import java.util.List;
 
 import com.skilldistillery.overflow.entities.Comment;
-import com.skilldistillery.overflow.entities.User;
 
 public interface CommentService {
 	
-	List<Comment> index(User user);
+	List<Comment> getAllComments();
 	
-	Comment show(int commentId, User user);
+	Comment findCommentById(int commentId);
 	
-	Comment create(Comment comment, User user);
+	Comment createCommentByLoggedInUser(Comment comment, String username);
 	
-	Comment update(int commentId, Comment comment, User user);
+	Comment updateCommentByLoggedInUse(int commentId, Comment comment,String username);
 	
-	Boolean destroy(int commentId);
+	Boolean destroyCommentByLoggedInUse(int commentId, String username);
 
 }
