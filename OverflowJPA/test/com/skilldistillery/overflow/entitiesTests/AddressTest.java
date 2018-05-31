@@ -1,6 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +20,7 @@ class AddressTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		address = em.find(Address.class, 1);
 	}
@@ -34,7 +34,8 @@ class AddressTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		assertEquals("123 Hello World Lane", address.getStreet());
+		assertEquals("Denver", address.getCity());
 	}
 
 }

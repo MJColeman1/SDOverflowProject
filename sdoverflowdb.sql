@@ -300,6 +300,7 @@ COMMIT;
 START TRANSACTION;
 USE `sdoverflowdb`;
 INSERT INTO `profile` (`id`, `first_name`, `last_name`, `email`, `employed`, `cohort`, `address_id`, `employer_id`) VALUES (1, 'Jackson', 'Brown', 'Jackson@Jackson.com', 0, 'SD14', 1, 1);
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `email`, `employed`, `cohort`, `address_id`, `employer_id`) VALUES (2, 'admin', 'admin', 'admin@overflow.com', 1, NULL, 1, 1);
 
 COMMIT;
 
@@ -310,6 +311,7 @@ COMMIT;
 START TRANSACTION;
 USE `sdoverflowdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `profile_id`, `admin`) VALUES (1, 'jackson', 'jackson', 'standard', 1, 1, 0);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `profile_id`, `admin`) VALUES (2, 'admin', 'admin', 'admin', 1, 2, 1);
 
 COMMIT;
 
