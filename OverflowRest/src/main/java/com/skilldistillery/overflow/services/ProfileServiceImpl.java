@@ -7,6 +7,7 @@ import com.skilldistillery.overflow.entities.Address;
 import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.Profile;
 import com.skilldistillery.overflow.entities.ProfileDTO;
+import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.respositories.ProfileRepository;
 
 @Service
@@ -47,4 +48,16 @@ public class ProfileServiceImpl implements ProfileService {
 
 		return profileRepo.saveAndFlush(profile);
 	}
+
+	@Override
+	public Profile addTechnology(Technology technology) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Profile deleteTechnology(Technology technology) {
+		
+		return null;
+		
+	}
+	
 }
