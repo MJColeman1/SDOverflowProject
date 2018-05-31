@@ -35,12 +35,6 @@ public class ProfileDTO {
 	
 	private String employerHiring;
 	
-	private String technologyName;
-	
-	private String technologyDescription;
-	
-	private String technologyPayscale;
-	
 	private String profileFirstName;
 	
 	private String profileLastName;
@@ -186,30 +180,6 @@ public class ProfileDTO {
 
 	public void setEmployerHiring(String employerHiring) {
 		this.employerHiring = employerHiring;
-	}
-
-	public String getTechnologyName() {
-		return technologyName;
-	}
-
-	public void setTechnologyName(String technologyName) {
-		this.technologyName = technologyName;
-	}
-
-	public String getTechnologyDescription() {
-		return technologyDescription;
-	}
-
-	public void setTechnologyDescription(String technologyDescription) {
-		this.technologyDescription = technologyDescription;
-	}
-
-	public String getTechnologyPayscale() {
-		return technologyPayscale;
-	}
-
-	public void setTechnologyPayscale(String technologyPayscale) {
-		this.technologyPayscale = technologyPayscale;
 	}
 
 	public String getProfileFirstName() {

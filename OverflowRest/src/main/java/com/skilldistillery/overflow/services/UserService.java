@@ -1,5 +1,7 @@
 package com.skilldistillery.overflow.services;
 
+import java.util.List;
+
 import com.skilldistillery.overflow.entities.Address;
 import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.Profile;
@@ -12,14 +14,15 @@ public interface UserService {
 	
 	User createUser(UserDTO dto);
 	
-	User updateUser( ProfileDTO dto, Address address, Employer employer, 
-			Technology technology, Profile profile, Address employerAddress);
 	
-	boolean deleteUser(int id);
+	
+	boolean deleteUser(int userId);
 	
 	boolean isUserNameTaken(String userName);
 	
 	User login(String userName, String password);
+	
+	//List<Technology> editTechnologies();
 	
 	
 	
