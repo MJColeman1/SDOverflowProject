@@ -28,13 +28,16 @@ public class UserServiceImpl implements UserService{
 		profile.setLastName(dto.getProfileLastName());
 		profile.setEmail(dto.getProfileEmail());
 		
+		user.setProfile(profile);
 		
-		return null;
+		
+		 userRepo.saveAndFlush(user);
+		 return user;
 	}
 
 	@Override
 	public User updateUser(User user, ProfileDTO dto, Address address, Employer employer, Technology technology) {
-		// TODO Auto-generated method stub
+	address.setStreet(dto.getAddressStreet());
 		return null;
 	}
 
