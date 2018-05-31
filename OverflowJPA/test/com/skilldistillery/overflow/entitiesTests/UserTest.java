@@ -1,6 +1,7 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,7 +22,7 @@ class UserTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		user = em.find(User.class, 1);
 	}
@@ -35,10 +36,13 @@ class UserTest {
 
 	@Test
 	@DisplayName("Test User is correctly mapped")
-	void test_user_mappings() {
-//		assertEquals("", user.getUserName());
-//		assertEquals("", user.getPassword());
-//		assertEquals("", user.getRole());
+	void testUserMappings() {
+		assertEquals("jackson", user.getUsername());
+		assertEquals("Jackson", user.getProfile().getFirstName());
+		assertNotNull(user.getComments());
+		assertEquals(1, user.getComments().size());
+		assertEquals(1, user.getPosts().size());
 	}
+	
 
 }
