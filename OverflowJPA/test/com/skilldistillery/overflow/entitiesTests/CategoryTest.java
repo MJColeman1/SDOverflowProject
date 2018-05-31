@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -36,7 +37,9 @@ class CategoryTest {
 	@Test
 	@DisplayName("Test Category is correctly mapped")
 	void test_category_mappings() {
-		fail("Not yet implemented");
+		assertEquals("", category.getId());
+		assertEquals("", category.getName());
+		assertEquals("", category.getDescription());
 	}
 
 }

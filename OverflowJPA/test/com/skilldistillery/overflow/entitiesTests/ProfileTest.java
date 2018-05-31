@@ -1,6 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,7 +36,11 @@ class ProfileTest {
 	@Test
 	@DisplayName("Test Profile is correctly mapped")
 	void test_profile_mappings() {
-		fail("Not yet implemented");
+		assertEquals("", profile.getId());
+		assertEquals("", profile.getFirstName());
+		assertEquals("", profile.getLastName());
+		assertEquals("", profile.getEmail());
+		assertEquals("", profile.getCohort());
 	}
 
 }

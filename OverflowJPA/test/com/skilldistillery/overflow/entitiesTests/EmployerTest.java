@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -36,7 +37,10 @@ class EmployerTest {
 	@Test
 	@DisplayName("Test Employer is correctly mapped")
 	void test_employer_mappings() {
-		fail("Not yet implemented");
+		assertEquals("", employer.getId());
+		assertEquals("", employer.getName());
+		assertEquals("", employer.getHiring());
+		assertEquals("", employer.getAddress());
 	}
 
 }

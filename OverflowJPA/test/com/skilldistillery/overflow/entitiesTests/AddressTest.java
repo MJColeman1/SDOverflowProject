@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -36,7 +37,12 @@ class AddressTest {
 	@Test
 	@DisplayName("Test Address is correctly mapped")
 	void test_address_mappings() {
-		fail("Not yet implemented");
+		assertEquals("", address.getId());
+		assertEquals("", address.getStreet());
+		assertEquals("", address.getCity());
+		assertEquals("", address.getState());
+		assertEquals("", address.getCountry());
+		assertEquals("", address.getZip());
 	}
 
 }

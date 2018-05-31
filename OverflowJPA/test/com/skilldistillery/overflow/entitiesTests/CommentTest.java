@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -36,7 +37,12 @@ class CommentTest {
 	@Test
 	@DisplayName("Test Comment is correctly mapped")
 	void test_comment_mappings() {
-		fail("Not yet implemented");
+		assertEquals("", comment.getId());
+		assertEquals("", comment.getDescription());
+		assertEquals("", comment.getCreatedAt());
+		assertEquals("", comment.getUpdatedAt());
+		assertEquals("", comment.getPost());
+		assertEquals("", comment.getUser());
 	}
 
 }

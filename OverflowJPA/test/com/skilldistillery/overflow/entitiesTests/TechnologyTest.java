@@ -1,6 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,7 +36,10 @@ class TechnologyTest {
 	@Test
 	@DisplayName("Test Technology is correctly mapped")
 	void test_technology_mappings() {
-		fail("Not yet implemented");
+		assertEquals("", technology.getId());
+		assertEquals("", technology.getName());
+		assertEquals("", technology.getDescription());
+		assertEquals("", technology.getPayscale());
 	}
 
 }
