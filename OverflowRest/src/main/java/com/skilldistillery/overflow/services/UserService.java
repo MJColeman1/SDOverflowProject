@@ -14,15 +14,13 @@ public interface UserService {
 	
 	User createUser(UserDTO dto);
 	
-	
-	
 	boolean deleteUser(int userId);
 	
-	boolean isUserNameTaken(String userName);
 	
-	User login(String userName, String password);
 	
-	//List<Technology> editTechnologies();
+	
+	
+	
 	
 	
 	
