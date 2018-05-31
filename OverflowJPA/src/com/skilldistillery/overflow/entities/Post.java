@@ -3,6 +3,7 @@ package com.skilldistillery.overflow.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Post {
@@ -33,18 +36,22 @@ public class Post {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
 
-	public Post() {}
+	public Post() {
+	}
 
 	public Post(int id, String name, String description, Date createdAt, Date updatedAt, Category category, User user,
 			List<Comment> comments) {
