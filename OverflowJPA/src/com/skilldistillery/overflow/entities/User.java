@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class User {
@@ -21,7 +21,9 @@ public class User {
 	
 	private boolean enabled;
 	
-	@OneToOne
+	private boolean admin;
+	
+	@JoinColumn(name = "profile_id")
 	private Profile profile;
 	
 }
