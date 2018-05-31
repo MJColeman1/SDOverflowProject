@@ -23,7 +23,7 @@ public class Employer {
 
 	private String hiring;
 
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "address_id")
 	private Address address;
 

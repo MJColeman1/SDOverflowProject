@@ -36,8 +36,22 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateUser(User user, ProfileDTO dto, Address address, Employer employer, Technology technology) {
+	public User updateUser(ProfileDTO dto, Address address, Employer employer, 
+			Technology technology, Profile profile, Address employerAddress) {
+		
 	address.setStreet(dto.getAddressStreet());
+	address.setStreet2(dto.getAddressStreet2());
+	address.setCity(dto.getAddressCity());
+	address.setState(dto.getAddressState());
+	address.setCountry(dto.getAddressCountry());
+	address.setZip(dto.getAddressZip());
+	
+	profile.setFirstName(dto.getProfileFirstName());
+	profile.setLastName(dto.getProfileLastName());
+	profile.setEmail(dto.getProfileEmail());
+	profile.setCohort(dto.getProfileCohort());
+	profile.setEmployed(dto.isProfileEmployed());
+	
 		return null;
 	}
 

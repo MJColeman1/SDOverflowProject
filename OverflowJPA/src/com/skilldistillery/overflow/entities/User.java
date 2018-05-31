@@ -28,7 +28,7 @@ public class User {
 
 	private boolean admin;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 

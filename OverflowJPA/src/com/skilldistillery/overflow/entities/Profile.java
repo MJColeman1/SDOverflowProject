@@ -33,11 +33,11 @@ public class Profile {
 
 	private boolean employed;
 
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 
