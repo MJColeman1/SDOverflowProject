@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.overflow.entities.Category;
 import com.skilldistillery.overflow.entities.Post;
 import com.skilldistillery.overflow.entities.User;
+import com.skilldistillery.overflow.respositories.CategoryRepository;
 import com.skilldistillery.overflow.respositories.PostRepository;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
@@ -17,6 +19,9 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private CategoryRepository categoryRepo;
 
 	@Override
 	public List<Post> getAllPosts() {
@@ -29,10 +34,16 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post createPostByLoggedInUser(Post post, String username) {
+	public Post createPostByLoggedInUser(Post post, int categoryid, int userId, String username) {
 //		if (!post.getUser().getUsername().equals(username)) {
 //			return null;
 //		}
+		User user = userRepo.findById(userId).get();
+		post.setUser(user);
+		
+		Category category = categoryRepo.findById(categoryid).get();
+		post.setCategory(category);
+		
 		return postRepo.saveAndFlush(post);
 	}
 

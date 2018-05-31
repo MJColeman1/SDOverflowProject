@@ -10,7 +10,7 @@ public interface PostService {
 	
 	Post findPostsByPostId(int postId);
 	
-	Post createPostByLoggedInUser(Post post, String username);
+	Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username);
 	
 	Post updatePostByLoggedInUser(int postId, Post post, String username);
 	

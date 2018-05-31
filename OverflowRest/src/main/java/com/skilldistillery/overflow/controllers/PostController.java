@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.overflow.entities.Category;
 import com.skilldistillery.overflow.entities.Post;
 import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.services.PostService;
@@ -20,7 +21,7 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-	private String username = "";
+	private String username = "jackson";
 	
 	@RequestMapping(path = "/posts", method = RequestMethod.GET)
 	public List<Post> index() {
@@ -32,9 +33,9 @@ public class PostController {
 		return postService.findPostsByPostId(postId);
 	}
 	
-	@RequestMapping(path = "/posts", method = RequestMethod.POST)
-	public Post create(@RequestBody Post post) {
-		return postService.createPostByLoggedInUser(post, username);
+	@RequestMapping(path = "/users/{userId}/category/{categoryId}/posts", method = RequestMethod.POST)
+	public Post create(@PathVariable int userId, @PathVariable int categoryId, @RequestBody Post post) {
+		return postService.createPostByLoggedInUser(post, categoryId, userId, username);
 	}
 	
 	@RequestMapping(path = "/posts/{postId}", method = RequestMethod.PUT)
