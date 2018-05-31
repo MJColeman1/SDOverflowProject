@@ -1,6 +1,8 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,6 +10,7 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.overflow.entities.Post;
@@ -33,8 +36,15 @@ class PostTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	@DisplayName("Test Post is correctly mapped")
+	void test_post_mappings() {
+		assertEquals("", post.getId());
+		assertEquals("", post.getName());
+		assertEquals("", post.getDescription());
+		assertEquals("", post.getCreatedAt());
+		assertEquals("", post.getUpdatedAt());
+		assertEquals("", post.getCategory());
+		assertEquals("", post.getUser());
 	}
 
 }
