@@ -69,6 +69,22 @@ public class Technology {
 		this.payscale = payscale;
 	}
 
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
+	}
+
+	public List<Employer> getEmployers() {
+		return employers;
+	}
+
+	public void setEmployers(List<Employer> employers) {
+		this.employers = employers;
+	}
+
 	@Override
 	public String toString() {
 		return "Technology [id=" + id + ", name=" + name + ", description=" + description + ", payscale=" + payscale

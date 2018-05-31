@@ -1,7 +1,5 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
@@ -23,7 +21,7 @@ class PostTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		post = em.find(Post.class, 1);
 	}
@@ -38,13 +36,10 @@ class PostTest {
 	@Test
 	@DisplayName("Test Post is correctly mapped")
 	void test_post_mappings() {
-		assertEquals("", post.getId());
-		assertEquals("", post.getName());
-		assertEquals("", post.getDescription());
-		assertEquals("", post.getCreatedAt());
-		assertEquals("", post.getUpdatedAt());
-		assertEquals("", post.getCategory());
-		assertEquals("", post.getUser());
+		assertEquals("Java question", post.getName());
+		assertEquals("Java", post.getCategory().getName());
+		assertEquals("jackson", post.getUser().getUsername());
+		assertEquals(1, post.getComments().size());
 	}
 
 }
