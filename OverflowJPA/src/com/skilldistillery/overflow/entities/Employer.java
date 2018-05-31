@@ -19,5 +19,39 @@ public class Employer {
 	
 	@JoinColumn(name = "address_id")
 	private Address address;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getHiring() {
+		return hiring;
+	}
+
+	public void setHiring(String hiring) {
+		this.hiring = hiring;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	
 	
 }
