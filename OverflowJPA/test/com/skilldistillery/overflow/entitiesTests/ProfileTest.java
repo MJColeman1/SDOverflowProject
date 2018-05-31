@@ -1,6 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,7 +21,7 @@ class ProfileTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		profile = em.find(Profile.class, 1);
 	}
@@ -36,11 +36,10 @@ class ProfileTest {
 	@Test
 	@DisplayName("Test Profile is correctly mapped")
 	void test_profile_mappings() {
-		assertEquals("", profile.getId());
-		assertEquals("", profile.getFirstName());
-		assertEquals("", profile.getLastName());
-		assertEquals("", profile.getEmail());
-		assertEquals("", profile.getCohort());
+		assertEquals("SD14", profile.getCohort());
+		assertEquals("123 Hello World Lane", profile.getAddress().getStreet());
+		assertEquals("Taco Bell", profile.getEmployer().getName());
+		assertEquals(0, profile.getTechnologies().size());
 	}
 
 }

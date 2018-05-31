@@ -21,7 +21,7 @@ class TechnologyTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		technology = em.find(Technology.class, 1);
 	}
@@ -36,10 +36,10 @@ class TechnologyTest {
 	@Test
 	@DisplayName("Test Technology is correctly mapped")
 	void test_technology_mappings() {
-		assertEquals("", technology.getId());
-		assertEquals("", technology.getName());
-		assertEquals("", technology.getDescription());
-		assertEquals("", technology.getPayscale());
+		assertEquals("Java", technology.getName());
+		assertEquals("80,000", technology.getPayscale());
+		assertEquals(0, technology.getProfiles().size());
+		assertEquals(0, technology.getEmployers().size());
 	}
 
 }

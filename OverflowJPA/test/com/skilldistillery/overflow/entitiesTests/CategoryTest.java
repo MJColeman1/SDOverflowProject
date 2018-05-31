@@ -1,7 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,7 +21,7 @@ class CategoryTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("EventTrackerProject");
+		emf = Persistence.createEntityManagerFactory("Overflow");
 		em = emf.createEntityManager();
 		category = em.find(Category.class, 1);
 	}
@@ -37,9 +36,9 @@ class CategoryTest {
 	@Test
 	@DisplayName("Test Category is correctly mapped")
 	void test_category_mappings() {
-		assertEquals("", category.getId());
-		assertEquals("", category.getName());
-		assertEquals("", category.getDescription());
+		assertEquals(1, category.getId());
+		assertEquals("Java", category.getName());
+		assertEquals("Java is a compiled language", category.getDescription());
 	}
 
 }
