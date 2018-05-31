@@ -34,8 +34,8 @@ class CategoryDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test Category is correctly mapped")
+	void test_category_mappings() {
 		fail("Not yet implemented");
 	}
 

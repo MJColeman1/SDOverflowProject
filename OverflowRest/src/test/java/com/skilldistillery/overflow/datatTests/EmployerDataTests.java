@@ -34,8 +34,8 @@ class EmployerDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test Employer is correctly mapped")
+	void test_employer_mappings() {
 		fail("Not yet implemented");
 	}
 

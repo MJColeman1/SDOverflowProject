@@ -34,8 +34,8 @@ class ProfileDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test Profile is correctly mapped")
+	void test_profile_mappings() {
 		fail("Not yet implemented");
 	}
 

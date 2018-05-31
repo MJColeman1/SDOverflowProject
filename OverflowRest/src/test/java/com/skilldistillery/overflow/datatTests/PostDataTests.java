@@ -34,8 +34,8 @@ class PostDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test Post is correctly mapped")
+	void test_post_mappings() {
 		fail("Not yet implemented");
 	}
 

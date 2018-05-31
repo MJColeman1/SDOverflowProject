@@ -34,8 +34,8 @@ class UserDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test User is correctly mapped")
+	void test_user_mappings() {
 		fail("Not yet implemented");
 	}
 

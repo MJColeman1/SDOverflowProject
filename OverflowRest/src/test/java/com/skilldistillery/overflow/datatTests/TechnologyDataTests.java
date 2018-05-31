@@ -34,8 +34,8 @@ class TechnologyDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test Technology is correctly mapped")
+	void test_technology_mappings() {
 		fail("Not yet implemented");
 	}
 

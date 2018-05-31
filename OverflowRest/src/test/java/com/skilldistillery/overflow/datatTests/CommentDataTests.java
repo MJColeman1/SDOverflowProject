@@ -34,8 +34,8 @@ class CommentDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	@DisplayName("Test Comment is correctly mapped")
+	void test_comment_mappings() {
 		fail("Not yet implemented");
 	}
 }
