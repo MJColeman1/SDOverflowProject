@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.overflow.entities.Comment;
@@ -33,7 +34,8 @@ class CommentTest {
 	}
 
 	@Test
-	void test() {
+	@DisplayName("Test Comment is correctly mapped")
+	void test_comment_mappings() {
 		fail("Not yet implemented");
 	}
 

@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.overflow.entities.Employer;
@@ -33,7 +34,8 @@ class EmployerTest {
 	}
 
 	@Test
-	void test() {
+	@DisplayName("Test Employer is correctly mapped")
+	void test_employer_mappings() {
 		fail("Not yet implemented");
 	}
 

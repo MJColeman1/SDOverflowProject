@@ -33,7 +33,8 @@ class UserTest {
 	}
 
 	@Test
-	void test() {
+	@DisplayName("Test User is correctly mapped")
+	void test_user_mappings() {
 		fail("Not yet implemented");
 	}
 
