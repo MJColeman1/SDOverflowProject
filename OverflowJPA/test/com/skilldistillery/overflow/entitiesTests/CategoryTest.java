@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.entitiesTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.overflow.entities.Category;
@@ -33,8 +35,11 @@ class CategoryTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	@DisplayName("Test Category is correctly mapped")
+	void test_category_mappings() {
+		assertEquals("", category.getId());
+		assertEquals("", category.getName());
+		assertEquals("", category.getDescription());
 	}
 
 }
