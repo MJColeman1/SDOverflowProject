@@ -14,18 +14,18 @@ public interface UserRepository extends JpaRepository <User, Integer> {
 
 	public User findByUsername (String username);
 	
-	public User findByEmail (String email);
+//	public User findByEmail (String email);
 	
-	public User findByCohort (String cohort);
+//	public User findByCohort (String cohort);
 	
-	@Query("SELECT u.posts from User u JOIN FETCH u.posts where u.id = :id")
-	public List<Post>getPostsforUser(@Param("id")int id);
-	
-	@Query("SELECT u.comments from User u JOIN FETCH u.comments where u.id = :id")
-	public List<Comment>getComentsforUser(@Param("id")int id);
-	
-	@Query("SELECT u from User u where u.username = :userName")
-	public List<User>isUserNameTaken(@Param("userName") String username);
+//	@Query("SELECT u.posts from User u JOIN FETCH u.posts where u.id = :id")
+//	public List<Post>getPostsforUser(@Param("id")int id);
+//	
+//	@Query("SELECT u.comments from User u JOIN FETCH u.comments where u.id = :id")
+//	public List<Comment>getCommentsforUser(@Param("id")int id);
+//	
+//	@Query("SELECT u from User u where u.username = :userName")
+//	public List<User>isUserNameTaken(@Param("userName") String username);
 	
 	
 	
