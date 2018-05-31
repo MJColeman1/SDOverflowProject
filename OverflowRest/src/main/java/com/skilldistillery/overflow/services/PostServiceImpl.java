@@ -20,20 +20,20 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> getAllPosts() {
-		// TODO Auto-generated method stub
-		return null;
+		return postRepo.findAll();
 	}
 
 	@Override
 	public Post findPostsByPostId(int postId) {
-		// TODO Auto-generated method stub
-		return null;
+		return postRepo.findById(postId).get();
 	}
 
 	@Override
 	public Post createPostByLoggedInUser(Post post, String username) {
-		// TODO Auto-generated method stub
-		return null;
+//		if (!post.getUser().getUsername().equals(username)) {
+//			return null;
+//		}
+		return postRepo.saveAndFlush(post);
 	}
 
 	@Override

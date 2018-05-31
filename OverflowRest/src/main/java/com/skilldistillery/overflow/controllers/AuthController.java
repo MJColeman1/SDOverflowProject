@@ -21,23 +21,23 @@ import com.skilldistillery.overflow.services.AuthService;
 		@Autowired
 		private AuthService authService;
 
-		@RequestMapping(path = "/register", method = RequestMethod.POST)
-		public User register(@RequestBody String json, HttpServletResponse res) {
-			
-
-			User u = authService.register(json);
-
-			if (u == null) {
-				res.setStatus(400);
-			}
-
-			return u;
-		}
-
-		@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
-		public Principal authenticate(Principal principal) {
-			return principal;
-		}
+//		@RequestMapping(path = "/register", method = RequestMethod.POST)
+//		public User register(@RequestBody String json, HttpServletResponse res) {
+//			
+//
+//			User u = authService.register(json);
+//
+//			if (u == null) {
+//				res.setStatus(400);
+//			}
+//
+//			return u;
+//		}
+//
+//		@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
+//		public Principal authenticate(Principal principal) {
+//			return principal;
+//		}
 
 
 	}
