@@ -3,18 +3,17 @@ package com.skilldistillery.overflow.services;
 import java.util.List;
 
 import com.skilldistillery.overflow.entities.Post;
-import com.skilldistillery.overflow.entities.User;
 
 public interface PostService {
 
-	List<Post> index(User user);
+	List<Post> getAllPosts();
 	
-	Post show(int postId, User user);
+	Post findPostsByPostId(int postId);
 	
-	Post create(Post post, User user);
+	Post createPostByLoggedInUser(Post post, String username);
 	
-	Post update(int postId, Post post, User user);
+	Post updatePostByLoggedInUser(int postId, Post post, String username);
 	
-	Boolean destroy(int postId);
+	Boolean destroyPostByLoggedInUser(int postId, String username);
 	
 }

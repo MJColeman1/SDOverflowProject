@@ -17,33 +17,33 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
-	public List<Post> index(User user) {
+	public List<Post> getAllPosts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Post show(int postId, User user) {
+	public Post findPostsByPostId(int postId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Post create(Post post, User user) {
+	public Post createPostByLoggedInUser(Post post, String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Post update(int postId, Post post, User user) {
+	public Post updatePostByLoggedInUser(int postId, Post post, String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean destroy(int postId) {
+	public Boolean destroyPostByLoggedInUser(int postId, String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}

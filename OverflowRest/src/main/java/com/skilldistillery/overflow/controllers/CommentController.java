@@ -16,29 +16,31 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@RequestMapping(path = "/comments", method = RequestMethod.GET)
-	public List<Comment> index(User user) {
-		return commentService.index(user);
+	private String username = "";
+	
+	@RequestMapping(path = "/posts/{postId}/comments", method = RequestMethod.GET)
+	public List<Comment> index(@PathVariable int postId) {
+		return commentService.getAllComments();
 	}
 	
-	@RequestMapping(path = "/comments/{commentId}", method = RequestMethod.GET)
-	public Comment show(@PathVariable int commentId, User user) {
-		return commentService.show(commentId, user);
+	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.GET)
+	public Comment show(@PathVariable int postId, @PathVariable int commentId) {
+		return commentService.findCommentById(commentId);
 	}
 	
 	@RequestMapping(path = "/comments", method = RequestMethod.POST)
 	public Comment create(User user, @RequestBody Comment comment) {
-		return commentService.create(comment, user);
+		return commentService.createCommentByLoggedInUser(comment, username);
 	}
 	
 	@RequestMapping(path = "/comments/{commentId}", method = RequestMethod.PUT)
 	public Comment update(@PathVariable int commentId, User user, @RequestBody Comment comment) {
-		return commentService.update(commentId, comment,  user);
+		return commentService.updateCommentByLoggedInUse(commentId, comment, username);
 	}
 	
 	@RequestMapping(path = "/comments/{commentId}", method = RequestMethod.DELETE)
 	public Boolean delete(@PathVariable int commentId) {
-		return commentService.destroy(commentId);
+		return commentService.destroyCommentByLoggedInUse(commentId, username);
 	}
 
 }
