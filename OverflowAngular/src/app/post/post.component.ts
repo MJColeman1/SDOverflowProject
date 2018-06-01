@@ -1,3 +1,5 @@
+import { PostService } from './../post.service';
+import { Post } from './../post';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  posts = [];
+
+  post = new Post();
+
+  selected = null;
+
+  reload = function() {
+    this.postService.index().subscribe(
+      data => this.posts = data,
+      err => console.error('Observer got an error: ' + err)
+    );
+  };
+
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.reload();
   }
 
 }
