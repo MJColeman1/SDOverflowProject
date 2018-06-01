@@ -12,8 +12,8 @@ public interface PostService {
 	
 	Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username);
 	
-	Post updatePostByLoggedInUser(int postId, Post post, String username);
+	Post updatePostByLoggedInUser(int postId, int categoryId, int userId, Post post, String username);
 	
-	Boolean destroyPostByLoggedInUser(int postId, String username);
+	Boolean destroyPostByLoggedInUser(int postId, int categoryId, int userId, String username);
 	
 }
