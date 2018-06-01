@@ -16,4 +16,6 @@ public interface CommentService {
 	
 	boolean destroyCommentByLoggedInUser(int postId, int commentId, String username);
 
+	List<Comment> getCommentsByUserId(int userId);
+
 }

@@ -22,12 +22,19 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private UserRepository userRepo;
 	
-	@Autowired PostRepository postRepo;
+	@Autowired 
+	private PostRepository postRepo;
 
 	@Override
 	public List<Comment> getAllComments(int postId) {
-		Post p = postRepo.findById(postId).get();
-		return p.getComments();
+		List<Comment> comments = commentRepo.getCommentsForPost(postId);
+		return comments;
+	}
+	
+	@Override
+	public List<Comment> getCommentsByUserId(int userId) {
+		List<Comment> comments = commentRepo.getCommentsforUser(userId);
+		return comments;
 	}
 
 	@Override

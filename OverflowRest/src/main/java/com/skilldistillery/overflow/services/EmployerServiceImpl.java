@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.overflow.entities.Address;
 import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.EmployerDTO;
+import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.AddressRepository;
 import com.skilldistillery.overflow.respositories.EmployerRepository;
+import com.skilldistillery.overflow.respositories.TechnologyRepository;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
 @Service
@@ -24,6 +26,9 @@ public class EmployerServiceImpl implements EmployerService{
 	
 	@Autowired
 	private AddressRepository addressRepo;
+	
+	@Autowired
+	private TechnologyRepository techRepo;
 
 	@Override
 	public List<Employer> getAllEmployers() {
@@ -89,6 +94,14 @@ public class EmployerServiceImpl implements EmployerService{
 	public Boolean deleteEmployerById(int userId, int empId, String username) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Employer addTechnology(int techId, int empId) {
+		Technology tech = techRepo.findById(techId).get();
+		Employer managed = empRepo.findById(empId).get();
+		managed.addTechnology(tech);
+		return empRepo.saveAndFlush(managed);
 	}
 
 }

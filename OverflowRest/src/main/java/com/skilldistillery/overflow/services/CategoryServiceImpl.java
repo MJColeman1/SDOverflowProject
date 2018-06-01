@@ -29,6 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepo.findById(categoryId).get();
 	}
 
+//	COMMENTED OUT BECAUSE THERE IS A ALREADY A SHOW BY ID PATH IN CATEGORY CONTROLLER AND WE ARE CURRENTLY NOT USING THIS, KEEPING IN CASE WE CHANGE TO THIS METHOD INSTEAD
 //	@Override
 //	public Category getCategoryByName(String categoryName) {
 //		return categoryRepo.findByNameIgnoreCase(categoryName);

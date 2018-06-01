@@ -1,22 +1,7 @@
 package com.skilldistillery.overflow.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 public class ProfileDTO {
-	
-	
-	
+
 	private Profile userProfile;
 	
 	private String addressStreet;
@@ -57,10 +42,13 @@ public class ProfileDTO {
 	
 	private String employerAddressZip;
 	
+	// END OF FIELDS
 	
+	private ProfileDTO() {
+		
+	}
 	
-
-	
+	// END OF CONSTRUCTORS
 
 	public String getEmployerAddressStreet() {
 		return employerAddressStreet;
@@ -222,5 +210,6 @@ public class ProfileDTO {
 		this.profileEmployed = profileEmployed;
 	}
 
+	// END OF GETS/SETS
 
 }
