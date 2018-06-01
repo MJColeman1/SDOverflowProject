@@ -34,29 +34,61 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post createPostByLoggedInUser(Post post, int categoryid, int userId, String username) {
+	public Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username) {
 //		if (!post.getUser().getUsername().equals(username)) {
 //			return null;
 //		}
 		User user = userRepo.findById(userId).get();
 		post.setUser(user);
 		
-		Category category = categoryRepo.findById(categoryid).get();
+		Category category = categoryRepo.findById(categoryId).get();
 		post.setCategory(category);
 		
 		return postRepo.saveAndFlush(post);
 	}
 
 	@Override
-	public Post updatePostByLoggedInUser(int postId, Post post, String username) {
-		// TODO Auto-generated method stub
+	public Post updatePostByLoggedInUser(int postId, int categoryId, int userId, Post post, String username) {
+		Post managed = postRepo.findById(postId).get();
+		User user = userRepo.findById(userId).get();
+		Category category = categoryRepo.findById(categoryId).get();
+		
+		if (managed.getUser().getUsername().equals(username)) {
+			if (managed.getCategory() == category) {
+				
+				managed.setName(post.getName());
+				managed.setDescription(post.getDescription());
+				
+				return postRepo.saveAndFlush(managed);
+			}
+				
+		}
+		
 		return null;
 	}
 
 	@Override
-	public Boolean destroyPostByLoggedInUser(int postId, String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean destroyPostByLoggedInUser(int postId, int categoryId, int userId, String username) {
+		User user = userRepo.findById(userId).get();
+		Category category = categoryRepo.findById(categoryId).get();
+		Post post = postRepo.findById(postId).get();
+		
+		boolean deleted = false;
+		
+		try {
+			if (post.getUser() == user) {
+				if (post.getCategory() == category) {
+					
+					postRepo.deleteById(postId);
+					deleted = true;
+					return deleted;
+					
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleted;
 	}
 
 }

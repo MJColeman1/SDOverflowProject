@@ -11,9 +11,11 @@ public interface ProfileService {
 	Profile updateProfile( ProfileDTO dto, Address address, Employer employer, 
 			 Profile profile, Address employerAddress);
 	
-	Profile addTechnology(Technology technology);
+	Profile addTechnology(Technology technology, Profile profile);
 	
-	Profile deleteTechnology(Technology technology);
+	Profile deleteTechnology(Technology technology,Profile profile);
+	
+	Profile removeEmployer( Profile profile);
 
 	
 	
