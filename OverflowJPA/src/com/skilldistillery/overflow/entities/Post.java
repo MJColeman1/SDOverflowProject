@@ -41,12 +41,10 @@ public class Post {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
-	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id")
 	private User user;
