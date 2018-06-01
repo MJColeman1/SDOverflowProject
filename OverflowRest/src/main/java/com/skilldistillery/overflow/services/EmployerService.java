@@ -10,7 +10,7 @@ public interface EmployerService {
 	
 	Employer findEmployerById(int empId);
 	
-	Employer createNewEmployer(int userId, int empId, Employer employer, String username);
+	Employer createNewEmployer(int userId, Employer employer, String username);
 	
 	Employer updateEmployerById(int userId, int empId, Employer employer, String username);
 	

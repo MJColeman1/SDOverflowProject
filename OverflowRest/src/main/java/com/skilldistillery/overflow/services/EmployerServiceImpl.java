@@ -6,12 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.overflow.entities.Employer;
+import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.EmployerRepository;
+import com.skilldistillery.overflow.respositories.UserRepository;
 
 @Service
 public class EmployerServiceImpl implements EmployerService{
 	@Autowired
 	private EmployerRepository empRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Employer> getAllEmployers() {
@@ -24,8 +29,11 @@ public class EmployerServiceImpl implements EmployerService{
 	}
 
 	@Override
-	public Employer createNewEmployer(int userId, int empId, Employer employer, String username) {
-		// TODO Auto-generated method stub
+	public Employer createNewEmployer(int userId, Employer employer, String username) {
+		User user = userRepo.findById(userId).get();
+		if (user.getUsername().equals(username)) {
+			empRepo.saveAndFlush(employer);
+		}
 		return null;
 	}
 
