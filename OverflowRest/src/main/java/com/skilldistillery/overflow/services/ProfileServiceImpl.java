@@ -50,13 +50,14 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public Profile addTechnology(Technology technology) {
-		// TODO Auto-generated method stub
-		return null;
+	public Profile addTechnology(Technology technology, Profile profile) {
+		profile.addTechnology(technology);
+		return profile;
 	}
-	public Profile deleteTechnology(Technology technology) {
-		
-		return null;
+	@Override
+	public Profile deleteTechnology(Technology technology, Profile profile) {
+		profile.deleteTechnology(technology);
+		return profile;
 		
 	}
 	

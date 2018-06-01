@@ -1,12 +1,10 @@
 package com.skilldistillery.overflow.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.skilldistillery.overflow.entities.Address;
-import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.Profile;
-import com.skilldistillery.overflow.entities.ProfileDTO;
-import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.entities.UserDTO;
 import com.skilldistillery.overflow.respositories.UserRepository;
@@ -43,6 +41,18 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 
+	}
+	public User updateUser(User user, int userId) {
+		User managedUser = new User();
+		Optional <User> opUser = userRepo.findById(userId);
+		if(opUser.isPresent()) {
+			managedUser = userRepo.findById(userId).get();
+			managedUser.setUsername(user.getUsername());
+			managedUser.setPassword(user.getPassword());
+		}
+		
+		return managedUser;
+		
 	}
 
 }
