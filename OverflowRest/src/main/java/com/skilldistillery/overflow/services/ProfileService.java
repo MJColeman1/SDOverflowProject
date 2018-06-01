@@ -8,14 +8,13 @@ import com.skilldistillery.overflow.entities.Technology;
 
 public interface ProfileService {
 
-	Profile updateProfile( ProfileDTO dto, Address address, Employer employer, 
-			 Profile profile, Address employerAddress);
+	Profile updateProfile( ProfileDTO dto, int profileId);
 	
-	Profile addTechnology(Technology technology, Profile profile);
+	Profile addTechnology(Technology technology, int profileId);
 	
-	Profile deleteTechnology(Technology technology,Profile profile);
+	Profile deleteTechnology(Technology technology,int profileId);
 	
-	Profile removeEmployer( Profile profile);
+	Profile removeEmployer( int profileId);
 
 	
 	
