@@ -14,6 +14,8 @@ public interface ProfileService {
 	Profile addTechnology(Technology technology, Profile profile);
 	
 	Profile deleteTechnology(Technology technology,Profile profile);
+	
+	Profile removeEmployer( Profile profile);
 
 	
 	
