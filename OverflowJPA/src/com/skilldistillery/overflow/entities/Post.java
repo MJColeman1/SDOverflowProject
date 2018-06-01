@@ -29,11 +29,11 @@ public class Post {
 	private String description;
 
 	@Column(name = "created_at")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createdAt;
 
 	@Column(name = "updated_at")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date updatedAt;
 
 	@JsonIgnore
