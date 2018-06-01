@@ -10,6 +10,6 @@ import com.skilldistillery.overflow.entities.Post;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-	//@Query("SELECT u.posts from User u JOIN FETCH u.posts where u.id = :id")
-	//public List<Post>getPostsForUser(@Param("id")int id);
+	@Query("SELECT p FROM Post p JOIN FETCH p.user where p.user.id = :id")
+	public List<Post> getPostsForUser(@Param("id")int id);
 }

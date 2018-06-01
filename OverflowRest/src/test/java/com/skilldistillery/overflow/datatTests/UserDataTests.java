@@ -20,8 +20,7 @@ public class UserDataTests {
 
 	@Test
 	@DisplayName("Test User is correctly mapped")
-	 public void test_user_mappings() {
-		
+	 public void test_user_mappings() {	
 		assertEquals("jackson", userRepo.findByUsername("jackson").getUsername());
 	}
 
