@@ -203,8 +203,11 @@
             <h3>Categories</h3>
             <div class="divline"></div>
             <div class="blocktxt">
-              <ul class="cats">
+              <ul *ngFor='let cat of categories' class="cats">
                 <li>
+                  <a>{{cat.name}}<span class="badge pull-right">20</span></a>
+                </li>
+                <!-- <li>
                   <a href="#">Trading for Money
                     <span class="badge pull-right">20</span>
                   </a>
@@ -238,7 +241,7 @@
                   <a href="#">2K Official Forums
                     <span class="badge pull-right">5</span>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -346,6 +349,7 @@
           by
           <a href="#">Jackson</a>
         </p>
+        <button (click)='return()'class="btn btn-primary">Posts</button>
 
         <hr>
 
