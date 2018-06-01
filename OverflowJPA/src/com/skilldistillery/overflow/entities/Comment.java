@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Comment {
 
@@ -22,10 +25,12 @@ public class Comment {
 	private String description;
 
 	@Column(name = "created_at")
+	@CreationTimestamp
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createdAt;
 
 	@Column(name = "updated_at")
+	@UpdateTimestamp
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date updatedAt;
 

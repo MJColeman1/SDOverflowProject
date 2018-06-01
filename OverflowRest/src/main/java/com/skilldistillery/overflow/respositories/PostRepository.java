@@ -1,9 +1,13 @@
 package com.skilldistillery.overflow.respositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.skilldistillery.overflow.entities.Comment;
 import com.skilldistillery.overflow.entities.Post;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
+	
 
 }

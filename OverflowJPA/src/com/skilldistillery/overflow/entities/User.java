@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -28,13 +30,16 @@ public class User {
 
 	private boolean admin;
 
+	@JsonIgnore
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
 
