@@ -6,5 +6,7 @@ import com.skilldistillery.overflow.entities.Post;
 import com.skilldistillery.overflow.entities.Profile;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
+	
+	
 
 }

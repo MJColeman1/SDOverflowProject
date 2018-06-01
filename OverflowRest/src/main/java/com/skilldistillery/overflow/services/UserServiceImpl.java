@@ -1,5 +1,7 @@
 package com.skilldistillery.overflow.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,18 @@ public class UserServiceImpl implements UserService{
 		}
 		return false;
 	
+	}
+	public User updateUser(User user, int userId) {
+		User managedUser = new User();
+		Optional <User> opUser = userRepo.findById(userId);
+		if(opUser.isPresent()) {
+			managedUser = userRepo.findById(userId).get();
+			managedUser.setUsername(user.getUsername());
+			managedUser.setPassword(user.getPassword());
+		}
+		
+		return managedUser;
+		
 	}
 
 }
