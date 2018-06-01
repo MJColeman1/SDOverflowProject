@@ -10,6 +10,7 @@ import com.skilldistillery.overflow.entities.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
-//	@Query("SELECT u.comments from User u JOIN FETCH u.comments where u.id = :id")
-//	public List<Comment>getCommentsforUser(@Param("id")int id);
+	@Query("SELECT c FROM Comment c JOIN FETCH c.user where c.user.id = :id")
+	public List<Comment> getCommentsforUser(@Param("id")int id);
+	
 }
