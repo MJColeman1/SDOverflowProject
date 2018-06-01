@@ -1,6 +1,7 @@
 package com.skilldistillery.overflow.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import com.skilldistillery.overflow.entities.Address;
 import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.EmployerDTO;
 import com.skilldistillery.overflow.entities.User;
+import com.skilldistillery.overflow.respositories.AddressRepository;
 import com.skilldistillery.overflow.respositories.EmployerRepository;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
@@ -19,6 +21,9 @@ public class EmployerServiceImpl implements EmployerService{
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private AddressRepository addressRepo;
 
 	@Override
 	public List<Employer> getAllEmployers() {
@@ -55,7 +60,28 @@ public class EmployerServiceImpl implements EmployerService{
 
 	@Override
 	public Employer updateEmployerById(int userId, int empId, EmployerDTO dto, String username) {
-		// TODO Auto-generated method stub
+		Optional<Employer> opEmployer = empRepo.findById(empId);
+		if (opEmployer.isPresent()) {
+			// GRAB THE EMPLOYER TO BE EDITED
+			Employer managedEmployer = opEmployer.get();
+			Optional<Address> opAddress = addressRepo.findById(managedEmployer.getAddress().getId());
+			if (opAddress.isPresent()) {
+				// GRAB THE ADDRESS TO BE EDITED AND SET ITS VALUES TO THE DTO FORM DATA
+				Address managedAddress = opAddress.get();
+				managedAddress.setStreet(dto.getEmployerStreet());
+				managedAddress.setStreet2(dto.getEmployerStreet2());
+				managedAddress.setCity(dto.getEmployerCity());
+				managedAddress.setState(dto.getEmployerState());
+				managedAddress.setCountry(dto.getEmployerCountry());
+				managedAddress.setZip(dto.getEmployerZip());
+				// SET THE VALUES OF THE EMPLOYER TO THE DTO FORM DATA AND ITS ADDRESS TO THE EDITED ADDRESS
+				managedEmployer.setName(dto.getEmployerName());
+				managedEmployer.setHiring(dto.getEmployerHiring());
+				managedEmployer.setAddress(managedAddress);
+				// SAVE THE EDIT TO EMPLOYER AND CASCADE ADDRESS
+				return empRepo.saveAndFlush(managedEmployer);
+			}
+		}
 		return null;
 	}
 
