@@ -17,4 +17,5 @@ public interface EmployerService {
 	
 	Boolean deleteEmployerById(int userId, int empId, String username);
 	
+	Employer addTechnology(int techId, int empId);
 }

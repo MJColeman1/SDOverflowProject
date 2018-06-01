@@ -44,4 +44,9 @@ public class EmployerController {
 		res.setStatus(400);
 		return null;
 	}
+	
+	@RequestMapping(path="employers/{empId}/technology/{techId}", method=RequestMethod.PUT)
+	public Employer addTechnology(@PathVariable int empId, @PathVariable int techId) {
+		return empService.addTechnology(techId, empId);
+	}
 }

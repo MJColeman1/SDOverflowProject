@@ -205,16 +205,16 @@ public class Profile {
 		return true;
 	}
 	
-	
-	
 	public void addTechnology(Technology technology) {
-		if(technologies == null)technologies = new ArrayList<>();
-		if(!technologies.contains(technology)) {
+		if (technologies == null)
+			technologies = new ArrayList<>();
+		if (!technologies.contains(technology)) {
 			technologies.add(technology);
 		}
 	}
+
 	public void deleteTechnology(Technology technology) {
-		if(technologies != null) {
+		if (technologies != null) {
 			technologies.remove(technology);
 		}
 	}
