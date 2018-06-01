@@ -60,5 +60,13 @@ public class ProfileServiceImpl implements ProfileService {
 		return profile;
 		
 	}
+
+	@Override
+	public Profile removeEmployer(Profile profile) {
+		profile.setEmployer(null);
+		
+		return profile;
+	}
+	
 	
 }
