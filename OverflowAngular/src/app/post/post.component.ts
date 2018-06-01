@@ -22,6 +22,11 @@ export class PostComponent implements OnInit {
     );
   };
 
+  displayPost = function(post) {
+    console.log(post);
+    this.selected = post;
+  };
+
   constructor(private postService: PostService) { }
 
   ngOnInit() {
