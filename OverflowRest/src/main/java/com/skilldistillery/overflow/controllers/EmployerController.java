@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.overflow.entities.Employer;
+import com.skilldistillery.overflow.entities.EmployerDTO;
 import com.skilldistillery.overflow.services.EmployerService;
 
 @RestController
@@ -34,8 +35,8 @@ public class EmployerController {
 	}
 
 	@RequestMapping(path = "/user/{userId}/employers", method = RequestMethod.POST)
-	public Employer create(@PathVariable int userId, @RequestBody Employer employer, HttpServletResponse res) {
-		Employer newEmployer = empService.createNewEmployer(userId, employer, username); 
+	public Employer create(@PathVariable int userId, @RequestBody EmployerDTO dto, HttpServletResponse res) {
+		Employer newEmployer = empService.createNewEmployer(userId, dto, username); 
 		if (newEmployer != null) {
 			res.setStatus(201);
 			return newEmployer;

@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -121,5 +122,17 @@ public class Employer {
 			return false;
 		return true;
 	}
-
+	
+	public void addTechnology(Technology technology) {
+		if(technologies == null)technologies = new ArrayList<>();
+		if(!technologies.contains(technology)) {
+			technologies.add(technology);
+		}
+	}
+	
+	public void deleteTechnology(Technology technology) {
+		if(technologies != null) {
+			technologies.remove(technology);
+		}
+	}
 }
