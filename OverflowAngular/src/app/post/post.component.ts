@@ -13,6 +13,8 @@ export class PostComponent implements OnInit {
 
   post = new Post();
 
+  categories = [];
+
   selected = null;
 
   reload = function() {
@@ -27,10 +29,22 @@ export class PostComponent implements OnInit {
     this.selected = post;
   };
 
+  displayCategories = function() {
+    this.postService.getCategories().subscribe(
+      data => this.categories = data,
+      err => console.error('Category got an error: ' + err)
+    );
+  };
+
+  return = function() {
+    this.selected = null;
+  };
+
   constructor(private postService: PostService) { }
 
   ngOnInit() {
     this.reload();
+    this.displayCategories();
   }
 
 }
