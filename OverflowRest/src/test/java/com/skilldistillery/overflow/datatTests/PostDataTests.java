@@ -2,40 +2,23 @@ package com.skilldistillery.overflow.datatTests;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import com.skilldistillery.overflow.entities.Post;
+import com.skilldistillery.overflow.respositories.PostRepository;
 
-class PostDataTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class PostDataTests {
 
-	private EntityManagerFactory emf;
-	private EntityManager em;
-	private Post post;
-
-	@BeforeEach
-	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Overflow");
-		em = emf.createEntityManager();
-		post = em.find(Post.class, 1);
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		em.close();
-		emf.close();
-		post = null;
-	}
+	private PostRepository pr;
 	
 	@Test
 	@DisplayName("Test Post is correctly mapped")
-	void test_post_mappings() {
+	public void test_post_mappings() {
 		fail("Not yet implemented");
 	}
 

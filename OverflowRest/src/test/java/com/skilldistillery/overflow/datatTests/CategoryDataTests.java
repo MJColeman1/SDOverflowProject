@@ -2,40 +2,25 @@ package com.skilldistillery.overflow.datatTests;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import com.skilldistillery.overflow.entities.Category;
+import com.skilldistillery.overflow.respositories.CategoryRepository;
 
-class CategoryDataTests {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CategoryDataTests {
 
-	private EntityManagerFactory emf;
-	private EntityManager em;
-	private Category category;
-
-	@BeforeEach
-	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Overflow");
-		em = emf.createEntityManager();
-		category = em.find(Category.class, 1);
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		em.close();
-		emf.close();
-		category = null;
-	}
+	@Autowired
+	private CategoryRepository cr;
 	
 	@Test
 	@DisplayName("Test Category is correctly mapped")
-	void test_category_mappings() {
+	public void test_category_mappings() {
 		fail("Not yet implemented");
 	}
 

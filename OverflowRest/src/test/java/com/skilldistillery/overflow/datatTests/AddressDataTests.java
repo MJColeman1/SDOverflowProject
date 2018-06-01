@@ -1,42 +1,26 @@
 package com.skilldistillery.overflow.datatTests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import com.skilldistillery.overflow.entities.Address;
+import com.skilldistillery.overflow.respositories.AddressRepository;
 
-class AddressDataTests {
-
-	private EntityManagerFactory emf;
-	private EntityManager em;
-	private Address address;
-
-	@BeforeEach
-	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Overflow");
-		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		em.close();
-		emf.close();
-		address = null;
-	}
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class AddressDataTests {
+	
+	@Autowired
+	private AddressRepository ar;
 	
 	@Test
 	@DisplayName("Test Address is correctly mapped")
-	void test_address_mappings() {
+	public void test_address_mappings() {
 		fail("Not yet implemented");
 	}
 

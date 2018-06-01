@@ -9,21 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserDataTests {
+	
 	@Autowired
 	private UserRepository userRepo;
 
-	
-	private User user;
-	
-
-	
-	
 	@Test
 	@DisplayName("Test User is correctly mapped")
 	 public void test_user_mappings() {
