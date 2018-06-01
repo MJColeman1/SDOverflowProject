@@ -19,6 +19,7 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
+	
 	@RequestMapping(path="posts/{postId}/comments", method = RequestMethod.GET)
 	public List<Comment> index(@PathVariable int postId) {
 		return commentService.getAllComments(postId);
@@ -29,21 +30,21 @@ public class CommentController {
 		return commentService.findCommentByPostId(postId, commentId);
 	}
 	
-	@RequestMapping(path = "users/{username}/posts/{postId}/comments", method = RequestMethod.POST)
-	public Comment create(@PathVariable int postId, @PathVariable String username, @RequestBody Comment comment) {
-		return commentService.createCommentByLoggedInUser(postId, comment, username);
+	@RequestMapping(path = "posts/{postId}/comments", method = RequestMethod.POST)
+	public Comment create(@PathVariable int postId, @RequestBody Comment comment) {
+		return commentService.createCommentByLoggedInUser(postId, comment, "jackson");
 		
 	}
 	
-	@RequestMapping(path = "users/{username}/posts/{postId}/comments/{commentId}", method = RequestMethod.PUT)
-	public Comment update(@PathVariable int postId, @PathVariable int commentId, @PathVariable String username, 
+	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.PUT)
+	public Comment update(@PathVariable int postId, @PathVariable int commentId, 
 			@RequestBody Comment comment) {
-		return commentService.updateCommentByLoggedInUser(postId, comment, username, commentId);
+		return commentService.updateCommentByLoggedInUser(postId, comment, "jackson", commentId);
 	}
 	
-	@RequestMapping(path = "users/{username}/posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
-	public Boolean delete(@PathVariable int commentId, @PathVariable int postId, @PathVariable String username) {
-		return commentService.destroyCommentByLoggedInUser(postId, commentId, username);
+	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
+	public Boolean delete(@PathVariable int commentId, @PathVariable int postId) {
+		return commentService.destroyCommentByLoggedInUser(postId, commentId, "jackson");
 	}
 
 }
