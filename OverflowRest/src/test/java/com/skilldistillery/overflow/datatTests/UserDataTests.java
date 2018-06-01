@@ -1,42 +1,28 @@
 package com.skilldistillery.overflow.datatTests;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import com.skilldistillery.overflow.entities.User;
+import com.skilldistillery.overflow.respositories.UserRepository;
 
-class UserDataTests {
-
-	private EntityManagerFactory emf;
-	private EntityManager em;
-	private User user;
-
-	@BeforeEach
-	void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Overflow");
-		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		em.close();
-		emf.close();
-		user = null;
-	}
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class UserDataTests {
 	
+	@Autowired
+	private UserRepository userRepo;
+
 	@Test
 	@DisplayName("Test User is correctly mapped")
-	void test_user_mappings() {
-		fail("Not yet implemented");
+	 public void test_user_mappings() {
+		
+		assertEquals("jackson", userRepo.findByUsername("jackson").getUsername());
 	}
 
 }

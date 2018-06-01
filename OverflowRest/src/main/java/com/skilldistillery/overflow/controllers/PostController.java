@@ -41,7 +41,7 @@ public class PostController {
 			return null;
 		}
 
-		res.setStatus(200);
+		res.setStatus(201);
 		return postService.createPostByLoggedInUser(post, categoryId, userId, username);
 	}
 
@@ -61,7 +61,7 @@ public class PostController {
 			HttpServletResponse res) {
 		if (postService.destroyPostByLoggedInUser(postId, categoryId, userId, username)) {
 			res.setStatus(200);
-			return postService.destroyPostByLoggedInUser(postId, categoryId, userId, username);
+			return true;
 		}
 		res.setStatus(400);
 		return false;
