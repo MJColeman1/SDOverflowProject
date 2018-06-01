@@ -19,7 +19,7 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private CategoryRepository categoryRepo;
 
@@ -35,54 +35,53 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username) {
-//		if (!post.getUser().getUsername().equals(username)) {
-//			return null;
-//		}
 		User user = userRepo.findById(userId).get();
 		post.setUser(user);
-		
+
 		Category category = categoryRepo.findById(categoryId).get();
 		post.setCategory(category);
-		
-		return postRepo.saveAndFlush(post);
+
+		if (user.getUsername().equals(username)) {
+			return postRepo.saveAndFlush(post);
+		}
+		return null;
+
 	}
 
 	@Override
 	public Post updatePostByLoggedInUser(int postId, int categoryId, int userId, Post post, String username) {
 		Post managed = postRepo.findById(postId).get();
-		User user = userRepo.findById(userId).get();
 		Category category = categoryRepo.findById(categoryId).get();
-		
+
 		if (managed.getUser().getUsername().equals(username)) {
 			if (managed.getCategory() == category) {
-				
+
 				managed.setName(post.getName());
 				managed.setDescription(post.getDescription());
-				
+
 				return postRepo.saveAndFlush(managed);
 			}
-				
+
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public Boolean destroyPostByLoggedInUser(int postId, int categoryId, int userId, String username) {
-		User user = userRepo.findById(userId).get();
 		Category category = categoryRepo.findById(categoryId).get();
 		Post post = postRepo.findById(postId).get();
-		
+
 		boolean deleted = false;
-		
+
 		try {
-			if (post.getUser() == user) {
+			if (post.getUser().getUsername().equals(username)) {
 				if (post.getCategory() == category) {
-					
+
 					postRepo.deleteById(postId);
 					deleted = true;
 					return deleted;
-					
+
 				}
 			}
 		} catch (Exception e) {
