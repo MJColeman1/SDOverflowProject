@@ -72,6 +72,14 @@ public class Employer {
 		this.address = address;
 	}
 
+	public List<Technology> getTechnologies() {
+		return technologies;
+	}
+
+	public void setTechnologies(List<Technology> technologies) {
+		this.technologies = technologies;
+	}
+
 	@Override
 	public String toString() {
 		return "Employer [id=" + id + ", name=" + name + ", hiring=" + hiring + ", address=" + address + "]";
@@ -122,16 +130,17 @@ public class Employer {
 			return false;
 		return true;
 	}
-	
+
 	public void addTechnology(Technology technology) {
-		if(technologies == null)technologies = new ArrayList<>();
-		if(!technologies.contains(technology)) {
+		if (technologies == null)
+			technologies = new ArrayList<>();
+		if (!technologies.contains(technology)) {
 			technologies.add(technology);
 		}
 	}
-	
+
 	public void deleteTechnology(Technology technology) {
-		if(technologies != null) {
+		if (technologies != null) {
 			technologies.remove(technology);
 		}
 	}

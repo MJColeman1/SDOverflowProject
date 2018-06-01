@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Technology {
 
@@ -24,6 +26,7 @@ public class Technology {
 	@ManyToMany(mappedBy = "technologies")
 	private List<Profile> profiles;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "technologies")
 	private List<Employer> employers;
 
