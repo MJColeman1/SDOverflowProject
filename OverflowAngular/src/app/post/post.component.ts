@@ -17,6 +17,8 @@ export class PostComponent implements OnInit {
 
   selected = null;
 
+  postsByCategory = [];
+
   reload = function() {
     this.postService.index().subscribe(
       data => this.posts = data,
@@ -25,7 +27,7 @@ export class PostComponent implements OnInit {
   };
 
   displayPost = function(post) {
-    console.log(post);
+    console.log(this.posts);
     this.selected = post;
   };
 
@@ -34,6 +36,14 @@ export class PostComponent implements OnInit {
       data => this.categories = data,
       err => console.error('Category got an error: ' + err)
     );
+  };
+
+  displayPostsByCategory = function(catId) {
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].category.id === catId) {
+        this.postsByCategory.push(this.posts[i]);
+      }
+    }
   };
 
   return = function() {
