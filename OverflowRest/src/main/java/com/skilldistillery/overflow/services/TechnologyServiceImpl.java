@@ -1,10 +1,12 @@
 package com.skilldistillery.overflow.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.respositories.TechnologyRepository;
 
@@ -51,5 +53,6 @@ public class TechnologyServiceImpl implements TechnologyService{
 		}
 		return false;
 	}
+
 
 }
