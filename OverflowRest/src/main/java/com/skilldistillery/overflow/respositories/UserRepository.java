@@ -14,12 +14,12 @@ public interface UserRepository extends JpaRepository <User, Integer> {
 
 	public User findByUsername (String username);
 	
-//	public User findByEmail (String email);
+
 	
-//	public User findByCohort (String cohort);
+	
 	
 //	@Query("SELECT u.posts from User u JOIN FETCH u.posts where u.id = :id")
-//	public List<Post>getPostsforUser(@Param("id")int id);
+//	public List<Post>getPostsForUser(@Param("id")int id);
 //	
 //	@Query("SELECT u.comments from User u JOIN FETCH u.comments where u.id = :id")
 //	public List<Comment>getCommentsforUser(@Param("id")int id);
