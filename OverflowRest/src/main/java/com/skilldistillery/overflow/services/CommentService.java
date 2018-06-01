@@ -6,14 +6,14 @@ import com.skilldistillery.overflow.entities.Comment;
 
 public interface CommentService {
 	
-	List<Comment> getAllComments();
+	List<Comment> getAllComments(int postId);
 	
-	Comment findCommentById(int commentId);
+	Comment findCommentByPostId(int postId, int commentId);
 	
-	Comment createCommentByLoggedInUser(Comment comment, String username);
+	Comment createCommentByLoggedInUser(int postId, Comment comment, String username);
 	
-	Comment updateCommentByLoggedInUse(int commentId, Comment comment,String username);
+	Comment updateCommentByLoggedInUser(int postId, Comment comment, String username, int commentId);
 	
-	Boolean destroyCommentByLoggedInUse(int commentId, String username);
+	boolean destroyCommentByLoggedInUser(int postId, int commentId, String username);
 
 }

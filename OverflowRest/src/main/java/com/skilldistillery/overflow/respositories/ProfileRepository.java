@@ -8,6 +8,8 @@ import com.skilldistillery.overflow.entities.User;
 
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 	
-	public User findByCohort (String cohort);
+	public Profile findByCohort (String cohort);
+	
+	
 
 }
