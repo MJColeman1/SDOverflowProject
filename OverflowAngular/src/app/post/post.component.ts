@@ -17,6 +17,10 @@ export class PostComponent implements OnInit {
 
   selected = null;
 
+  selectedCategory = null;
+
+  catSelected = false;
+
   postsByCategory = [];
 
   reload = function() {
@@ -31,6 +35,13 @@ export class PostComponent implements OnInit {
     this.selected = post;
   };
 
+  displayAllPost = function() {
+    this.selected = null;
+    this.catSelected = false;
+    this.selectedCategory = null;
+    this.reload();
+  };
+
   displayCategories = function() {
     this.postService.getCategories().subscribe(
       data => this.categories = data,
@@ -39,11 +50,14 @@ export class PostComponent implements OnInit {
   };
 
   displayPostsByCategory = function(catId) {
+    this.postsByCategory = [];
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].category.id === catId) {
         this.postsByCategory.push(this.posts[i]);
       }
     }
+    this.selectedCategory = this.postsByCategory[0].category.name;
+    this.catSelected = true;
   };
 
   return = function() {
