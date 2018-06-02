@@ -21,7 +21,11 @@ export class PostComponent implements OnInit {
 
   catSelected = false;
 
+  selectedCategoryCount = 0;
+
   postsByCategory = [];
+
+  newTopic = false;
 
   reload = function() {
     this.postService.index().subscribe(
@@ -39,6 +43,7 @@ export class PostComponent implements OnInit {
     this.selected = null;
     this.catSelected = false;
     this.selectedCategory = null;
+    this.selectedCategoryCount = 0;
     this.reload();
   };
 
@@ -54,10 +59,15 @@ export class PostComponent implements OnInit {
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].category.id === catId) {
         this.postsByCategory.push(this.posts[i]);
+        this.selectedCategoryCount += 1;
       }
     }
     this.selectedCategory = this.postsByCategory[0].category.name;
     this.catSelected = true;
+  };
+
+  startNewTopic = function() {
+    this.newTopic = true;
   };
 
   return = function() {
