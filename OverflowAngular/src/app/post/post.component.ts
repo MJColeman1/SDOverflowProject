@@ -73,12 +73,13 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // DISPLAY SELECTED POST AND COMMENTS
   displayPost = function(post) {
-    console.log(this.posts);
     this.selected = post;
     this.displayCommentsByPost(post.id);
   };
 
+  // FUNCTION TO DISPLAY ALL POSTS AGAIN
   displayAllPost = function() {
     this.selected = null;
     this.catSelected = false;
@@ -87,6 +88,7 @@ export class PostComponent implements OnInit {
     this.reload();
   };
 
+  // OBTAIN ALL THE CATEGORIES OF POSTS
   displayCategories = function() {
     this.postService.getCategories().subscribe(
       data => this.categories = data,
@@ -94,6 +96,7 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // DISPLAY ALL POSTS BY SELECTED CATEGORY
   displayPostsByCategory = function(catId) {
     this.postsByCategory = [];
     for (let i = 0; i < this.posts.length; i++) {

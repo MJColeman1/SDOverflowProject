@@ -206,7 +206,7 @@
             <div class="blocktxt">
               <ul *ngFor='let cat of categories' class="cats">
                 <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
-                  <a>{{cat.name}}<span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span></a>
+                  <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}<span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span></a>
                 </li>
               </ul>
             </div>
