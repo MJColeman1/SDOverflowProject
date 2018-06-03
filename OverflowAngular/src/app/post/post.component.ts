@@ -29,17 +29,28 @@ export class PostComponent implements OnInit {
 
   postsByCategory = [];
 
-  numPostsByCategory = {
-    name: '',
-    num: '',
-  };
+  numPostsByCategory = {};
+
+  postsByCategoryKeys = [];
 
   newTopic = false;
 
-  // GET ALL POSTS
+  // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
+    this.numPostsByCategory = {};
+    this.postsByCategoryKeys = [];
     this.postService.index().subscribe(
-      data => this.posts = data,
+      data => {
+        this.posts = data;
+        for (let i = 0; i < this.posts.length; i++) {
+          if (isNaN(this.numPostsByCategory[this.posts[i].category.name])) {
+            this.numPostsByCategory[this.posts[i].category.name] = 1;
+          } else {
+            this.numPostsByCategory[this.posts[i].category.name] += 1;
+          }
+        }
+        this.postsByCategoryKeys = Object.keys(this.numPostsByCategory);
+      },
       err => console.error('Observer got an error: ' + err)
     );
   };

@@ -1,5 +1,5 @@
 
-<!-- POSTS MAIN PAGE -->
+<!-- ***** POSTS MAIN PAGE ***** -->
 <div *ngIf='!selected && !catSelected && !newTopic' class="container-fluid">
 
   <div class="headernav">
@@ -206,7 +206,7 @@
             <div class="blocktxt">
               <ul *ngFor='let cat of categories' class="cats">
                 <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
-                  <a>{{cat.name}}<span class="badge pull-right">20</span></a>
+                  <a>{{cat.name}}<span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span></a>
                 </li>
               </ul>
             </div>
@@ -296,10 +296,10 @@
     </div>
   </section>
 </div>
-  <!-- END POST MAIN PAGE -->
+  <!-- ***** END POST MAIN PAGE ***** -->
 
 
-  <!-- POSTS BY CAT PAGE -->
+  <!-- ***** POSTS BY CAT PAGE ***** -->
 <div *ngIf='!selected && catSelected && !newTopic' class="container-fluid">
 
     <div class="headernav">
@@ -505,7 +505,7 @@
               <div class="blocktxt">
                 <ul *ngFor='let cat of categories' class="cats">
                     <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
-                      <a>{{cat.name}}<span class="badge pull-right">20</span></a>
+                      <a>{{cat.name}}<span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span></a>
                     </li>
                 </ul>
               </div>
