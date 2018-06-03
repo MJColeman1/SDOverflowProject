@@ -15,6 +15,8 @@ export class PostComponent implements OnInit {
 
   categories = [];
 
+  comments = [];
+
   selected = null;
 
   selectedCategory = null;
@@ -23,10 +25,13 @@ export class PostComponent implements OnInit {
 
   selectedCategoryCount = 0;
 
+  selectedCategoryId = null;
+
   postsByCategory = [];
 
   newTopic = false;
 
+  // GET ALL POSTS
   reload = function() {
     this.postService.index().subscribe(
       data => this.posts = data,
@@ -34,9 +39,26 @@ export class PostComponent implements OnInit {
     );
   };
 
+  displayCommentsByPost = function(postId) {
+    console.log('made it here yay');
+    this.postService.getCommentsByPost(postId).subscribe(
+      data => this.comments = data,
+      err => console.error('Post Comments got an error: ' + err)
+    );
+  };
+
+  createPost = function() {
+    console.log(this.post);
+    this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
+      data => this.reload(),
+      err => console.error('Create got an error: ' + err)
+    );
+  };
+
   displayPost = function(post) {
     console.log(this.posts);
     this.selected = post;
+    this.displayCommentsByPost(post.id);
   };
 
   displayAllPost = function() {
@@ -68,6 +90,7 @@ export class PostComponent implements OnInit {
 
   startNewTopic = function() {
     this.newTopic = true;
+    this.displayCategories();
   };
 
   return = function() {
