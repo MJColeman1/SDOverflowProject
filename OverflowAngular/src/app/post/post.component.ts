@@ -29,6 +29,11 @@ export class PostComponent implements OnInit {
 
   postsByCategory = [];
 
+  numPostsByCategory = {
+    name: '',
+    num: '',
+  };
+
   newTopic = false;
 
   // GET ALL POSTS
@@ -39,6 +44,7 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // DISPLAY ALL COMMENTS FOR A SPECIFIC POST
   displayCommentsByPost = function(postId) {
     console.log('made it here yay');
     this.postService.getCommentsByPost(postId).subscribe(
@@ -47,6 +53,7 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // CREATE A NEW POST (TOPIC)
   createPost = function() {
     console.log(this.post);
     this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
@@ -93,6 +100,7 @@ export class PostComponent implements OnInit {
     this.displayCategories();
   };
 
+  // SETS SELECTED TO NULL IN ORDER TO RETURN TO THE MAIN PAGE
   return = function() {
     this.selected = null;
   };
