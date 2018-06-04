@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { CategoryTypePipe } from './category-type.pipe';
 import { LogoutComponent } from './logout/logout.component';
 import { AboutComponent } from './about/about.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AboutComponent } from './about/about.component';
     HttpClientModule
   ],
   providers: [
-    PostService
+    PostService, UserService
   ],
   bootstrap: [AppComponent]
 })
