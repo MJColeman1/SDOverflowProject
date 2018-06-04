@@ -1,3 +1,4 @@
+import { Comment } from './../models/comment';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
@@ -12,6 +13,8 @@ export class PostComponent implements OnInit {
   posts = [];
 
   post = new Post();
+
+  comment = new Comment();
 
   categories = [];
 
@@ -93,6 +96,18 @@ export class PostComponent implements OnInit {
         this.newTopic = false;
       },
       err => console.error('Create got an error: ' + err)
+    );
+  };
+
+  // CREATE A NEW COMMENT FOR A POST
+  createComment = function() {
+    console.log(this.comment);
+    this.postService.createComment(this.selected.id, this.comment).subscribe(
+      data => {
+        this.displayCommentsByPost(this.selected.id);
+        this.comment = new Comment();
+      },
+      err => console.error('Create Comment got an error: ' + err)
     );
   };
 

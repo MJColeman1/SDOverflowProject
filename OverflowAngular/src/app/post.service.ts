@@ -41,6 +41,15 @@ export class PostService {
     );
   }
 
+  createComment(pId, comment) {
+    return this.http.post(this.url + pId + '/comments', comment).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Create Error');
+      })
+    );
+  }
+
   getCategories() {
     return this.http.get<Category[]>(this.categoryUrl).pipe(
       catchError((err: any) => {
