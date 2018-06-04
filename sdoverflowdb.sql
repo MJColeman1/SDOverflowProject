@@ -331,7 +331,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sdoverflowdb`;
-INSERT INTO `post` (`id`, `name`, `description`, `created_at`, `updated_at`, `user_id`, `category_id`) VALUES (1, 'Java question', 'This is the original post', NULL, NULL, 1, 1);
+INSERT INTO `post` (`id`, `name`, `description`, `created_at`, `updated_at`, `user_id`, `category_id`) VALUES (1, 'Java question', 'This is the original post', '2018-06-01 10:36:48', '2018-06-01 10:54:50', 1, 1);
 
 COMMIT;
 
@@ -341,7 +341,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sdoverflowdb`;
-INSERT INTO `comment` (`id`, `post_id`, `user_id`, `description`, `created_at`, `updated_at`) VALUES (1, 1, 1, 'Java is awesome', NULL, NULL);
+INSERT INTO `comment` (`id`, `post_id`, `user_id`, `description`, `created_at`, `updated_at`) VALUES (1, 1, 1, 'Java is awesome', '2018-06-01 10:29:39', '2018-06-04 10:36:48');
 
 COMMIT;
 

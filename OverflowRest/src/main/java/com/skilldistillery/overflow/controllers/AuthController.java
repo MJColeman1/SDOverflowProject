@@ -39,7 +39,6 @@ import com.skilldistillery.overflow.services.AuthService;
 //			return principal;
 //		}
 
-
 	}
 
 

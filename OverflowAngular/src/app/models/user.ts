@@ -12,4 +12,6 @@ export class User {
   profile: Profile;
   comments: Comment[];
   posts: Post[];
+
+  constructor () {}
 }

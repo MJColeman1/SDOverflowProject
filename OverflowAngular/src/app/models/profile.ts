@@ -12,4 +12,6 @@ export class Profile {
   address: Address;
   employer: Employer;
   technologies: Technology[];
+
+  constructor () {}
 }
