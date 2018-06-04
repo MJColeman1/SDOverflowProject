@@ -13,5 +13,9 @@ export class User {
   comments: Comment[];
   posts: Post[];
 
-  constructor () {}
+  constructor () {
+    this.profile = new Profile();
+    this.comments = [];
+    this.posts = [];
+  }
 }
