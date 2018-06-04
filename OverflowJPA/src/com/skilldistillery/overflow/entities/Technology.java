@@ -3,6 +3,7 @@ package com.skilldistillery.overflow.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Technology {
 	private List<Profile> profiles;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "technologies")
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy = "technologies")
 	private List<Employer> employers;
 
 	public Technology() {

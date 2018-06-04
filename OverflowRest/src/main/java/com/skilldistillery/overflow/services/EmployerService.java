@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.overflow.entities.Employer;
 import com.skilldistillery.overflow.entities.EmployerDTO;
+import com.skilldistillery.overflow.entities.Technology;
 
 public interface EmployerService {
 	
@@ -18,4 +19,6 @@ public interface EmployerService {
 	Boolean deleteEmployerById(int userId, int empId, String username);
 	
 	Employer addTechnology(int techId, int empId);
+
+	List<Technology> getTechnologiesForEmployer(int employerId);
 }
