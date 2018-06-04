@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { User } from './models/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OtherUserService {
 
-  private otherUser = new User();
+  private user = new User();
+  private otherUser = new BehaviorSubject<User>(this.user);
+  cast = this.otherUser.asObservable();
 
-  otherUserInfo (userInfo) {
-    this.otherUser = userInfo;
+  getOtherUserInfo(otherUserInfo) {
+    this.otherUser.next(otherUserInfo);
   }
 
   constructor() { }

@@ -1,3 +1,7 @@
+import { User } from './../models/user';
+import { Router } from '@angular/router';
+import { OtherUserService } from './../other-user.service';
+import { Category } from './../models/category';
 import { Comment } from './../models/comment';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +19,8 @@ export class PostComponent implements OnInit {
   post = new Post();
 
   comment = new Comment();
+
+  category = new Category();
 
   categories = [];
 
@@ -42,6 +48,8 @@ export class PostComponent implements OnInit {
 
   newTopic = false;
 
+  otherUser = new User();
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -51,6 +59,9 @@ export class PostComponent implements OnInit {
         this.posts = data;
         this.calculateNumPostsByCategory(this.posts);
         this.calculateNumCommentsByPost(this.posts);
+        this.category = new Category();
+        this.post = new Post();
+        this.selectedCategoryId = null;
       },
       err => console.error('Observer got an error: ' + err)
     );
@@ -90,6 +101,7 @@ export class PostComponent implements OnInit {
 
   // CREATE A NEW POST (TOPIC)
   createPost = function() {
+    console.log('post post post');
     this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
       data => {
         this.reload();
@@ -108,6 +120,18 @@ export class PostComponent implements OnInit {
         this.comment = new Comment();
       },
       err => console.error('Create Comment got an error: ' + err)
+    );
+  };
+
+  // CREATE A NEW CATEGORY FROM NEW TOPIC PAGE
+  createCategory = function() {
+    this.postService.createCategory(1, this.category).subscribe(
+      data => {
+        console.log(data.id);
+        this.selectedCategoryId = data.id;
+        this.displayCategories();
+      },
+      err => console.error('Create Category got an error: ' + err)
     );
   };
 
@@ -157,11 +181,25 @@ export class PostComponent implements OnInit {
     this.selected = null;
   };
 
-  constructor(private postService: PostService) { }
+  // PASSES OTHER USER INFORMATION TO SERIVCE
+  passOtherUserInfo = function(otherUserInfo) {
+    this.otherUserService.getOtherUserInfo(otherUserInfo);
+    this.router.navigateByUrl('/otherUser');
+  };
+
+  constructor(
+    private postService: PostService,
+    private otherUserService: OtherUserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.reload();
     this.displayCategories();
+    this.otherUserService.cast.subscribe(
+      data => this.otherUser = data,
+      err => console.error(err),
+    );
   }
 
 }

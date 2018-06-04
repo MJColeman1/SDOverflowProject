@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 import { UserService } from './user.service';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OtherUserService } from './other-user.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule
   ],
   providers: [
-    PostService, UserService
+    PostService,
+    UserService,
+    OtherUserService
   ],
   bootstrap: [AppComponent]
 })
