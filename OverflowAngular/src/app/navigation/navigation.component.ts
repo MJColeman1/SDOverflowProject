@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
+  logout = function () {
+    console.log('logging out');
+  };
+
   constructor() { }
 
   ngOnInit() {
