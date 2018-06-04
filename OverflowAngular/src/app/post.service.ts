@@ -33,7 +33,7 @@ export class PostService {
   }
 
   createPost(userId, catId, post) {
-    return this.http.post(this.createUrl + userId + '/categories/' + catId + '/posts', post).pipe(
+    return this.http.post(this.createUrl + userId + '/category/' + catId + '/posts', post).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');
