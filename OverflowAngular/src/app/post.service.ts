@@ -13,6 +13,7 @@ export class PostService {
   private url = 'http://localhost:8080/api/posts/';
   private categoryUrl = 'http://localhost:8080/api/categories/';
   private createUrl = 'http://localhost:8080/api/users/';
+  private catUrl = 'http://localhost:8080/api/user/';
 
   index() {
     return this.http.get<Post[]>(this.url).pipe(
@@ -46,6 +47,15 @@ export class PostService {
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');
+      })
+    );
+  }
+
+  createCategory(userId, category) {
+    return this.http.post(this.catUrl + userId + '/categories', category).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Create Category Error');
       })
     );
   }

@@ -1,3 +1,4 @@
+import { Category } from './../models/category';
 import { Comment } from './../models/comment';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,8 @@ export class PostComponent implements OnInit {
   post = new Post();
 
   comment = new Comment();
+
+  category = new Category();
 
   categories = [];
 
@@ -51,6 +54,9 @@ export class PostComponent implements OnInit {
         this.posts = data;
         this.calculateNumPostsByCategory(this.posts);
         this.calculateNumCommentsByPost(this.posts);
+        this.category = new Category();
+        this.post = new Post();
+        this.selectedCategoryId = null;
       },
       err => console.error('Observer got an error: ' + err)
     );
@@ -90,6 +96,7 @@ export class PostComponent implements OnInit {
 
   // CREATE A NEW POST (TOPIC)
   createPost = function() {
+    console.log('post post post');
     this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
       data => {
         this.reload();
@@ -108,6 +115,18 @@ export class PostComponent implements OnInit {
         this.comment = new Comment();
       },
       err => console.error('Create Comment got an error: ' + err)
+    );
+  };
+
+  // CREATE A NEW CATEGORY FROM NEW TOPIC PAGE
+  createCategory = function() {
+    this.postService.createCategory(1, this.category).subscribe(
+      data => {
+        console.log(data.id);
+        this.selectedCategoryId = data.id;
+        this.displayCategories();
+      },
+      err => console.error('Create Category got an error: ' + err)
     );
   };
 
