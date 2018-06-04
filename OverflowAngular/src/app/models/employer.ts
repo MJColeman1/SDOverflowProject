@@ -7,4 +7,6 @@ export class Employer {
   hiring: string;
   address: Address;
   technologies: Technology[];
+
+  constructor () {}
 }

@@ -11,7 +11,7 @@ import { Category } from './models/category';
 export class PostService {
 
   private url = 'http://localhost:8080/api/posts/';
-  private categoryUrl = 'http://localhost:8080/api/categories/';
+  private categoryUrl = 'http://localhost:8080/api/categories';
   private createUrl = 'http://localhost:8080/api/users/';
 
   index() {

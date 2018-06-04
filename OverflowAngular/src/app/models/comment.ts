@@ -8,4 +8,6 @@ export class Comment {
   updatedAt: string;
   post: Post;
   user: User;
+
+  constructor () {}
 }

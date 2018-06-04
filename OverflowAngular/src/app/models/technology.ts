@@ -8,4 +8,6 @@ export class Technology {
   payscale: string;
   profiles: Profile[];
   employers: Employer[];
+
+  constructor () {}
 }
