@@ -20,21 +20,15 @@ public class UserServiceImpl implements UserService{
 	public User createUser(UserDTO dto) {
 		User user = new User();
 		Profile profile = new Profile();
-		
 		user.setUsername(dto.getUserUsername());
 		user.setPassword(dto.getProfileEmail());
 		profile.setFirstName(dto.getProfileFirstName());
 		profile.setLastName(dto.getProfileLastName());
 		profile.setEmail(dto.getProfileEmail());
-		
 		user.setProfile(profile);
-		
-		
-		 userRepo.saveAndFlush(user);
-		 return user;
+		userRepo.saveAndFlush(user);
+		return user;
 	}
-
-
 
 	@Override
 	public boolean deleteUser(int userId) {
@@ -45,8 +39,9 @@ public class UserServiceImpl implements UserService{
 			e.printStackTrace();
 		}
 		return false;
-	
 	}
+	
+	@Override
 	public User updateUser(User user, int userId) {
 		User managedUser = new User();
 		Optional <User> opUser = userRepo.findById(userId);
@@ -55,9 +50,7 @@ public class UserServiceImpl implements UserService{
 			managedUser.setUsername(user.getUsername());
 			managedUser.setPassword(user.getPassword());
 		}
-		
 		return managedUser;
-		
 	}
 
 }

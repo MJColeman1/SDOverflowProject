@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.datatTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.Test;
@@ -21,7 +22,13 @@ public class CategoryDataTests {
 	@Test
 	@DisplayName("Test Category is correctly mapped")
 	public void test_category_mappings() {
-		fail("Not yet implemented");
+		assertEquals("Java", cr.findById(1).get().getName());
+	}
+	
+	@Test
+	@DisplayName("Test findByNameIgnoreCase")
+	public void test_findByNameIgnoreCase() {
+		assertEquals("Java", cr.findByNameIgnoreCase("java").getName());
 	}
 
 }
