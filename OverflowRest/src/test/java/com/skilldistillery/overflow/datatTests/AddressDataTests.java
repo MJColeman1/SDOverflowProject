@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.datatTests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class AddressDataTests {
 	@Test
 	@DisplayName("Test Address is correctly mapped")
 	public void test_address_mappings() {
-		fail("Not yet implemented");
+		assertEquals("123 Hello World Lane", ar.findById(1).get().getStreet());
 	}
 
 }
