@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Employer {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@ManyToMany(fetch=FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "employer_technology", joinColumns = @JoinColumn(name = "employer_id"), inverseJoinColumns = @JoinColumn(name = "technology_id"))
 	private List<Technology> technologies;
 

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.skilldistillery.overflow.entities.Employer;
+import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.respositories.EmployerRepository;
 import com.skilldistillery.overflow.respositories.TechnologyRepository;
 import com.skilldistillery.overflow.services.EmployerService;
@@ -38,10 +40,13 @@ public class EmployerDataTests {
 		assertEquals("Taco Bell", es.findEmployerById(1).getName());
 	}
 	
-//	@Test
-//	@DisplayName("Test addTechnology")
-//	public void test_addTechnology() {
-//		assertEquals("", tr.findTechnologyByEmployersId(1).get(0).getName());
-//	}
+	@Test
+	@DisplayName("Test addTechnology")
+	public void test_addTechnology() {
+		Employer employer = er.findByName("Taco Bell");
+		Technology technology = tr.findByName("Java");
+		es.addTechnology(employer.getId(), technology.getId());
+		assertEquals("Java", es.getTechnologiesForEmployer(employer.getId()).get(0).getName());
+	}	
 
 }

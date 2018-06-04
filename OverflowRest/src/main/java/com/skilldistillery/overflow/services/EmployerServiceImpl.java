@@ -103,5 +103,12 @@ public class EmployerServiceImpl implements EmployerService{
 		managed.addTechnology(tech);
 		return empRepo.saveAndFlush(managed);
 	}
+	
+	@Override
+	public List<Technology> getTechnologiesForEmployer(int employerId) {
+		Employer employer = empRepo.getEmployerJoinedWithTechnologies(employerId);
+		List<Technology> technologies = employer.getTechnologies();
+		return technologies;
+	}
 
 }
