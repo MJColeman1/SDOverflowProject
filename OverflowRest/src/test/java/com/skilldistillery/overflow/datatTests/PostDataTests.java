@@ -23,5 +23,17 @@ public class PostDataTests {
 	public void test_post_mappings() {
 		assertEquals("Java question", pr.getPostsForUser(1).get(0).getName());
 	}
+	
+	@Test
+	@DisplayName("Test findAllPostsByCategoryName")
+	public void test_findAllPostsByCategoryName() {
+		assertEquals("Java question", pr.findAllPostsByCategoryName("Java").get(0).getName());
+	}
+	
+	@Test
+	@DisplayName("Test getPostsForUser")
+	public void test_getPostsForUser() {
+		assertEquals("Java question", pr.getPostsForUser(1).get(0).getName());
+	}
 
 }
