@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { CategoryTypePipe } from './category-type.pipe';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CategoryTypePipe } from './category-type.pipe';
     LoginComponent,
     UserComponent,
     RegisterComponent,
-    CategoryTypePipe
+    CategoryTypePipe,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
