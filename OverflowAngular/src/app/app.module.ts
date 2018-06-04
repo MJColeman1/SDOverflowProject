@@ -16,6 +16,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AboutComponent } from './about/about.component';
 import { UserService } from './user.service';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OtherProfileComponent } from './other-profile/other-profile.component';
     CategoryTypePipe,
     LogoutComponent,
     AboutComponent,
-    OtherProfileComponent
+    OtherProfileComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
 import { UserService } from '../user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,23 +13,33 @@ import { UserService } from '../user.service';
 export class UserComponent implements OnInit {
   users = [];
 
+  confirmPassword = '';
+
   user = new User();
 
-  profiles = [];
 
-  profile = new Profile();
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
-// user will create start of profile as part of the new user created done in html
-  createUser = function() {
-    this.userService.createUser(this.user).subscribe(
+
+  updateUser = function(user, confirmPassword) {
+    if (user.password === confirmPassword) {
+    this.userService.update(user).subscribe(
       data => {
+      this.router.navigateByUrl('profile');
 
       },
-      err => console.error('CreateUser got an error: ' + err)
+      err => console.log(err)
     );
+  }
+
   };
+
+
+
+
+
+
+
 }
