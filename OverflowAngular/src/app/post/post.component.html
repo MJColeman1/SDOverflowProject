@@ -577,11 +577,11 @@
           <div class="card-body">
             <form>
               <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" rows="3" name="comment" [(ngModel)]='comment.description' ></textarea>
               </div>
                 <div class='row'>
                   <div class='col'>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button (click)='createComment()' type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
             </form>
