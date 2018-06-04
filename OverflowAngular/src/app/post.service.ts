@@ -1,9 +1,9 @@
-import { Category } from './category';
-import { Post } from './post';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Post } from './models/post';
+import { Category } from './models/category';
 
 @Injectable({
   providedIn: 'root'
