@@ -11,4 +11,6 @@ export class Post {
   category: Category;
   user: User;
   comments: Comment[];
+
+  constructor () {}
 }
