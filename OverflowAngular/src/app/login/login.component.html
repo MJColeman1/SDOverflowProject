@@ -15,7 +15,7 @@
 
           <!-- Login Form -->
           <div class="post">
-            <form action="#" class="form newtopic">
+            <form class="form newtopic">
               <div class="postinfotop">
                 <h2>Login</h2>
               </div>
@@ -34,14 +34,11 @@
                   </div>
                   <div class="posttext pull-left">
                     <div>
-                      <input type="text" placeholder="User Name" class="form-control" />
+                      <input type="text" placeholder="User Name" name="username" class="form-control" [(ngModel)]="user.username"/>
                     </div>
                     <div class="row">
                       <div class="col-lg-6 col-md-6">
-                        <input type="password" placeholder="Password" class="form-control" id="pass" name="pass" />
-                      </div>
-                      <div class="col-lg-6 col-md-6">
-                        <input type="password" placeholder="Retype Password" class="form-control" id="pass2" name="pass2" />
+                        <input type="password" placeholder="Password" name="password" class="form-control" id="pass" name="pass" [(ngModel)]="user.password"/>
                       </div>
                     </div>
 
@@ -68,7 +65,7 @@
                     </a>
                   </div>
                   <div class="pull-left">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" (click)="login(user)">Login</button>
                   </div>
                   <div class="clearfix"></div>
                 </div>
