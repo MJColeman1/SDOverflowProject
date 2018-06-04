@@ -1,3 +1,6 @@
+import { User } from './../models/user';
+import { Router } from '@angular/router';
+import { OtherUserService } from './../other-user.service';
 import { Category } from './../models/category';
 import { Comment } from './../models/comment';
 import { PostService } from './../post.service';
@@ -44,6 +47,8 @@ export class PostComponent implements OnInit {
   commentsByPostKeys = [];
 
   newTopic = false;
+
+  otherUser = new User();
 
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
@@ -176,11 +181,25 @@ export class PostComponent implements OnInit {
     this.selected = null;
   };
 
-  constructor(private postService: PostService) { }
+  // PASSES OTHER USER INFORMATION TO SERIVCE
+  passOtherUserInfo = function(otherUserInfo) {
+    this.otherUserService.getOtherUserInfo(otherUserInfo);
+    this.router.navigateByUrl('/otherUser');
+  };
+
+  constructor(
+    private postService: PostService,
+    private otherUserService: OtherUserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.reload();
     this.displayCategories();
+    this.otherUserService.cast.subscribe(
+      data => this.otherUser = data,
+      err => console.error(err),
+    );
   }
 
 }

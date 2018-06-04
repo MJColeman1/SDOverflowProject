@@ -11,7 +11,10 @@ export class OtherProfileComponent implements OnInit {
   otherUser = new User();
 
   passOtherUserInfo = function() {
-
+     this.OtherUserService.getOtherUserInfo().subscribe(
+      data => this.otherUser = data,
+      err => console.log(err),
+    );
   };
 
   constructor(
@@ -19,6 +22,8 @@ export class OtherProfileComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    // this.usersService.cast.subscribe(user=> this.user = user);
+    this.otherUserService.cast.subscribe(data => this.otherUser = data);
   }
 
 }

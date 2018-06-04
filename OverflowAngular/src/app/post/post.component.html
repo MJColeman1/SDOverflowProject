@@ -610,7 +610,7 @@
         <!-- Author -->
         <p class="lead">
           by
-          <a href="#">Jackson</a>
+          <a (click)="passOtherUserInfo(selected.user)">{{selected.user.username}}</a>
         </p>
         <div class="btn-toolbar ">
           <button (click)='displayAllPost()'class="btn btn-primary" style="padding-right: 10px">All Posts</button>
