@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.skilldistillery.overflow.entities.EmployerDTO;
 import com.skilldistillery.overflow.services.EmployerService;
 
 @RestController
+@CrossOrigin({"*", "http://localhost:4200"})
 @RequestMapping(path = "/api")
 public class EmployerController {
 

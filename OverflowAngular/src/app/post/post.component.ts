@@ -87,9 +87,11 @@ export class PostComponent implements OnInit {
 
   // CREATE A NEW POST (TOPIC)
   createPost = function() {
-    console.log(this.post);
     this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
-      data => this.reload(),
+      data => {
+        this.reload();
+        this.newTopic = false;
+      },
       err => console.error('Create got an error: ' + err)
     );
   };
