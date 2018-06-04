@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { CategoryTypePipe } from './category-type.pipe';
 import { LogoutComponent } from './logout/logout.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LogoutComponent } from './logout/logout.component';
     UserComponent,
     RegisterComponent,
     CategoryTypePipe,
-    LogoutComponent
+    LogoutComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
