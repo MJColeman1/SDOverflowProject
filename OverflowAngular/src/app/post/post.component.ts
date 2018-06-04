@@ -33,6 +33,10 @@ export class PostComponent implements OnInit {
 
   postsByCategoryKeys = [];
 
+  numCommentsByPost = {};
+
+  commentsByPostKeys = [];
+
   newTopic = false;
 
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
@@ -42,22 +46,39 @@ export class PostComponent implements OnInit {
     this.postService.index().subscribe(
       data => {
         this.posts = data;
-        for (let i = 0; i < this.posts.length; i++) {
-          if (isNaN(this.numPostsByCategory[this.posts[i].category.name])) {
-            this.numPostsByCategory[this.posts[i].category.name] = 1;
-          } else {
-            this.numPostsByCategory[this.posts[i].category.name] += 1;
-          }
-        }
-        this.postsByCategoryKeys = Object.keys(this.numPostsByCategory);
+        this.calculateNumPostsByCategory(this.posts);
+        this.calculateNumCommentsByPost(this.posts);
       },
       err => console.error('Observer got an error: ' + err)
     );
   };
 
+  // GET NUMBER OF POSTS FOR EACH POST CATEGORY
+  calculateNumPostsByCategory = function(posts) {
+    for (let i = 0; i < posts.length; i++) {
+      if (isNaN(this.numPostsByCategory[posts[i].category.name])) {
+        this.numPostsByCategory[posts[i].category.name] = 1;
+      } else {
+        this.numPostsByCategory[posts[i].category.name] += 1;
+      }
+    }
+    this.postsByCategoryKeys = Object.keys(this.numPostsByCategory);
+  };
+
+  // GET NUMBER OF COMMENTS FOR EACH POST
+  calculateNumCommentsByPost = function(posts) {
+    for (let j = 0; j < posts.length; j++) {
+      let num = 0;
+      for (let k = 0; k < posts[j].comments.length; k++) {
+        num += 1;
+      }
+      this.numCommentsByPost[posts[j].name] = num;
+    }
+    this.commentsByPostKeys = Object.keys(this.numCommentsByPost);
+  };
+
   // DISPLAY ALL COMMENTS FOR A SPECIFIC POST
   displayCommentsByPost = function(postId) {
-    console.log('made it here yay');
     this.postService.getCommentsByPost(postId).subscribe(
       data => this.comments = data,
       err => console.error('Post Comments got an error: ' + err)

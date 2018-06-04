@@ -182,7 +182,7 @@
             <div class="postinfo pull-left">
               <div class="comments">
                 <div class="commentbg">
-                  560
+                  {{numCommentsByPost[p.name]}}
                   <div class="mark"></div>
                 </div>
 
@@ -481,7 +481,7 @@
               <div class="postinfo pull-left">
                 <div class="comments">
                   <div class="commentbg">
-                    560
+                    {{numCommentsByPost[p.name]}}
                     <div class="mark"></div>
                   </div>
 
@@ -505,7 +505,7 @@
               <div class="blocktxt">
                 <ul *ngFor='let cat of categories' class="cats">
                     <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
-                      <a>{{cat.name}}<span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span></a>
+                      <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}<span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span></a>
                     </li>
                 </ul>
               </div>
@@ -599,7 +599,7 @@
 
 
 
-  <!-- SELECTED POST CONTENT -->
+  <!-- ***** SELECTED POST CONTENT ***** -->
   <div *ngIf='selected' class="container">
     <div class="row">
 
@@ -779,7 +779,7 @@
   <!-- /.container -->
 
 
-  <!-- NEW TOPIC/POST PAGE -->
+  <!-- ***** NEW TOPIC/POST PAGE ***** -->
   <div *ngIf='newTopic' class="container-fluid">
 
       <div class="headernav">
@@ -1024,11 +1024,6 @@
                           </div>
                           <div class="clearfix"></div>
                       </div><!-- POST -->
-
-
-
-
-
 
                   </div>
                   <div class="col-lg-4 col-md-4">
