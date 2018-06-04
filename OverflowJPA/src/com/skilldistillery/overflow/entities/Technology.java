@@ -28,7 +28,7 @@ public class Technology {
 	private List<Profile> profiles;
 
 	@JsonIgnore
-	@ManyToMany(fetch=FetchType.LAZY, mappedBy = "technologies")
+	@ManyToMany(mappedBy = "technologies")
 	private List<Employer> employers;
 
 	public Technology() {

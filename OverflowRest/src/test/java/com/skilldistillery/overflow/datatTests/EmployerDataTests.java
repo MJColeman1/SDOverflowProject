@@ -41,12 +41,21 @@ public class EmployerDataTests {
 	}
 	
 	@Test
-	@DisplayName("Test addTechnology")
-	public void test_addTechnology() {
-		Employer employer = er.findByName("Taco Bell");
-		Technology technology = tr.findByName("Java");
-		es.addTechnology(employer.getId(), technology.getId());
-		assertEquals("Java", es.getTechnologiesForEmployer(employer.getId()).get(0).getName());
-	}	
+	@DisplayName("Test getEmployerJoinedWithTechnologies")
+	public void test_getEmployerJoinedWithTechnologies() {
+		Employer employer = er.getEmployerJoinedWithTechnologies(1);
+		String name = employer.getTechnologies().get(0).getName();
+		assertEquals("Java", name);
+	}
+	
+//	@Test
+//	@DisplayName("Test addTechnology")
+//	public void test_addTechnology() {
+//		Employer employer = er.getEmployerJoinedWithTechnologies(1);
+//		Technology technology = tr.findByName("Java");
+//		es.addTechnology(employer.getId(), technology.getId());
+//		employer = er.getEmployerJoinedWithTechnologies(1);
+//		assertEquals("Java", es.getTechnologiesForEmployer(employer.getId()).get(1).getName());
+//	}	
 
 }
