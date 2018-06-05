@@ -682,8 +682,10 @@
         <div class="media-body">
           <h5 class="mt-0">Comment from: {{comment.user.username}}</h5>
           {{comment.description}}
-          <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea>
-          <button *ngIf='initEdit === comment.id' class='btn btn-primary' (click)='editComment(comment)'>Submit Change</button>
+          <div>
+          <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea><span>
+          <button *ngIf='initEdit === comment.id' class='btn btn-primary' (click)='editComment(comment)'style="position: absolute; margin-left: 10px">Edit</button></span>
+        </div>
         </div>
         <div>
           <a>Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
