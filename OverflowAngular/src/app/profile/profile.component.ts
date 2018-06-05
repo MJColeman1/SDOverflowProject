@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../profile.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Profile } from 'selenium-webdriver/firefox';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  users = [];
 
-  constructor() { }
+  profiles = [];
+
+  profile = new Profile;
+
+  constructor(private profileService: ProfileService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
+
+  updateProfile = function(user,  profile) {
+    this.profileService.update(profile).subscribe(
+      data => {
+      this.router.navigateByUrl('profile');
+
+      },
+      err => console.log(err)
+    );
+  };
 }
+
+
