@@ -31,10 +31,10 @@
           <div class="wrap">
             <form action="#" method="post" class="form">
               <div class="pull-left txt">
-                <input type="text" class="form-control" placeholder="Search Topics">
+                <input type="text" class="form-control" name="keyword" placeholder="Search Topics" [(ngModel)]='keyword'>
               </div>
               <div class="pull-right">
-                <button class="btn btn-default" type="button">
+                <button (click)='displayPostsBySearch(keyword)'class="btn btn-default" type="button">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
@@ -206,8 +206,11 @@
             <h3>Categories</h3>
             <div class="divline"></div>
             <div class="blocktxt">
-              <ul *ngFor='let cat of categories' class="cats">
-                <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
+              <ul  class="cats">
+                <li>
+                  <a (click)='displayAllPost()' onmouseover="this.style.cursor='pointer';">All Posts</a>
+                </li>
+                <li *ngFor='let cat of categories' (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
                   <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}
                     <span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span>
                   </a>
@@ -506,8 +509,11 @@
             <h3>Categories</h3>
             <div class="divline"></div>
             <div class="blocktxt">
-              <ul *ngFor='let cat of categories' class="cats">
-                <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
+              <ul  class="cats">
+                <li>
+                  <a (click)='displayAllPost()' onmouseover="this.style.cursor='pointer';">All Posts</a>
+                </li>
+                <li *ngFor='let cat of categories' (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
                   <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}
                     <span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span>
                   </a>

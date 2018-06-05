@@ -54,6 +54,12 @@ export class PostComponent implements OnInit {
 
   editedComment = new Comment();
 
+  keyword = null;
+
+  postsByKeyword = [];
+
+  tempPosts = [];
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -61,6 +67,7 @@ export class PostComponent implements OnInit {
     this.postService.index().subscribe(
       data => {
         this.posts = data;
+        this.tempPosts = data;
         this.calculateNumPostsByCategory(this.posts);
         this.calculateNumCommentsByPost(this.posts);
         this.category = new Category();
@@ -70,6 +77,18 @@ export class PostComponent implements OnInit {
       },
       err => console.error('Observer got an error: ' + err)
     );
+  };
+
+  // DISPLAY POSTS BY SEARCH KEYWORD
+  displayPostsBySearch = function(keyword) {
+    this.postsByKeyword = [];
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].name.includes(keyword)) {
+        this.postsByKeyword.push(this.posts[i]);
+      }
+    }
+    this.keyword = null;
+    this.posts = this.postsByKeyword;
   };
 
   // EDIT SELECTED POST (DOES NOT WORK YET)
@@ -216,6 +235,7 @@ export class PostComponent implements OnInit {
   // DISPLAY ALL POSTS BY SELECTED CATEGORY
   displayPostsByCategory = function(catId) {
     this.postsByCategory = [];
+    this.posts = this.tempPosts;
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].category.id === catId) {
         this.postsByCategory.push(this.posts[i]);
