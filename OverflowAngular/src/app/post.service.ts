@@ -37,6 +37,16 @@ export class PostService {
     );
   }
 
+  getPostByOtherUser(userId: number, postId: number) {
+    console.log(userId);
+    return this.http.get<Post>(this.baseUrl + '/api/user/' + userId + '/posts/' + postId).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Index Other User Posts Error');
+      })
+    );
+  }
+
   getCommentsByPost(postId) {
     return this.http.get<Post[]>(this.url + postId + '/comments/').pipe(
       catchError((err: any) => {
