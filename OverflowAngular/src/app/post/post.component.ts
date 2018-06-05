@@ -67,6 +67,22 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // EDIT SELECTED POST (DOES NOT WORK YET)
+  editPost = function(post) {
+    this.postService.updatePost(1, post.category.id, post).subscribe(
+      data => this.reload(),
+      err => console.error('Update Post got an error: ' + err)
+    );
+  };
+
+  // DELETE SELECTED POST
+  deletePost = function(post) {
+    this.postService.deletePost(1, post.category.id, post.id).subscribe(
+      data => this.reload(),
+      err => console.error('Delete Post got an error: ' + err)
+    );
+  };
+
   // GET NUMBER OF POSTS FOR EACH POST CATEGORY
   calculateNumPostsByCategory = function(posts) {
     for (let i = 0; i < posts.length; i++) {

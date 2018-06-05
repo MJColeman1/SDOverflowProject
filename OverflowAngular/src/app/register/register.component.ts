@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
         data => this.router.navigateByUrl('posts'),
         // OR LOG THE ERROR
         err => console.log(err)
-      // );
+      );
     }
   };
 

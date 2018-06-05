@@ -14,6 +14,8 @@ export class PostService {
   private categoryUrl = 'http://localhost:8080/api/categories';
   private createUrl = 'http://localhost:8080/api/users/';
   private catUrl = 'http://localhost:8080/api/user/';
+  private deleteUrl = 'http://localhost:8080/api/users/';
+  private updateUrl = 'http://localhost:8080/api/users/';
 
   index() {
     return this.http.get<Post[]>(this.url).pipe(
@@ -65,6 +67,24 @@ export class PostService {
       catchError((err: any) => {
         console.log(err);
         return throwError('Category Error');
+      })
+    );
+  }
+
+  deletePost(userId, catId, postId) {
+    return this.http.delete(this.deleteUrl + userId + '/category/' + catId + '/posts/' + postId).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Delete Error');
+      })
+    );
+  }
+
+  updatePost(userId, catId, post) {
+    return this.http.put(this.updateUrl + userId + '/category/' + catId + '/posts/' + post.id, post).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Update Error');
       })
     );
   }
