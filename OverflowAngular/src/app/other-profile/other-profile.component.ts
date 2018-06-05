@@ -1,3 +1,4 @@
+import { Profile } from './../models/profile';
 import { OtherUserService } from './../other-user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
@@ -9,7 +10,7 @@ import { Post } from '../models/post';
   styleUrls: ['./other-profile.component.css']
 })
 export class OtherProfileComponent implements OnInit {
-  otherUser = new User();
+  otherUser = new Profile();
   posts: Post[] = [];
 
   passOtherUserInfo = function() {

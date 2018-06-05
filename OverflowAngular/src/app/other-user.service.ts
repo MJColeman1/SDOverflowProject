@@ -1,3 +1,4 @@
+import { Profile } from './models/profile';
 import { Injectable } from '@angular/core';
 import { User } from './models/user';
 import { BehaviorSubject } from 'rxjs';
@@ -7,8 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class OtherUserService {
 
-  private user = new User();
-  private otherUser = new BehaviorSubject<User>(this.user);
+  private userProfile = new Profile();
+  private otherUser = new BehaviorSubject<Profile>(this.userProfile);
   cast = this.otherUser.asObservable();
 
   getOtherUserInfo(otherUserInfo) {
