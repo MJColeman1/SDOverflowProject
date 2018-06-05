@@ -29,6 +29,12 @@
                   <p>Skill Distillery Cohort: {{otherUser.cohort}}</p>
                   <p>Employed: {{otherUser.employed}}</p>
                   <p>Current Employer: {{otherUser.employer}}</p>
+                  <p>Technologies: {{otherUser.employer}}</p>
+                  <ul>
+                    <li *ngFor="let tech of otherUser.technologies">
+                      {{tech}}
+                    </li>
+                  </ul>
                 </div>
                 <!-- </div>
                   </div> -->
