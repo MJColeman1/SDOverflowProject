@@ -106,6 +106,11 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // CANCEL EDIT
+  cancelEdit = function() {
+    this.initEdit = 0;
+  };
+
   // DELETE COMMENT
   deleteComment = function(comment) {
     this.postService.deleteComment(this.selected.id, comment.id).subscribe(
