@@ -89,5 +89,14 @@ export class PostService {
     );
   }
 
+  updateComment(postId, comment) {
+    return this.http.put(this.url + postId + '/comments/' + comment.id, comment).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Update Commment Error');
+      })
+    );
+  }
+
   constructor(private http: HttpClient) { }
 }
