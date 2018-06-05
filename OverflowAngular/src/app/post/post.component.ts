@@ -106,6 +106,17 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // DELETE COMMENT
+  deleteComment = function(comment) {
+    this.postService.deleteComment(this.selected.id, comment.id).subscribe(
+      data => {
+        this.initEdit = 0;
+        this.displayPost(this.selected);
+      },
+      err => console.error('Delete Comment got an error: ' + err)
+    );
+  };
+
   // GET NUMBER OF POSTS FOR EACH POST CATEGORY
   calculateNumPostsByCategory = function(posts) {
     for (let i = 0; i < posts.length; i++) {

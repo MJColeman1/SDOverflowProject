@@ -688,7 +688,7 @@
         </div>
         </div>
         <div>
-          <a>Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
+          <a (click)='deleteComment(comment)' onmouseover="this.style.cursor='pointer';">Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
           <p> </p>
         </div>
         <hr>

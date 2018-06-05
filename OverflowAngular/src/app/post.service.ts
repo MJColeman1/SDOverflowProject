@@ -98,5 +98,14 @@ export class PostService {
     );
   }
 
+  deleteComment(postId, commentId) {
+    return this.http.delete(this.url + postId + '/comments/' + commentId).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Delete Comment Error');
+      })
+    );
+  }
+
   constructor(private http: HttpClient) { }
 }
