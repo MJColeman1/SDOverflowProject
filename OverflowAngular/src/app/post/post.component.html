@@ -617,7 +617,7 @@
       <!-- Author -->
       <p class="lead">
         by
-        <a (click)="passOtherUserInfo(selected.user.profile)">{{selected.user.username}}</a>
+        <a (click)="passOtherUserInfo(selected.user)">{{selected.user.username}}</a>
       </p>
       <div class="btn-toolbar ">
         <button (click)='displayAllPost()' class="btn btn-primary" style="padding-right: 10px">All Posts</button>
@@ -629,12 +629,12 @@
       <hr>
 
       <!-- Date/Time -->
-      <p>Posted on {{selected.createdAt.substring(0,10)}}</p>
+      <p>Posted on {{selected.createdAt.substring(0,10) | date: 'shortDate'}}</p>
 
       <hr>
 
       <!-- Preview Image -->
-      <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+      <img class="img-fluid rounded" style="margin-left: auto; margin-right: auto; display: block" src="assets/images/sdlogo.png" alt="">
 
       <hr>
 
@@ -682,11 +682,15 @@
         <div class="media-body">
           <h5 class="mt-0">Comment from: {{comment.user.username}}</h5>
           {{comment.description}}
-          <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea>
-          <button *ngIf='initEdit === comment.id' class='btn btn-primary' (click)='editComment(comment)'>Submit Change</button>
+          <div>
+          <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea><span>
+          <br><a *ngIf='initEdit === comment.id' (click)='editComment(comment)'style="position: absolute; margin-left: 20px" onmouseover="this.style.cursor='pointer';">Submit</a></span><span>
+          <a *ngIf='initEdit === comment.id' (click)='cancelEdit()' style="position: absolute; margin-left: 80px;" onmouseover="this.style.cursor='pointer';">Cancel</a></span>
+          <p> </p>
+        </div>
         </div>
         <div>
-          <a>Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
+          <a (click)='deleteComment(comment)' onmouseover="this.style.cursor='pointer';">Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
           <p> </p>
         </div>
         <hr>

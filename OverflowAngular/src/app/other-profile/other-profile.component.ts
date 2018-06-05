@@ -1,4 +1,4 @@
-import { Profile } from './../models/profile';
+import { Router } from '@angular/router';
 import { OtherUserService } from './../other-user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
@@ -10,7 +10,7 @@ import { Post } from '../models/post';
   styleUrls: ['./other-profile.component.css']
 })
 export class OtherProfileComponent implements OnInit {
-  otherUser = new Profile();
+  otherUser = new User();
   posts: Post[] = [];
 
   passOtherUserInfo = function() {
@@ -25,11 +25,13 @@ export class OtherProfileComponent implements OnInit {
   };
 
   backToPost = function() {
+    this.router.navigateByUrl('/posts');
 
   };
 
   constructor(
-    private otherUserService: OtherUserService
+    private otherUserService: OtherUserService,
+    private router: Router
     ) { }
 
   ngOnInit() {

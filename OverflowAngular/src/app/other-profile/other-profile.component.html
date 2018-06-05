@@ -6,8 +6,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-8">
-          <h2>{{otherUser.user.username | titlecase}}'s Profile</h2>
-          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Post</button>
+          <h2>{{otherUser.username | titlecase}}'s Profile</h2>
+          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
 
           <div class="post">
             <!-- <div class="postinfotop"> -->
@@ -25,14 +25,14 @@
                 <!-- <div class="row">
                     <div class="col-lg-6 col-md-6"> -->
                 <div class="userProfile">
-                  <h2>Username: {{otherUser.user.username | titlecase}}</h2>
-                  <p>Skill Distillery Cohort: {{otherUser.cohort}}</p>
-                  <p>Employed: {{otherUser.employed}}</p>
-                  <p>Current Employer: {{otherUser.employer}}</p>
-                  <p>Technologies: {{otherUser.employer}}</p>
+                  <h2>Username: {{otherUser.username | titlecase}}</h2>
+                  <p>Skill Distillery Cohort: {{otherUser.profile.cohort}}</p>
+                  <p>Employed: {{otherUser.profile.employed}}</p>
+                  <p *ngIf="otherUser.profile.employed">Current Employer: {{otherUser.profile.employer.name}}</p>
+                  <p>Technologies:</p>
                   <ul>
-                    <li *ngFor="let tech of otherUser.technologies">
-                      {{tech}}
+                    <li *ngFor="let tech of otherUser.profile.technologies">
+                      {{tech.name}}
                     </li>
                   </ul>
                 </div>
@@ -60,7 +60,7 @@
             <div class="divline"></div>
             <div class="blocktxt">
               <ul class="cats">
-                <li *ngFor="let post of posts">
+                <li *ngFor="let post of otherUser.posts">
                   <a (click)="showPost(post)">{{post.name}}
                     <span class="badge pull-right">20</span>
                   </a>

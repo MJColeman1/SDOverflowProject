@@ -6,7 +6,6 @@ import { Comment } from './../models/comment';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
-import { Profile } from '../models/profile';
 
 @Component({
   selector: 'app-post',
@@ -51,7 +50,7 @@ export class PostComponent implements OnInit {
 
   initEdit = false;
 
-  otherUser = new Profile();
+  otherUser = new User();
 
   editedComment = new Comment();
 
@@ -104,6 +103,22 @@ export class PostComponent implements OnInit {
         // this.reload();
       },
       err => console.error('Update Comment got an error: ' + err)
+    );
+  };
+
+  // CANCEL EDIT
+  cancelEdit = function() {
+    this.initEdit = 0;
+  };
+
+  // DELETE COMMENT
+  deleteComment = function(comment) {
+    this.postService.deleteComment(this.selected.id, comment.id).subscribe(
+      data => {
+        this.initEdit = 0;
+        this.displayPost(this.selected);
+      },
+      err => console.error('Delete Comment got an error: ' + err)
     );
   };
 
