@@ -6,7 +6,6 @@ import { Comment } from './../models/comment';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post';
-import { Profile } from '../models/profile';
 
 @Component({
   selector: 'app-post',
@@ -51,7 +50,7 @@ export class PostComponent implements OnInit {
 
   initEdit = false;
 
-  otherUser = new Profile();
+  otherUser = new User();
 
   editedComment = new Comment();
 

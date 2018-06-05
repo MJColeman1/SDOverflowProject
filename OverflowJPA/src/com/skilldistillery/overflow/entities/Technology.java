@@ -23,6 +23,7 @@ public class Technology {
 
 	private String payscale;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "technologies")
 	private List<Profile> profiles;
 

@@ -30,7 +30,6 @@ public class User {
 
 	private boolean admin;
 
-	@JsonIgnore
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
