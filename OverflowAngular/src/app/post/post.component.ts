@@ -60,6 +60,10 @@ export class PostComponent implements OnInit {
 
   tempPosts = [];
 
+  start = 0;
+
+  end = 4;
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -221,6 +225,8 @@ export class PostComponent implements OnInit {
     this.catSelected = false;
     this.selectedCategory = null;
     this.selectedCategoryCount = 0;
+    this.start = 0;
+    this.end = 4;
     this.reload();
   };
 
@@ -242,6 +248,8 @@ export class PostComponent implements OnInit {
         this.selectedCategoryCount += 1;
       }
     }
+    this.start = 0;
+    this.end = 4;
     this.selectedCategory = this.postsByCategory[0].category.name;
     this.catSelected = true;
     this.newTopic = false;
@@ -261,6 +269,30 @@ export class PostComponent implements OnInit {
   passOtherUserInfo = function(otherUserInfo) {
     this.otherUserService.getOtherUserInfo(otherUserInfo);
     this.router.navigateByUrl('/otherUser');
+  };
+
+  // DISPLAY NEXT 4 POSTS
+  pagRight = function() {
+    if (this.end <= this.posts.length) {
+      this.start += 4;
+      this.end += 4;
+    }
+  };
+
+  // DISPLAY NEXT 4 POSTS BY CATEGORY
+  pagRightCat = function() {
+    if (this.end <= this.postsByCategory.length) {
+      this.start += 4;
+      this.end += 4;
+    }
+  };
+
+  // DISPLAY PREVIOUS 4 POSTS
+  pagLeft = function() {
+    if (this.start >= 4) {
+      this.start -= 4;
+      this.end -= 4;
+    }
   };
 
   constructor(
