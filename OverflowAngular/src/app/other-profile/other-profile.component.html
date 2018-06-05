@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-8">
           <h2>{{otherUser.username | titlecase}}'s Profile</h2>
-          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Post</button>
+          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
 
           <div class="post">
             <!-- <div class="postinfotop"> -->
@@ -28,7 +28,7 @@
                   <h2>Username: {{otherUser.username | titlecase}}</h2>
                   <p>Skill Distillery Cohort: {{otherUser.profile.cohort}}</p>
                   <p>Employed: {{otherUser.profile.employed}}</p>
-                  <p>Current Employer: {{otherUser.profile.employer.name}}</p>
+                  <p *ngIf="otherUser.profile.employed">Current Employer: {{otherUser.profile.employer.name}}</p>
                   <p>Technologies:</p>
                   <ul>
                     <li *ngFor="let tech of otherUser.profile.technologies">

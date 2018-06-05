@@ -29,33 +29,54 @@ public class PostController {
 	public List<Post> index() {
 		return postService.getAllPosts();
 	}
+	
+	@RequestMapping(path = "user/{userId}/posts", method = RequestMethod.GET)
+	public List<Post> indexOfOtherUserPOsts(@PathVariable int userId, HttpServletResponse res) {
+		List<Post> posts = postService.getAllPostsByOtherUser(userId);
+		if (posts != null) {
+			res.setStatus(200);
+			return posts;
+		}
+		return null;
+	}
 
 	@RequestMapping(path = "/posts/{postId}", method = RequestMethod.GET)
 	public Post show(@PathVariable int postId) {
 		return postService.findPostsByPostId(postId);
 	}
+	
+	@RequestMapping(path = "user/{userId}/posts/{postId}", method = RequestMethod.GET)
+	public Post showPostByOtherUser(@PathVariable int userId, @PathVariable int postId, HttpServletResponse res) {
+		Post post = postService.findPostsByOtherUserIdPostId(userId, postId);
+		if (post != null) {
+			res.setStatus(200);
+			return post;
+		}
+		return null;
+	}
 
 	@RequestMapping(path = "/users/{userId}/category/{categoryId}/posts", method = RequestMethod.POST)
 	public Post create(@PathVariable int userId, @PathVariable int categoryId, @RequestBody Post post,
 			HttpServletResponse res) {
-		if (postService.createPostByLoggedInUser(post, categoryId, userId, username) == null) {
+		Post createdPost = postService.createPostByLoggedInUser(post, categoryId, userId, username);
+		if (createdPost == null) {
 			res.setStatus(400);
 			return null;
 		}
-
 		res.setStatus(201);
-		return postService.createPostByLoggedInUser(post, categoryId, userId, username);
+		return createdPost;
 	}
 
 	@RequestMapping(path = "/users/{userId}/category/{categoryId}/posts/{postId}", method = RequestMethod.PUT)
 	public Post update(@PathVariable int userId, @PathVariable int categoryId, @PathVariable int postId,
 			@RequestBody Post post, HttpServletResponse res) {
-		if (postService.updatePostByLoggedInUser(postId, categoryId, userId, post, username) == null) {
+		Post updatedPost = postService.updatePostByLoggedInUser(postId, categoryId, userId, post, username);
+		if (updatedPost == null) {
 			res.setStatus(400);
 			return null;
 		}
 		res.setStatus(200);
-		return postService.updatePostByLoggedInUser(postId, categoryId, userId, post, username);
+		return updatedPost;
 	}
 
 	@RequestMapping(path = "/users/{userId}/category/{categoryId}/posts/{postId}", method = RequestMethod.DELETE)
