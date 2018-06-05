@@ -48,7 +48,11 @@ export class PostComponent implements OnInit {
 
   newTopic = false;
 
+  initEdit = false;
+
   otherUser = new User();
+
+  editedComment = new Comment();
 
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
@@ -62,6 +66,7 @@ export class PostComponent implements OnInit {
         this.category = new Category();
         this.post = new Post();
         this.selectedCategoryId = null;
+        this.selected = null;
       },
       err => console.error('Observer got an error: ' + err)
     );
@@ -80,6 +85,24 @@ export class PostComponent implements OnInit {
     this.postService.deletePost(1, post.category.id, post.id).subscribe(
       data => this.reload(),
       err => console.error('Delete Post got an error: ' + err)
+    );
+  };
+
+  // INITIATE COMMENT EDIT
+  initiateEdit = function(id, comment) {
+    this.initEdit = id;
+    this.editedComment = comment;
+  };
+
+  // EDIT COMMENT
+  editComment = function(comment) {
+    console.log(comment);
+    this.postService.updateComment(this.selected.id, comment).subscribe(
+      data => {
+        this.initEdit = 0;
+        // this.reload();
+      },
+      err => console.error('Update Comment got an error: ' + err)
     );
   };
 

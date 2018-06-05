@@ -623,6 +623,8 @@
         <button (click)='displayAllPost()' class="btn btn-primary" style="padding-right: 10px">All Posts</button>
         <p> </p>
         <button *ngIf='selectedCategory' (click)='return()' class="btn btn-primary" style="margin-left: 10px">{{selectedCategory}} Posts</button>
+        <p> </p>
+        <button (click)='deletePost(selected)' class='btn btn-primary' style='margin-left: 10px;'>Delete Post</button>
       </div>
       <hr>
 
@@ -675,12 +677,21 @@
 
       <!-- Single Comment -->
       <div *ngFor='let comment of comments' class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <hr>
+        <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
         <div class="media-body">
           <h5 class="mt-0">Comment from: {{comment.user.username}}</h5>
           {{comment.description}}
+          <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea>
+          <button *ngIf='initEdit === comment.id' class='btn btn-primary' (click)='editComment(comment)'>Submit Change</button>
         </div>
+        <div>
+          <a>Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
+          <p> </p>
+        </div>
+        <hr>
       </div>
+
 
       <!-- Comment with nested comments -->
       <div class="media mb-4">
