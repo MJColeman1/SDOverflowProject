@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Profile } from 'selenium-webdriver/firefox';
+import { Profile } from '../models/profile';
+
 
 @Component({
   selector: 'app-profile',
