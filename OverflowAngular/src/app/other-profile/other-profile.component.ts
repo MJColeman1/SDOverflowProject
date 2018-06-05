@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OtherUserService } from './../other-user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
@@ -24,11 +25,13 @@ export class OtherProfileComponent implements OnInit {
   };
 
   backToPost = function() {
+    this.router.navigateByUrl('/posts');
 
   };
 
   constructor(
-    private otherUserService: OtherUserService
+    private otherUserService: OtherUserService,
+    private router: Router
     ) { }
 
   ngOnInit() {

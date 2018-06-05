@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.skilldistillery.overflow.respositories.UserRepository;
 
 @Service
 public class PostServiceImpl implements PostService {
+	
 	@Autowired
 	private PostRepository postRepo;
 
@@ -88,6 +90,36 @@ public class PostServiceImpl implements PostService {
 			e.printStackTrace();
 		}
 		return deleted;
+	}
+
+	@Override
+
+	public List<Post> findByName(String name) {
+		return postRepo.findByNameContaining(name);
+	}
+	public Post findPostsByOtherUserIdPostId(int userId, int postId) {
+		User otherUser = userRepo.findById(userId).get();
+		Post post = postRepo.findById(postId).get();
+		if (post.getUser() == otherUser) {
+			return post;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Post> getAllPostsByOtherUser(int userId) {
+		User otherUser = userRepo.findById(userId).get();
+		List<Post> posts = postRepo.findAll();
+		
+		List<Post> otherUserPosts = new ArrayList<Post>();
+		
+		for (Post post : posts) {
+			if (post.getUser() == otherUser) {
+				otherUserPosts.add(post);
+				return otherUserPosts;
+			}
+		}
+		return null;
 	}
 
 }
