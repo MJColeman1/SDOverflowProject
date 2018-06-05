@@ -6,10 +6,11 @@ import com.skilldistillery.overflow.entities.UserDTO;
 public interface UserService {
 	
 	User createUser(UserDTO dto);
-	
-	boolean deleteUser(int userId);
 
-	User updateUser(User user, int userId);
+	// COMMENTING OUT BECAUSE WE CURRENTLY DO NOT WANT TO DELETE USERS
+//	boolean deleteUser(int userId);
+
+	User updateUserByLoggedInUser(User user, String username);
 	
 	
 	
