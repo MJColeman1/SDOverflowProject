@@ -224,6 +224,7 @@ export class PostComponent implements OnInit {
     }
     this.selectedCategory = this.postsByCategory[0].category.name;
     this.catSelected = true;
+    this.newTopic = false;
   };
 
   startNewTopic = function() {

@@ -976,7 +976,7 @@
           </div>
           <!-- POST -->
 
-          <div class="row similarposts">
+          <!-- <div class="row similarposts">
             <div class="col-lg-10">
               <i class="fa fa-info-circle"></i>
               <p>Similar Posts according to your
@@ -986,10 +986,10 @@
               <i class="fa fa-spinner"></i>
             </div>
 
-          </div>
+          </div> -->
 
           <!-- POST -->
-          <div class="post">
+          <!-- <div class="post">
             <div class="wrap-ut pull-left">
               <div class="userinfo pull-left">
                 <div class="avatar">
@@ -1022,12 +1022,12 @@
                 <i class="fa fa-clock-o"></i> 24 min</div>
             </div>
             <div class="clearfix"></div>
-          </div>
+          </div> -->
           <!-- POST -->
 
 
           <!-- POST -->
-          <div class="post">
+          <!-- <div class="post">
             <div class="wrap-ut pull-left">
               <div class="userinfo pull-left">
                 <div class="avatar">
@@ -1063,12 +1063,12 @@
                 <i class="fa fa-clock-o"></i> 15 min</div>
             </div>
             <div class="clearfix"></div>
-          </div>
+          </div> -->
           <!-- POST -->
 
 
           <!-- POST -->
-          <div class="post">
+          <!-- <div class="post">
             <div class="wrap-ut pull-left">
               <div class="userinfo pull-left">
                 <div class="avatar">
@@ -1101,7 +1101,7 @@
                 <i class="fa fa-clock-o"></i> 2 days</div>
             </div>
             <div class="clearfix"></div>
-          </div>
+          </div> -->
           <!-- POST -->
 
         </div>
@@ -1112,48 +1112,18 @@
             <h3>Categories</h3>
             <div class="divline"></div>
             <div class="blocktxt">
-              <ul class="cats">
-                <li>
-                  <a href="#">Trading for Money
-                    <span class="badge pull-right">20</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Vault Keys Giveway
-                    <span class="badge pull-right">10</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Misc Guns Locations
-                    <span class="badge pull-right">50</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Looking for Players
-                    <span class="badge pull-right">36</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Stupid Bugs &amp; Solves
-                    <span class="badge pull-right">41</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Video &amp; Audio Drivers
-                    <span class="badge pull-right">11</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">2K Official Forums
-                    <span class="badge pull-right">5</span>
-                  </a>
-                </li>
-              </ul>
+                <ul *ngFor='let cat of categories' class="cats">
+                  <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
+                    <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}
+                      <span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span>
+                    </a>
+                  </li>
+                </ul>
             </div>
           </div>
 
           <!-- -->
-          <div class="sidebarblock">
+          <!-- <div class="sidebarblock">
             <h3>Poll of the Week</h3>
             <div class="divline"></div>
             <div class="blocktxt">
@@ -1203,10 +1173,10 @@
               </form>
               <p class="smal">Voting ends on 19th of October</p>
             </div>
-          </div>
+          </div> -->
 
           <!-- -->
-          <div class="sidebarblock">
+          <!-- <div class="sidebarblock">
             <h3>My Active Threads</h3>
             <div class="divline"></div>
             <div class="blocktxt">
@@ -1228,7 +1198,7 @@
             <div class="blocktxt">
               <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
