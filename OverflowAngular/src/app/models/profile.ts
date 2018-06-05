@@ -13,5 +13,10 @@ export class Profile {
   employer: Employer;
   technologies: Technology[];
 
-  constructor () {}
+  constructor () {
+    this.address = new Address();
+    this.employer = new Employer();
+    this.technologies = [];
+
+  }
 }
