@@ -19,9 +19,6 @@ public class ProfileDataTests {
 	@Autowired
 	private ProfileRepository pr;
 	
-	@Autowired
-	private ProfileService ps;
-	
 	@Test
 	@DisplayName("Test Profile is correctly mapped")
 	public void test_profile_mappings() {
@@ -32,6 +29,12 @@ public class ProfileDataTests {
 	@DisplayName("Test findByCohort")
 	public void test_findByCohort() {
 		assertEquals("Jackson", pr.findByCohort("SD14").getFirstName());
+	}
+	
+	@Test
+	@DisplayName("Test findProfileByUserUsername")
+	public void test_findProfileByUserUsername() {
+		assertEquals("Jackson", pr.findProfileByUserUsername("jackson").getFirstName());
 	}
 
 }

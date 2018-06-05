@@ -30,25 +30,29 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
-	@Override
-	public boolean deleteUser(int userId) {
-		try {
-			userRepo.deleteById(userId);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+	// COMMENTING OUT BECAUSE WE DO NOT CURRENTLY WANT TO DELETE USERS
+//	@Override
+//	public boolean deleteUser(int userId) {
+//		try {
+//			userRepo.deleteById(userId);
+//			return true;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return false;
+//	}
 	
 	@Override
-	public User updateUser(User user, int userId) {
-		User managedUser = new User();
-		Optional <User> opUser = userRepo.findById(userId);
-		if(opUser.isPresent()) {
-			managedUser = userRepo.findById(userId).get();
+	public User updateUserByLoggedInUser(User user, String username) {
+		User managedUser = userRepo.findByUsername(username);
+		try {
+			managedUser = userRepo.findByUsername(username);
 			managedUser.setUsername(user.getUsername());
 			managedUser.setPassword(user.getPassword());
+			userRepo.saveAndFlush(managedUser);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 		return managedUser;
 	}
