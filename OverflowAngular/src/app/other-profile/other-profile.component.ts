@@ -1,6 +1,7 @@
 import { OtherUserService } from './../other-user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-other-profile',
@@ -9,6 +10,7 @@ import { User } from '../models/user';
 })
 export class OtherProfileComponent implements OnInit {
   otherUser = new User();
+  posts: Post[] = [];
 
   passOtherUserInfo = function() {
      this.OtherUserService.getOtherUserInfo().subscribe(
@@ -17,12 +19,19 @@ export class OtherProfileComponent implements OnInit {
     );
   };
 
+  showPost = function(post) {
+
+  };
+
+  backToPost = function() {
+
+  };
+
   constructor(
     private otherUserService: OtherUserService
     ) { }
 
   ngOnInit() {
-    // this.usersService.cast.subscribe(user=> this.user = user);
     this.otherUserService.cast.subscribe(data => this.otherUser = data);
   }
 
