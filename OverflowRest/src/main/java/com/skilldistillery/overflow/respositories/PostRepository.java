@@ -16,4 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	public List<Post> getPostsForUser(@Param("id")int id);
 	
 	public List<Post> findAllPostsByCategoryName(String name);
+	
+	public List<Post> findByNameContaining(String name);
 }
