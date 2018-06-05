@@ -6,13 +6,15 @@ import com.skilldistillery.overflow.entities.Technology;
 
 public interface ProfileService {
 
-	Profile updateProfile( ProfileDTO dto, int profileId);
+	Profile updateProfileByLoggedInUser( ProfileDTO dto, String username);
 	
-	Profile addTechnology(Technology technology, int profileId);
+	Profile addTechnology(Technology technology, String username);
 	
-	Profile deleteTechnology(Technology technology,int profileId);
+	Profile deleteTechnology(Technology technology, String username);
 	
-	Profile removeEmployer( int profileId);
+	Profile removeEmployer(String username);
+
+	Profile removeAddress(String username);
 
 	
 	

@@ -17,9 +17,9 @@ public class ProfileServiceImpl implements ProfileService {
 	private ProfileRepository profileRepo;
 
 	@Override
-	public Profile updateProfile(ProfileDTO dto, int profileId) {
+	public Profile updateProfileByLoggedInUser(ProfileDTO dto, String username) {
 		// GET PROFILE
-		Profile profile = profileRepo.findById(profileId).get();
+		Profile profile = profileRepo.findProfileByUserUsername(username);
 		// CHECK IF THERE IS AN EXISTING PROFILE ADDRESS, IF SO EDIT IT
 		if (profile.getAddress() != null) {
 			Address managedAddress = profile.getAddress();
@@ -59,7 +59,7 @@ public class ProfileServiceImpl implements ProfileService {
 				employer.setAddress(managedEmployerAddress);
 			}
 			// CHECK IF THERE IS AN EXISTING EMPLOYER ADDRESS, IF NOT MAKE A NEW ONE
-			if (profile.getEmployer().getAddress() != null) {
+			if (profile.getEmployer().getAddress() == null) {
 				Address employerAddress = new Address();
 				employerAddress.setStreet(dto.getEmployerAddressStreet());
 				employerAddress.setStreet2(dto.getEmployerAddressStreet2());
@@ -68,7 +68,7 @@ public class ProfileServiceImpl implements ProfileService {
 				employerAddress.setCountry(dto.getEmployerAddressCountry());
 				employerAddress.setZip(dto.getEmployerAddressZip());
 			}
-			// ADD EMPLOYER AND CASCADE THE ADDRESS
+			// ADD EMPLOYER AND THE EMPLOYER ADDRESS
 			profile.setEmployer(employer);
 		}
 		// CHECK IF THERE IS AN EXISTING EMPLOYER, IF NOT MAKE A NEW ONE
@@ -88,7 +88,7 @@ public class ProfileServiceImpl implements ProfileService {
 				employer.setAddress(managedEmployerAddress);
 			}
 			// CHECK IF THERE IS AN EXISTING EMPLOYER ADDRESS, IF NOT MAKE A NEW ONE
-			if (profile.getEmployer().getAddress() != null) {
+			if (profile.getEmployer().getAddress() == null) {
 				Address employerAddress = new Address();
 				employerAddress.setStreet(dto.getEmployerAddressStreet());
 				employerAddress.setStreet2(dto.getEmployerAddressStreet2());
@@ -97,7 +97,7 @@ public class ProfileServiceImpl implements ProfileService {
 				employerAddress.setCountry(dto.getEmployerAddressCountry());
 				employerAddress.setZip(dto.getEmployerAddressZip());
 			}
-			// ADD EMPLOYER AND CASCADE THE ADDRESS
+			// ADD EMPLOYER AND THE EMPLOYER ADDRESS
 			profile.setEmployer(employer);
 		}
 		profile.setFirstName(dto.getProfileFirstName());
@@ -109,24 +109,34 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public Profile addTechnology(Technology technology, int profileId) {
-		Profile profile = profileRepo.findById(profileId).get();
+	public Profile addTechnology(Technology technology, String username) {
+		Profile profile = profileRepo.findProfileByUserUsername(username);
 		profile.addTechnology(technology);
+		profileRepo.saveAndFlush(profile);
 		return profile;
 	}
 	
 	@Override
-	public Profile deleteTechnology(Technology technology, int profileId) {
-		Profile profile = profileRepo.findById(profileId).get();
+	public Profile deleteTechnology(Technology technology, String username) {
+		Profile profile = profileRepo.findProfileByUserUsername(username);
 		profile.deleteTechnology(technology);
+		profileRepo.saveAndFlush(profile);
 		return profile;	
 	}
 
 	@Override
-	public Profile removeEmployer(int profileId) {
-		Profile profile = profileRepo.findById(profileId).get();
+	public Profile removeEmployer(String username) {
+		Profile profile = profileRepo.findProfileByUserUsername(username);
 		profile.setEmployer(null);
-		
+		profileRepo.saveAndFlush(profile);
+		return profile;
+	}
+	
+	@Override
+	public Profile removeAddress(String username) {
+		Profile profile = profileRepo.findProfileByUserUsername(username);
+		profile.setAddress(null);
+		profileRepo.saveAndFlush(profile);
 		return profile;
 	}
 	
