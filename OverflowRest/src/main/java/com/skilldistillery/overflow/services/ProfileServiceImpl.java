@@ -109,7 +109,7 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public Profile addTechnology(Technology technology, String username) {
+	public Profile addTechnologyForLoggedInUser(Technology technology, String username) {
 		Profile profile = profileRepo.findProfileByUserUsername(username);
 		profile.addTechnology(technology);
 		profileRepo.saveAndFlush(profile);
@@ -117,28 +117,11 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	
 	@Override
-	public Profile deleteTechnology(Technology technology, String username) {
+	public Profile deleteTechnologyForLoggedInUser(Technology technology, String username) {
 		Profile profile = profileRepo.findProfileByUserUsername(username);
 		profile.deleteTechnology(technology);
 		profileRepo.saveAndFlush(profile);
 		return profile;	
 	}
-
-	@Override
-	public Profile removeEmployer(String username) {
-		Profile profile = profileRepo.findProfileByUserUsername(username);
-		profile.setEmployer(null);
-		profileRepo.saveAndFlush(profile);
-		return profile;
-	}
-	
-	@Override
-	public Profile removeAddress(String username) {
-		Profile profile = profileRepo.findProfileByUserUsername(username);
-		profile.setAddress(null);
-		profileRepo.saveAndFlush(profile);
-		return profile;
-	}
-	
 	
 }
