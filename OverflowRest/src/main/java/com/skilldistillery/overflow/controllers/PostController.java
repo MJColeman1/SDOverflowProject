@@ -68,5 +68,10 @@ public class PostController {
 		res.setStatus(400);
 		return false;
 	}
+	
+	@RequestMapping(path = "posts/search/{name}", method=RequestMethod.GET)
+	public List<Post> findByNameContaining(@PathVariable String name) {
+		return postService.findByName(name);
+	}
 
 }

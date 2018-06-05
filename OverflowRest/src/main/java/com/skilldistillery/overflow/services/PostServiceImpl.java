@@ -14,6 +14,7 @@ import com.skilldistillery.overflow.respositories.UserRepository;
 
 @Service
 public class PostServiceImpl implements PostService {
+	
 	@Autowired
 	private PostRepository postRepo;
 
@@ -88,6 +89,11 @@ public class PostServiceImpl implements PostService {
 			e.printStackTrace();
 		}
 		return deleted;
+	}
+
+	@Override
+	public List<Post> findByName(String name) {
+		return postRepo.findByNameContaining(name);
 	}
 
 }

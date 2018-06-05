@@ -16,4 +16,6 @@ public interface PostService {
 	
 	Boolean destroyPostByLoggedInUser(int postId, int categoryId, int userId, String username);
 	
+	List<Post> findByName(String name);
+	
 }
