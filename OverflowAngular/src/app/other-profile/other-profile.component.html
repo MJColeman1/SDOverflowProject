@@ -60,10 +60,10 @@
             <div class="divline"></div>
             <div class="blocktxt">
               <ul class="cats">
-                <li *ngFor="let post of otherUser.posts">
-                  <a (click)="showPost(post)">{{post.name}}
+                <li *ngFor="let post of posts">
+                  <p (click)="showPost(post)">{{post.name}}
                     <span class="badge pull-right">20</span>
-                  </a>
+                  </p>
                 </li>
               </ul>
             </div>

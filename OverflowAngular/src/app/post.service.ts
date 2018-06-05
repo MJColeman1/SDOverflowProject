@@ -10,7 +10,8 @@ import { Category } from './models/category';
 })
 export class PostService {
 
-  private url = 'http://localhost:8080/api/posts/';
+  private baseUrl = 'http://localhost:8080';
+  private url = this.baseUrl + '/api/posts/';
   private categoryUrl = 'http://localhost:8080/api/categories';
   private createUrl = 'http://localhost:8080/api/users/';
   private catUrl = 'http://localhost:8080/api/user/';
@@ -22,6 +23,26 @@ export class PostService {
       catchError((err: any) => {
         console.log(err);
         return throwError('Index Error');
+      })
+    );
+  }
+
+  indexOfPostsByOtherUser(userId: number) {
+    console.log(userId);
+    return this.http.get<Post[]>(this.baseUrl + '/api/user/' + userId + '/posts').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Index Other User Posts Error');
+      })
+    );
+  }
+
+  getPostByOtherUser(userId: number, postId: number) {
+    console.log(userId);
+    return this.http.get<Post>(this.baseUrl + '/api/user/' + userId + '/posts/' + postId).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Index Other User Posts Error');
       })
     );
   }

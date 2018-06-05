@@ -8,16 +8,8 @@ public interface ProfileService {
 
 	Profile updateProfileByLoggedInUser( ProfileDTO dto, String username);
 	
-	Profile addTechnology(Technology technology, String username);
+	Profile addTechnologyForLoggedInUser(Technology technology, String username);
 	
-	Profile deleteTechnology(Technology technology, String username);
-	
-	Profile removeEmployer(String username);
-
-	Profile removeAddress(String username);
-
-	
-	
-	
+	Profile deleteTechnologyForLoggedInUser(Technology technology, String username);
 	
 }
