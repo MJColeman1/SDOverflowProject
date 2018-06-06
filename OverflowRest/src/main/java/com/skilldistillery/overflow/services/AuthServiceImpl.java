@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skilldistillery.overflow.entities.User;
+import com.skilldistillery.overflow.entities.UserDTO;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
 @Service
@@ -16,23 +17,23 @@ public class AuthServiceImpl implements AuthService {
 	private UserRepository userRepo;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private PasswordEncoder encoder;
 
 	@Override
 	public User register(String json) {
 		ObjectMapper om = new ObjectMapper();
-		User user = null;
-
+		UserDTO dto = null;
+		User user = new User();
 		try {
-			user = om.readValue(json, User.class);
-
-			String encodedPW = encoder.encode(user.getPassword());
-			user.setPassword(encodedPW);
+			dto = om.readValue(json, UserDTO.class);
+			String encodedPW = encoder.encode(dto.getUserPassword());
+			dto.setUserPassword(encodedPW);
 			user.setEnabled(true);
 			user.setRole("standard");
-			
-
-			userRepo.saveAndFlush(user);
+			user = userService.createUser(dto);
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
