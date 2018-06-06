@@ -20,3 +20,8 @@
 16. Add templates or html to the html pages to support the various functionality and routing of the services and components.
 17. Create an AuthService to restrict functionalty and protect user data.
 
+### Technologies Used:
+-Java 
+-Javascript 
+-MySql 
+-Angular 
