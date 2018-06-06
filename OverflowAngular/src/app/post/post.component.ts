@@ -95,6 +95,8 @@ export class PostComponent implements OnInit {
   // DISPLAY POSTS BY SEARCH KEYWORD
   displayPostsBySearch = function(keyword) {
     this.postsByKeyword = [];
+    this.posts = this.tempPosts;
+    console.log(this.posts);
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].name.includes(keyword)) {
         this.postsByKeyword.push(this.posts[i]);
@@ -102,6 +104,10 @@ export class PostComponent implements OnInit {
     }
     this.keyword = null;
     this.posts = this.postsByKeyword;
+    this.postsByCategory = this.postsByKeyword; // TESTING
+    console.log(this.posts); // TESTING
+    this.start = 0;
+    this.end = 4;
   };
 
   // EDIT SELECTED POST (DOES NOT WORK YET)
@@ -270,6 +276,7 @@ export class PostComponent implements OnInit {
   displayPostsByCategory = function(catId) {
     this.postsByCategory = [];
     this.posts = this.tempPosts;
+    // console.log(this.posts);
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].category.id === catId) {
         this.postsByCategory.push(this.posts[i]);
@@ -301,7 +308,7 @@ export class PostComponent implements OnInit {
 
   // DISPLAY NEXT 4 POSTS
   pagRight = function() {
-    if (this.end <= this.posts.length) {
+    if (this.end < this.posts.length - 1) {
       this.start += 4;
       this.end += 4;
     }
@@ -309,7 +316,7 @@ export class PostComponent implements OnInit {
 
   // DISPLAY NEXT 4 POSTS BY CATEGORY
   pagRightCat = function() {
-    if (this.end <= this.postsByCategory.length) {
+    if (this.end < this.postsByCategory.length - 1) {
       this.start += 4;
       this.end += 4;
     }
