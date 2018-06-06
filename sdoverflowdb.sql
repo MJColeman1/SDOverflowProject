@@ -90,13 +90,14 @@ DROP TABLE IF EXISTS `user` ;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   `role` VARCHAR(20) NULL,
   `enabled` TINYINT NULL,
   `profile_id` INT NOT NULL,
   `admin` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `profile_id_idx` (`profile_id` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   CONSTRAINT `profile_id`
     FOREIGN KEY (`profile_id`)
     REFERENCES `profile` (`id`)

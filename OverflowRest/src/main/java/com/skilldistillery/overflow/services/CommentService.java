@@ -3,6 +3,8 @@ package com.skilldistillery.overflow.services;
 import java.util.List;
 
 import com.skilldistillery.overflow.entities.Comment;
+import com.skilldistillery.overflow.entities.CommentVote;
+import com.skilldistillery.overflow.entities.User;
 
 public interface CommentService {
 	
@@ -17,5 +19,9 @@ public interface CommentService {
 	boolean destroyCommentByLoggedInUser(int postId, int commentId, String username);
 
 	List<Comment> getCommentsByUserId(int userId);
+	
+	public CommentVote createVote(Comment comment, User user, Boolean vote);
+	
+	public CommentVote updateVote(Comment comment, User user, Boolean vote);
 
 }
