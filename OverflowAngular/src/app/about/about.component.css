@@ -3,6 +3,11 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.container {
+  text-align: center;
+}
+
 img {
   border-radius: 50%;
   padding-top: 15px;
@@ -13,8 +18,8 @@ img {
 
 .aboutUs {
   margin: 0 auto;
-	padding: 15px;
-	text-align: center;
+  padding: 15px;
+  text-align: center;
 }
 /* tr {
   text-align: center;
