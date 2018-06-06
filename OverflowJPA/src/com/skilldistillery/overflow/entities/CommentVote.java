@@ -24,6 +24,10 @@ public class CommentVote {
 	public CommentVoteKey getId() {
 		return id;
 	}
+
+	public void setId(CommentVoteKey id) {
+		this.id = id;
+	}
 	
 	
 	
