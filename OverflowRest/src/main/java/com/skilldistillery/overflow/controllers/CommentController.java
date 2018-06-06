@@ -1,6 +1,10 @@
 package com.skilldistillery.overflow.controllers;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +27,7 @@ public class CommentController {
 	
 	
 	@RequestMapping(path="posts/{postId}/comments", method = RequestMethod.GET)
-	public List<Comment> index(@PathVariable int postId) {
+	public List<Comment> index(@PathVariable int postId, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		return commentService.getAllComments(postId);
 	}
 	
