@@ -28,17 +28,17 @@ public class EmployerDataTests {
 	@Autowired
 	private TechnologyRepository  tr;
 	
-	@Test
-	@DisplayName("Test getAllEmployers")
-	public void test_getAllEmployers() {
-		assertEquals("Taco Bell", es.getAllEmployers().get(0).getName());
-	}
-	
-	@Test
-	@DisplayName("Test findEmployerById")
-	public void test_findEmployerById() {
-		assertEquals("Taco Bell", es.findEmployerById(1).getName());
-	}
+//	@Test
+//	@DisplayName("Test getAllEmployers")
+//	public void test_getAllEmployers() {
+//		assertEquals("Taco Bell", es.getAllEmployers().get(0).getName());
+//	}
+//	
+//	@Test
+//	@DisplayName("Test findEmployerById")
+//	public void test_findEmployerById() {
+//		assertEquals("Taco Bell", es.findEmployerById(1).getName());
+//	}
 	
 	@Test
 	@DisplayName("Test getEmployerJoinedWithTechnologies")

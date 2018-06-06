@@ -31,12 +31,12 @@ public class EmployerServiceImpl implements EmployerService{
 	private TechnologyRepository techRepo;
 
 	@Override
-	public List<Employer> getAllEmployers() {
+	public List<Employer> getAllEmployers(String username) {
 		return empRepo.findAll();
 	}
 
 	@Override
-	public Employer findEmployerById(int empId) {
+	public Employer findEmployerById(int empId, String username) {
 		return empRepo.findById(empId).get();
 	}
 
