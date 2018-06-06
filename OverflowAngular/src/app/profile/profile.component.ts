@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Profile } from '../models/profile';
+import { User } from '../models/user';
 
 
 @Component({
@@ -15,6 +16,10 @@ export class ProfileComponent implements OnInit {
   profiles = [];
 
   profile = new Profile;
+
+  posts = [];
+
+  user = new User();
 
   constructor(private profileService: ProfileService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -30,6 +35,18 @@ export class ProfileComponent implements OnInit {
       },
       err => console.log(err)
     );
+  };
+  displayPost = function(post) {
+    this.selected = post;
+    this.displayCommentsByPost(post.id);
+  };
+
+  showPost = function(post) {
+
+  };
+
+  backToPost = function() {
+
   };
 }
 
