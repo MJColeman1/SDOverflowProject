@@ -81,13 +81,13 @@ export class PostService {
     );
   }
 
-  createPost(userId, catId, post) {
+  createPost(catId, post) {
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
 
     const headers = this.getToken();
-    return this.http.post(this.createUrl + userId + '/category/' + catId + '/posts', post, {headers}).pipe(
+    return this.http.post(this.baseUrl + '/api/category/' + catId + '/posts', post, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');

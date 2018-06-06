@@ -201,7 +201,7 @@ export class PostComponent implements OnInit {
   createPost = function() {
     if (this.post.name && this.post.description) {
       this.postService
-        .createPost(1, this.selectedCategoryId, this.post)
+        .createPost(this.selectedCategoryId, this.post)
         .subscribe(
           data => {
             this.reload();

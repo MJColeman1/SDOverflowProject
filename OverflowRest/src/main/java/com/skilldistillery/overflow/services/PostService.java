@@ -14,7 +14,7 @@ public interface PostService {
 	
 	Post findPostsByOtherUserIdPostId(int userId, int postId, String username);
 	
-	Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username);
+	Post createPostByLoggedInUser(Post post, int categoryId, String username);
 	
 	Post updatePostByLoggedInUser(int postId, int categoryId, int userId, Post post, String username);
 	
