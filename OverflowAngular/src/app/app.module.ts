@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 
 import { SelectedPostService } from './selected-post.service';
 import { EmployersComponent } from './employers/employers.component';
+import { EmployerService } from './employer.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { EmployersComponent } from './employers/employers.component';
     AboutComponent,
     OtherProfileComponent,
     ProfileComponent,
+    HomeComponent,
+    EmployersComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { EmployersComponent } from './employers/employers.component';
     PostService,
     UserService,
     OtherUserService,
-    SelectedPostService
+    SelectedPostService,
+    EmployerService
   ],
   bootstrap: [AppComponent]
 })

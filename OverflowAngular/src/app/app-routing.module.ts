@@ -9,12 +9,12 @@ import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
 import { HomeComponent } from './home/home.component';
-import { Employer } from './models/employer';
+import { EmployersComponent } from './employers/employers.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'posts'},
   {path: 'about', component: AboutComponent},
-  {path: 'employer', component: Employer},
+  {path: 'employer', component: EmployersComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'otherUser', component: OtherProfileComponent},
