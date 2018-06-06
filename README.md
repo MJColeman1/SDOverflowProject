@@ -1,6 +1,6 @@
 ### SDOverflowProject
 
-###What we did:
+### What we did:
 1. Create a Database, in MySQL Workbench, with data inserted into each table for testing purposes.
 2. Create a new Java project in Spring.
 3. Java project has Gradle nature, and entities package, META-INF folder to house a persistense xml and a test package.
