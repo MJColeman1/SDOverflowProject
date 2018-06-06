@@ -19,6 +19,7 @@ import { OtherProfileComponent } from './other-profile/other-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherUserService } from './other-user.service';
 import { SelectedPostService } from './selected-post.service';
+import { EmployersComponent } from './employers/employers.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SelectedPostService } from './selected-post.service';
     LogoutComponent,
     AboutComponent,
     OtherProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmployersComponent
   ],
   imports: [
     BrowserModule,

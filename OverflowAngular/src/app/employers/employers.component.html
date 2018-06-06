@@ -1,0 +1,76 @@
+<div class="container-fluid">
+
+  <section class="content">
+
+    <!-- Other User Info -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <h2>List of Employers</h2>
+          <button (click)='return()' class="btn btn-primary" style="padding-right: 10px" *ngIf="selected">Back to Employers</button>
+
+          <div class="post">
+            <!-- <div class="postinfotop"> -->
+
+
+            <!-- acc section -->
+            <div class="accsection" *ngFor="let employer of employers">
+              <div class="acccap">
+                <div class="userinfo pull-left">&nbsp;</div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="topwrap">
+                <div class="userProfile" *ngIf="!selected">
+                  <h2>Username: {{employer.name | titlecase}}</h2>
+                  <p>Address: {{employer.address.street}}</p>
+                  <p *ngIf="employer.address.street2">Suite: {{employer.address.street}}</p>
+                  <p>City: {{employer.address.city}}</p>
+                  <p>State: {{employer.address.state}}</p>
+                  <p>Country: {{employer.address.country}}</p>
+                  <p>Zip: {{employer.address.zip}}</p>
+                  <p>Technologies:</p>
+                  <ul>
+                    <li *ngFor="let tech of employer.technologies">
+                      {{tech.name}}
+                    </li>
+                  </ul>
+                </div>
+                <!-- </div>
+                    </div> -->
+                <!-- </div> -->
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <!-- acc section END -->
+
+            <div class="postinfobot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <!-- End Other User Info -->
+
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+
+          <!-- Posts Sidebar -->
+          <!-- <div class="sidebarblock">
+              <h3>Top Posts</h3>
+              <div class="divline"></div>
+              <div class="blocktxt">
+                <ul class="cats">
+                  <li *ngFor="let post of posts">
+                    <p (click)="showPost(post)">{{post.name}}
+                      <span class="badge pull-right">20</span>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div> -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
