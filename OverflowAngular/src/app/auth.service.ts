@@ -41,10 +41,6 @@ export class AuthService {
     // create request to register a new account
     return this.http.post('http://localhost:8080/register', dto)
     .pipe(
-        // tap((res) => {  // create a user and then upon success, log them in
-        //   console.log(dto);
-        //   this.login(dto.userUsername, dto.userPassword);
-        // }),
         catchError((err: any) => {
           console.log(err);
           return throwError('KABOOM');
