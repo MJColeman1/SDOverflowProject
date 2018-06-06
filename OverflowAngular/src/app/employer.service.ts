@@ -13,7 +13,7 @@ export class EmployerService {
 
   // SERVICE FIELDS
   private baseUrl = 'http://localhost:8080';
-  private url = this.baseUrl + 'api/employers';
+  private url = this.baseUrl + 'api/employers/';
 
   // SERVICE METHODS
   getToken() {
