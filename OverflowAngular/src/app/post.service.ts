@@ -42,8 +42,11 @@ export class PostService {
   }
 
   indexOfPostsByOtherUser(userId: number) {
-    console.log(userId);
-    return this.http.get<Post[]>(this.baseUrl + '/api/user/' + userId + '/posts').pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+    const headers = this.getToken();
+    return this.http.get<Post[]>(this.baseUrl + '/api/user/' + userId + '/posts', {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Index Other User Posts Error');
@@ -52,8 +55,11 @@ export class PostService {
   }
 
   getPostByOtherUser(userId: number, postId: number) {
-    console.log(userId);
-    return this.http.get<Post>(this.baseUrl + '/api/user/' + userId + '/posts/' + postId).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+    const headers = this.getToken();
+    return this.http.get<Post>(this.baseUrl + '/api/user/' + userId + '/posts/' + postId, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Index Other User Posts Error');

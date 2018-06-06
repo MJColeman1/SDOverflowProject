@@ -34,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
 			user.setEnabled(true);
 			user.setRole("standard");
 			user = userService.createUser(dto);
+			userRepo.saveAndFlush(user);
 		} catch (Exception e) {
 			System.out.println(e);
 		}		
