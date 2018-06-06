@@ -31,7 +31,7 @@ import { OtherUserService } from './other-user.service';
     LogoutComponent,
     AboutComponent,
     OtherProfileComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

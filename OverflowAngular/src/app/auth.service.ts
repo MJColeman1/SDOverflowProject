@@ -31,12 +31,12 @@ export class AuthService {
       );
   }
 
-  register(user) {
+  register(dto) {
     // create request to register a new account
-    return this.http.post('http://localhost:8080/register', user)
+    return this.http.post('http://localhost:8080/register', dto)
     .pipe(
         tap((res) => {  // create a user and then upon success, log them in
-          this.login(user.username, user.password);
+          this.login(dto.userUsername, dto.userPassword);
         }),
         catchError((err: any) => {
           console.log(err);

@@ -1,8 +1,8 @@
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { Userdto } from '../models/userdto';
 
 @Component({
   selector: 'app-register',
@@ -11,18 +11,18 @@ import { Profile } from '../models/profile';
 })
 export class RegisterComponent implements OnInit {
 
-  user: User = new User();
+  dto: Userdto = new Userdto();
 
   confirmPassword = '';
 
   // END OF FIELDS
 
-  register = function(user, confirmPassword) {
+  register = function(dto, confirmPassword) {
     // CHECK IF PASSWORDS MATCH
-    if (user.password === confirmPassword) {
-      console.log(user);
+    if (dto.userPassword === confirmPassword) {
+      console.log(dto);
       // IF THEY MATCH SUBSCRIBE AND CALL THE SERVICE REGISTER METHOD
-      this.authService.register(user).subscribe(
+      this.authService.register(dto).subscribe(
         // NAVIGATE BACK TO POSTS
         data => this.router.navigateByUrl('posts'),
         // OR LOG THE ERROR
