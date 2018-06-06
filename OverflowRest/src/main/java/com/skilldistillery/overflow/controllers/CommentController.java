@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.overflow.entities.Comment;
+import com.skilldistillery.overflow.entities.CommentVote;
 import com.skilldistillery.overflow.services.CommentService;
 
 @RestController
@@ -51,6 +52,18 @@ public class CommentController {
 	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
 	public Boolean delete(@PathVariable int commentId, @PathVariable int postId) {
 		return commentService.destroyCommentByLoggedInUser(postId, commentId, "jackson");
+	}
+	
+	@RequestMapping(path = "comment/{commentId}/vote", method = RequestMethod.POST)
+	public CommentVote createVote(@PathVariable int commentId, Principal principal, @RequestBody String vote) {
+		System.out.println(vote);
+		return commentService.createVote(commentId, principal.getName(), Boolean.parseBoolean(vote));
+	}
+	
+	@RequestMapping(path = "comment/{commentId}/vote", method = RequestMethod.PUT)
+	public CommentVote updateVote(@PathVariable int commentId, Principal principal, @RequestBody String vote) {
+		System.out.println(vote);
+		return commentService.updateVote(commentId, principal.getName(), Boolean.parseBoolean(vote));
 	}
 
 }

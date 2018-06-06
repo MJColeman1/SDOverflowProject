@@ -94,10 +94,12 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public CommentVote createVote(Comment comment, User user, Boolean vote) {
+	public CommentVote createVote(int commentId, String username, Boolean vote) {
+		Comment managedC = commentRepo.findById(commentId).get();
+		User managedU = userRepo.findByUsername(username);
 		CommentVoteKey cvk = new CommentVoteKey();
-		cvk.setComment(comment);
-		cvk.setUser(user);
+		cvk.setComment(managedC);
+		cvk.setUser(managedU);
 		
 		CommentVote cv = new CommentVote();
 		cv.setId(cvk);
@@ -107,9 +109,13 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public CommentVote updateVote(Comment comment, User user, Boolean vote) {
-		// TODO Auto-generated method stub
-		return null;
+	public CommentVote updateVote(int commentId, String username, Boolean vote) {
+		Comment managedC = commentRepo.findById(commentId).get();
+		User managedU = userRepo.findByUsername(username);
+		
+		CommentVote managed = cvRepo.findByCommentAndUser(managedC.getId(), managedU.getId());
+		managed.setVote(vote);
+		return cvRepo.saveAndFlush(managed);
 	}
 	
 }
