@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  logout = function () {
-    console.log('logging out');
-  };
+  // logout = function () {
+  //   console.log('logging out');
+  // };
 
-  constructor() { }
+  notLoggedIn() {
+    if (!this.authService.checkLogin()) {
+      return true;
+    }
+    return false;
+  }
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
