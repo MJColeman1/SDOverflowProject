@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Profile } from '../models/profile';
 import { Userdto } from '../models/userdto';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +13,8 @@ import { Userdto } from '../models/userdto';
 export class RegisterComponent implements OnInit {
 
   dto: Userdto = new Userdto();
+
+  // user: User = new User();
 
   confirmPassword = '';
 
@@ -25,9 +28,15 @@ export class RegisterComponent implements OnInit {
       this.authService.register(dto).subscribe(
         // NAVIGATE BACK TO POSTS
         data => {
-          console.log(dto.userUsername);
-          console.log(dto.userPassword);
-          this.router.navigateByUrl('posts');
+          this.authService.login(dto.userUsername, dto.userPassword).subscribe(
+            // On success log in and route back to posts
+            loginData => this.router.navigateByUrl('posts'),
+            // If error return this instead
+            err => {
+              console.log(err);
+              // console.log(user);
+            }
+          );
         },
         // OR LOG THE ERROR
         err => console.log(err)
