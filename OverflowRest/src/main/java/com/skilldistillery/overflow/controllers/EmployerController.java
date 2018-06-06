@@ -1,5 +1,6 @@
 package com.skilldistillery.overflow.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -27,18 +28,18 @@ public class EmployerController {
 	private String username = "jackson";
 
 	@RequestMapping(path = "/employers", method = RequestMethod.GET)
-	public List<Employer> index() {
-		return empService.getAllEmployers();
+	public List<Employer> index(Principal principal) {
+		return empService.getAllEmployers(principal.getName());
 	}
 
 	@RequestMapping(path = "/employers/{empId}", method = RequestMethod.GET)
-	public Employer show(@PathVariable int empId) {
-		return empService.findEmployerById(empId);
+	public Employer show(@PathVariable int empId, Principal principal) {
+		return empService.findEmployerById(empId, principal.getName());
 	}
 
 	@RequestMapping(path = "/user/{userId}/employers", method = RequestMethod.POST)
-	public Employer create(@PathVariable int userId, @RequestBody EmployerDTO dto, HttpServletResponse res) {
-		Employer newEmployer = empService.createNewEmployer(userId, dto, username); 
+	public Employer create(@PathVariable int userId, @RequestBody EmployerDTO dto, HttpServletResponse res, Principal principal) {
+		Employer newEmployer = empService.createNewEmployer(userId, dto, principal.getName()); 
 		if (newEmployer != null) {
 			res.setStatus(201);
 			return newEmployer;
@@ -48,7 +49,7 @@ public class EmployerController {
 	}
 	
 	@RequestMapping(path="employers/{empId}/technology/{techId}", method=RequestMethod.PUT)
-	public Employer addTechnology(@PathVariable int empId, @PathVariable int techId) {
+	public Employer addTechnology(@PathVariable int empId, @PathVariable int techId, Principal principal) {
 		return empService.addTechnology(techId, empId);
 	}
 }
