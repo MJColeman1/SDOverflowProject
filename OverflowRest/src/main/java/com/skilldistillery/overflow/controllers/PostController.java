@@ -18,7 +18,7 @@ import com.skilldistillery.overflow.entities.Post;
 import com.skilldistillery.overflow.services.PostService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost:4200"})
+@CrossOrigin({ "*", "http://localhost:4200" })
 @RequestMapping(path = "/api")
 public class PostController {
 
@@ -31,10 +31,10 @@ public class PostController {
 	public List<Post> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		return postService.getAllPosts(principal.getName());
 	}
-	
+
 	@RequestMapping(path = "user/{userId}/posts", method = RequestMethod.GET)
-	public List<Post> indexOfOtherUserPOsts(@PathVariable int userId, HttpServletResponse res) {
-		List<Post> posts = postService.getAllPostsByOtherUser(userId);
+	public List<Post> indexOfOtherUserPOsts(@PathVariable int userId, HttpServletResponse res, Principal principal) {
+		List<Post> posts = postService.getAllPostsByOtherUser(userId, principal.getName());
 		if (posts != null) {
 			res.setStatus(200);
 			return posts;
@@ -46,10 +46,11 @@ public class PostController {
 	public Post show(@PathVariable int postId) {
 		return postService.findPostsByPostId(postId);
 	}
-	
+
 	@RequestMapping(path = "user/{userId}/posts/{postId}", method = RequestMethod.GET)
-	public Post showPostByOtherUser(@PathVariable int userId, @PathVariable int postId, HttpServletResponse res) {
-		Post post = postService.findPostsByOtherUserIdPostId(userId, postId);
+	public Post showPostByOtherUser(@PathVariable int userId, @PathVariable int postId, HttpServletResponse res,
+			Principal principal) {
+		Post post = postService.findPostsByOtherUserIdPostId(userId, postId, principal.getName());
 		if (post != null) {
 			res.setStatus(200);
 			return post;
@@ -91,8 +92,8 @@ public class PostController {
 		res.setStatus(400);
 		return false;
 	}
-	
-	@RequestMapping(path = "posts/search/{name}", method=RequestMethod.GET)
+
+	@RequestMapping(path = "posts/search/{name}", method = RequestMethod.GET)
 	public List<Post> findByNameContaining(@PathVariable String name) {
 		return postService.findByName(name);
 	}

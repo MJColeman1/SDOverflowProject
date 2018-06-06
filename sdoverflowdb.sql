@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `admin` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `profile_id_idx` (`profile_id` ASC),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   CONSTRAINT `profile_id`
     FOREIGN KEY (`profile_id`)
     REFERENCES `profile` (`id`)

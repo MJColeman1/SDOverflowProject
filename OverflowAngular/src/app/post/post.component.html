@@ -397,7 +397,7 @@
       <!-- Author -->
       <p class="lead">
         by
-        <a (click)="passOtherUserInfo(selected.user)">{{selected.user.username}}</a>
+        <a (click)="passOtherUserInfo(selected.user)">{{selected.user.username | titlecase}}</a>
       </p>
       <div class="btn-toolbar ">
         <button (click)='displayAllPost()' class="btn btn-primary" style="padding-right: 10px">All Posts</button>
@@ -625,7 +625,7 @@
         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
           <div class="stnt pull-left">
             <form action="03_new_topic.html" method="post" class="form">
-              <button (click)='newTopic = false' class="btn btn-primary">Main Page</button>
+              <button (click)='newTopic = false; selectedCategoryId = null' class="btn btn-primary">Main Page</button>
             </form>
           </div>
           <div class="env pull-left">
@@ -701,14 +701,17 @@
                 <div class="posttext pull-left">
 
                   <div>
-                    <input type="text" placeholder="Enter Topic Title" class="form-control" name="postname" [(ngModel)]='post.name' />
+                    <input type="text" required placeholder="Enter Topic Title" class="form-control" name="postname" [(ngModel)]='post.name'/>
                   </div>
 
                   <div class="row">
                     <div *ngIf="selectedCategoryId === 'Other'" class="col-lg-6 col-md-6" style='padding-bottom: 10px'>
-                      <label for="">Enter New Category</label>
-                      <input type="text" class="form-control" name='name' [(ngModel)]='category.name'>
-                      <button (click)='createCategory()' class='btn btn-success'>Submit</button>
+                      <label for="">Enter New Category</label><span><label for="" style='margin-left: 5px'>{{newCatMessage}}</label></span>
+                      <input type="text" required class="form-control" name='name' [(ngModel)]='category.name'>
+                      <div class='btn-toolbar'>
+                        <button (click)='createCategory()' class='btn btn-success'>Submit</button>
+                        <button (click)="selectedCategoryId = null; newCatMessage = null; category.name = ''" class='btn btn-success' style='margin-left: 10px'>Cancel</button>
+                      </div>
                     </div>
                     <div *ngIf="selectedCategoryId !== 'Other'" class="col-lg-6 col-md-6">
                       <label for="">Select A Category</label>
@@ -721,7 +724,7 @@
                   </div>
 
                   <div>
-                    <textarea name="description" id="desc" placeholder="Description" class="form-control" [(ngModel)]='post.description'></textarea>
+                    <textarea name="description" id="desc" placeholder="Description" class="form-control" [(ngModel)]='post.description' required></textarea>
                   </div>
                 </div>
                 <div class="clearfix"></div>

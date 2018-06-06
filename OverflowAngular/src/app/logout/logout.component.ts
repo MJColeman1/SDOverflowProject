@@ -14,9 +14,16 @@ export class LogoutComponent implements OnInit {
    logout = function() {
     this.authService.logout();
     if (!this.authService.checkLogin()) {
-      this.router.navigateByUrl('posts');
+      this.router.navigateByUrl('login');
     }
   };
+
+  loggedIn() {
+    if (this.authService.checkLogin()) {
+      return true;
+    }
+    return false;
+  }
 
   // END OF METHODS
 

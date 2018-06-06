@@ -3,6 +3,7 @@ import { ProfileService } from '../profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Profile } from '../models/profile';
 import { User } from '../models/user';
+import { Post } from '../models/post';
 
 
 @Component({
@@ -17,17 +18,45 @@ export class ProfileComponent implements OnInit {
 
   profile = new Profile;
 
-  posts = [];
+  updateForm = null;
 
   user = new User();
+  posts: Post[] = [];
+  selected: Post = new Post();
 
-  constructor(private profileService: ProfileService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  // GETS OTHER USER INFO FROM POST
+  passOtherUserInfo = function() {
+    this.OtherUserService.getOtherUserInfo().subscribe(
+      data => (this.otherUser = data),
+      err => console.log(err)
+    );
+  };
 
-  ngOnInit() {
-  }
+  // GOES BACK TO LIST OF POSTS
+  backToPost = function() {
+    this.router.navigateByUrl('/posts');
+  };
 
+  // GETS ALL THE POSTS BY THE OTHER USER
+  reload = function() {
+    console.log(this.otherUser.id);
+    this.postService
+      .indexOfPostsByOtherUser(this.otherUser.id)
+      .subscribe(data => (this.posts = data), err => console.error(err));
+  };
 
-  updateProfile = function(user,  profile) {
+  // SHOWS THE POST FROM OTHER USER
+  showPost = function(post) {
+    this.postService.getPostByOtherUser(this.otherUser.id, post.id).subscribe(
+      data => {
+        this.post = data;
+        console.log(this.post);
+      },
+      err => console.error(err)
+    );
+  };
+
+  updateProfile = function(profile) {
     this.profileService.update(profile).subscribe(
       data => {
       this.router.navigateByUrl('profile');
@@ -36,18 +65,11 @@ export class ProfileComponent implements OnInit {
       err => console.log(err)
     );
   };
-  displayPost = function(post) {
-    this.selected = post;
-    this.displayCommentsByPost(post.id);
-  };
 
-  showPost = function(post) {
+  constructor(private profileService: ProfileService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  };
+  ngOnInit() {
+  }
 
-  backToPost = function() {
-
-  };
 }
-
 

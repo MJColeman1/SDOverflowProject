@@ -18,7 +18,7 @@ export class ProfileService {
 
 
 
- updateProfile( profile: Profile) {
+ updateProfile(profile: Profile) {
   const token = this.authService.getToken();
     const headers = new HttpHeaders()
     .set('Authorization', `Basic ${token}`);

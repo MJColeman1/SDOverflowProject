@@ -1,7 +1,5 @@
 package com.skilldistillery.overflow.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ public class UserServiceImpl implements UserService{
 		User user = new User();
 		Profile profile = new Profile();
 		user.setUsername(dto.getUserUsername());
-		user.setPassword(dto.getProfileEmail());
+		user.setPassword(dto.getUserPassword());
 		profile.setFirstName(dto.getProfileFirstName());
 		profile.setLastName(dto.getProfileLastName());
 		profile.setEmail(dto.getProfileEmail());
