@@ -38,20 +38,20 @@ public class CommentController {
 	}
 	
 	@RequestMapping(path = "posts/{postId}/comments", method = RequestMethod.POST)
-	public Comment create(@PathVariable int postId, @RequestBody Comment comment) {
-		return commentService.createCommentByLoggedInUser(postId, comment, "jackson");
+	public Comment create(@PathVariable int postId, @RequestBody Comment comment, Principal principal) {
+		return commentService.createCommentByLoggedInUser(postId, comment, principal.getName());
 		
 	}
 	
 	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.PUT)
 	public Comment update(@PathVariable int postId, @PathVariable int commentId, 
-			@RequestBody Comment comment) {
-		return commentService.updateCommentByLoggedInUser(postId, comment, "jackson", commentId);
+			@RequestBody Comment comment, Principal principal) {
+		return commentService.updateCommentByLoggedInUser(postId, comment, principal.getName(), commentId);
 	}
 	
 	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
-	public Boolean delete(@PathVariable int commentId, @PathVariable int postId) {
-		return commentService.destroyCommentByLoggedInUser(postId, commentId, "jackson");
+	public Boolean delete(@PathVariable int commentId, @PathVariable int postId, Principal principal) {
+		return commentService.destroyCommentByLoggedInUser(postId, commentId, principal.getName());
 	}
 	
 	@RequestMapping(path = "comment/{commentId}/vote", method = RequestMethod.POST)
