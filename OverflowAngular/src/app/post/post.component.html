@@ -31,10 +31,10 @@
           <div class="wrap">
             <form action="#" method="post" class="form">
               <div class="pull-left txt">
-                <input type="text" class="form-control" placeholder="Search Topics">
+                <input type="text" class="form-control" name="keyword" placeholder="Search Topics" [(ngModel)]='keyword'>
               </div>
               <div class="pull-right">
-                <button class="btn btn-default" type="button">
+                <button (click)='displayPostsBySearch(keyword)'class="btn btn-default" type="button">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
@@ -85,77 +85,13 @@
     <div class="container" style="padding-top: 30px; padding-bottom: 30px">
       <h2 align="center">Skill Distillery Posts</h2>
     </div>
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-xs-12 col-md-8">
-          <div class="pull-left">
-            <a href="#" class="prevnext">
-              <i class="fa fa-angle-left"></i>
-            </a>
-          </div>
-          <div class="pull-left">
-            <ul class="paginationforum">
-              <li class="hidden-xs">
-                <a href="#">1</a>
-              </li>
-              <li class="hidden-xs">
-                <a href="#">2</a>
-              </li>
-              <li class="hidden-xs">
-                <a href="#">3</a>
-              </li>
-              <li class="hidden-xs">
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li>
-                <a href="#">6</a>
-              </li>
-              <li>
-                <a href="#" class="active">7</a>
-              </li>
-              <li>
-                <a href="#">8</a>
-              </li>
-              <li class="hidden-xs">
-                <a href="#">9</a>
-              </li>
-              <li class="hidden-xs">
-                <a href="#">10</a>
-              </li>
-              <li class="hidden-xs hidden-md">
-                <a href="#">11</a>
-              </li>
-              <li class="hidden-xs hidden-md">
-                <a href="#">12</a>
-              </li>
-              <li class="hidden-xs hidden-sm hidden-md">
-                <a href="#">13</a>
-              </li>
-              <li>
-                <a href="#">1586</a>
-              </li>
-            </ul>
-          </div>
-          <div class="pull-left">
-            <a href="#" class="prevnext last">
-              <i class="fa fa-angle-right"></i>
-            </a>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-    </div> -->
-
 
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-8">
 
           <!-- LIST OF CURRENT POSTS -->
-          <div *ngFor='let p of posts' class="post">
+          <div *ngFor='let p of posts.slice(start,end)' class="post">
             <div class="wrap-ut pull-left">
               <div class="userinfo pull-left">
                 <div class="avatar">
@@ -196,6 +132,12 @@
             </div>
             <div class="clearfix"></div>
           </div>
+
+          <div class='btn-toolbar' style='text-align: center'>
+            <button (click)='pagLeft()' class='btn btn-primary' style='margin-bottom: 20px'> < Prev 4</button>
+            <p></p>
+            <button (click)='pagRight()' class='btn btn-primary float-right text-right' style='margin-bottom: 20px; margin-left: 20px'> Next 4 > </button>
+          </div>
           <!-- POST -->
 
         </div>
@@ -206,8 +148,11 @@
             <h3>Categories</h3>
             <div class="divline"></div>
             <div class="blocktxt">
-              <ul *ngFor='let cat of categories' class="cats">
-                <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
+              <ul  class="cats">
+                <li>
+                  <a (click)='displayAllPost()' onmouseover="this.style.cursor='pointer';">All Posts</a>
+                </li>
+                <li *ngFor='let cat of categories' (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
                   <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}
                     <span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span>
                   </a>
@@ -216,60 +161,7 @@
             </div>
           </div>
 
-          <!-- -->
-          <div class="sidebarblock">
-            <h3>Poll of the Week</h3>
-            <div class="divline"></div>
-            <div class="blocktxt">
-              <p>Which game you are playing this week?</p>
-              <form action="#" method="post" class="form">
-                <table class="poll">
-                  <tr>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                          Call of Duty Ghosts
-                        </div>
-                      </div>
-                    </td>
-                    <td class="chbox">
-                      <input id="opt1" type="radio" name="opt" value="1">
-                      <label for="opt1"></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar color2" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 63%">
-                          Titanfall
-                        </div>
-                      </div>
-                    </td>
-                    <td class="chbox">
-                      <input id="opt2" type="radio" name="opt" value="2" checked>
-                      <label for="opt2"></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar color3" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-                          Battlefield 4
-                        </div>
-                      </div>
-                    </td>
-                    <td class="chbox">
-                      <input id="opt3" type="radio" name="opt" value="3">
-                      <label for="opt3"></label>
-                    </td>
-                  </tr>
-                </table>
-              </form>
-              <p class="smal">Voting ends on 19th of October</p>
-            </div>
-          </div>
-
-          <!-- -->
+          <!-- Active Thread -->
           <div class="sidebarblock">
             <h3>My Active Threads</h3>
             <div class="divline"></div>
@@ -294,10 +186,10 @@
             </div>
           </div>
 
-
         </div>
       </div>
     </div>
+
   </section>
 </div>
 <!-- ***** END POST MAIN PAGE ***** -->
@@ -377,7 +269,6 @@
               </li>
             </ul>
           </div>
-
           <div class="clearfix"></div>
         </div>
       </div>
@@ -390,77 +281,13 @@
     <div class="container" style="padding-top: 30px; padding-bottom: 30px">
       <h2 align="center">Skill Distillery Posts</h2>
     </div>
-    <!-- <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-xs-12 col-md-8">
-            <div class="pull-left">
-              <a href="#" class="prevnext">
-                <i class="fa fa-angle-left"></i>
-              </a>
-            </div>
-            <div class="pull-left">
-              <ul class="paginationforum">
-                <li class="hidden-xs">
-                  <a href="#">1</a>
-                </li>
-                <li class="hidden-xs">
-                  <a href="#">2</a>
-                </li>
-                <li class="hidden-xs">
-                  <a href="#">3</a>
-                </li>
-                <li class="hidden-xs">
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li>
-                  <a href="#">6</a>
-                </li>
-                <li>
-                  <a href="#" class="active">7</a>
-                </li>
-                <li>
-                  <a href="#">8</a>
-                </li>
-                <li class="hidden-xs">
-                  <a href="#">9</a>
-                </li>
-                <li class="hidden-xs">
-                  <a href="#">10</a>
-                </li>
-                <li class="hidden-xs hidden-md">
-                  <a href="#">11</a>
-                </li>
-                <li class="hidden-xs hidden-md">
-                  <a href="#">12</a>
-                </li>
-                <li class="hidden-xs hidden-sm hidden-md">
-                  <a href="#">13</a>
-                </li>
-                <li>
-                  <a href="#">1586</a>
-                </li>
-              </ul>
-            </div>
-            <div class="pull-left">
-              <a href="#" class="prevnext last">
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div> -->
-
 
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-8">
 
           <!-- POST -->
-          <div *ngFor='let p of postsByCategory' class="post">
+          <div *ngFor='let p of postsByCategory.slice(start,end)' class="post">
             <div class="wrap-ut pull-left">
               <div class="userinfo pull-left">
                 <div class="avatar">
@@ -496,18 +323,26 @@
             </div>
             <div class="clearfix"></div>
           </div>
+          <div class='btn-toolbar' style='text-align: center'>
+            <button (click)='pagLeft()' class='btn btn-primary' style='margin-bottom: 20px'> < Prev 4</button>
+            <p></p>
+            <button (click)='pagRightCat()' class='btn btn-primary float-right text-right' style='margin-bottom: 20px; margin-left: 20px'> Next 4 > </button>
+          </div>
           <!-- POST -->
 
         </div>
         <div class="col-lg-4 col-md-4">
 
-          <!-- -->
+          <!-- POSTS BY CATEGORY -->
           <div class="sidebarblock">
             <h3>Categories</h3>
             <div class="divline"></div>
             <div class="blocktxt">
-              <ul *ngFor='let cat of categories' class="cats">
-                <li (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
+              <ul  class="cats">
+                <li>
+                  <a (click)='displayAllPost()' onmouseover="this.style.cursor='pointer';">All Posts</a>
+                </li>
+                <li *ngFor='let cat of categories' (click)='displayPostsByCategory(cat.id)' onmouseover="this.style.cursor='pointer';">
                   <a *ngIf='numPostsByCategory[cat.name]'>{{cat.name}}
                     <span class="badge pull-right">{{numPostsByCategory[cat.name]}}</span>
                   </a>
@@ -516,60 +351,7 @@
             </div>
           </div>
 
-          <!-- -->
-          <div class="sidebarblock">
-            <h3>Poll of the Week</h3>
-            <div class="divline"></div>
-            <div class="blocktxt">
-              <p>Which game you are playing this week?</p>
-              <form action="#" method="post" class="form">
-                <table class="poll">
-                  <tr>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                          Call of Duty Ghosts
-                        </div>
-                      </div>
-                    </td>
-                    <td class="chbox">
-                      <input id="opt1" type="radio" name="opt" value="1">
-                      <label for="opt1"></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar color2" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 63%">
-                          Titanfall
-                        </div>
-                      </div>
-                    </td>
-                    <td class="chbox">
-                      <input id="opt2" type="radio" name="opt" value="2" checked>
-                      <label for="opt2"></label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar color3" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-                          Battlefield 4
-                        </div>
-                      </div>
-                    </td>
-                    <td class="chbox">
-                      <input id="opt3" type="radio" name="opt" value="3">
-                      <label for="opt3"></label>
-                    </td>
-                  </tr>
-                </table>
-              </form>
-              <p class="smal">Voting ends on 19th of October</p>
-            </div>
-          </div>
-
-          <!-- -->
+          <!-- ACTIVE THREADS -->
           <div class="sidebarblock">
             <h3>My Active Threads</h3>
             <div class="divline"></div>
@@ -593,8 +375,6 @@
               <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -695,7 +475,6 @@
         </div>
         <hr>
       </div>
-
 
       <!-- Comment with nested comments -->
       <div class="media mb-4">

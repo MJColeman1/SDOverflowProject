@@ -9,8 +9,6 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
-
   login(username, password) {
     // Make token
     const token = this.generateBasicAuthToken(username, password);
@@ -65,4 +63,7 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  constructor(private http: HttpClient) { }
+
 }

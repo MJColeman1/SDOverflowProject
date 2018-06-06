@@ -54,6 +54,16 @@ export class PostComponent implements OnInit {
 
   editedComment = new Comment();
 
+  keyword = null;
+
+  postsByKeyword = [];
+
+  tempPosts = [];
+
+  start = 0;
+
+  end = 4;
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -61,6 +71,7 @@ export class PostComponent implements OnInit {
     this.postService.index().subscribe(
       data => {
         this.posts = data;
+        this.tempPosts = data;
         this.calculateNumPostsByCategory(this.posts);
         this.calculateNumCommentsByPost(this.posts);
         this.category = new Category();
@@ -70,6 +81,18 @@ export class PostComponent implements OnInit {
       },
       err => console.error('Observer got an error: ' + err)
     );
+  };
+
+  // DISPLAY POSTS BY SEARCH KEYWORD
+  displayPostsBySearch = function(keyword) {
+    this.postsByKeyword = [];
+    for (let i = 0; i < this.posts.length; i++) {
+      if (this.posts[i].name.includes(keyword)) {
+        this.postsByKeyword.push(this.posts[i]);
+      }
+    }
+    this.keyword = null;
+    this.posts = this.postsByKeyword;
   };
 
   // EDIT SELECTED POST (DOES NOT WORK YET)
@@ -202,6 +225,8 @@ export class PostComponent implements OnInit {
     this.catSelected = false;
     this.selectedCategory = null;
     this.selectedCategoryCount = 0;
+    this.start = 0;
+    this.end = 4;
     this.reload();
   };
 
@@ -216,12 +241,15 @@ export class PostComponent implements OnInit {
   // DISPLAY ALL POSTS BY SELECTED CATEGORY
   displayPostsByCategory = function(catId) {
     this.postsByCategory = [];
+    this.posts = this.tempPosts;
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].category.id === catId) {
         this.postsByCategory.push(this.posts[i]);
         this.selectedCategoryCount += 1;
       }
     }
+    this.start = 0;
+    this.end = 4;
     this.selectedCategory = this.postsByCategory[0].category.name;
     this.catSelected = true;
     this.newTopic = false;
@@ -241,6 +269,30 @@ export class PostComponent implements OnInit {
   passOtherUserInfo = function(otherUserInfo) {
     this.otherUserService.getOtherUserInfo(otherUserInfo);
     this.router.navigateByUrl('/otherUser');
+  };
+
+  // DISPLAY NEXT 4 POSTS
+  pagRight = function() {
+    if (this.end <= this.posts.length) {
+      this.start += 4;
+      this.end += 4;
+    }
+  };
+
+  // DISPLAY NEXT 4 POSTS BY CATEGORY
+  pagRightCat = function() {
+    if (this.end <= this.postsByCategory.length) {
+      this.start += 4;
+      this.end += 4;
+    }
+  };
+
+  // DISPLAY PREVIOUS 4 POSTS
+  pagLeft = function() {
+    if (this.start >= 4) {
+      this.start -= 4;
+      this.end -= 4;
+    }
   };
 
   constructor(

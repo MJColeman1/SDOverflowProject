@@ -1,7 +1,9 @@
 package com.skilldistillery.overflow.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class CategoryController {
 	private String username = "jackson";
 
 	@RequestMapping(path = "/categories", method = RequestMethod.GET)
-	public List<Category> index() {
+	public List<Category> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		return categoryService.getAllCategories();
 	}
 	

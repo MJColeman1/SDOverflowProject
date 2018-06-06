@@ -4,6 +4,6 @@ import com.skilldistillery.overflow.entities.User;
 
 public interface AuthService {
 
-//	User register(String json);
+	User register(String json);
 
 }
