@@ -1,3 +1,98 @@
-<p>
-  profile works!
-</p>
+<div class="container-fluid">
+
+  <section class="content">
+
+    <!-- Other User Info -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <h2>{{user.username | titlecase}}'s Profile</h2>
+          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
+          <button (click)='updateForm=true' class="btn btn-primary" style="padding-right: 20px">Update Profile</button>
+
+          <div class="post">
+            <!-- <div class="postinfotop"> -->
+
+
+            <!-- acc section -->
+            <div class="accsection">
+              <div class="acccap">
+                <div class="userinfo pull-left">&nbsp;</div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="topwrap">
+                <!-- </div> -->
+                <!-- <div class="posttext pull-left"> -->
+                <!-- <div class="row">
+                    <div class="col-lg-6 col-md-6"> -->
+                <div class="userProfile">
+                  <h2>Username: {{user.username | titlecase}}</h2>
+                  <p>Skill Distillery Cohort: {{user.profile.cohort}}</p>
+                  <p>Employed: {{user.profile.employed}}</p>
+                  <p *ngIf="user.profile.employed">Current Employer: {{user.profile.employer.name}}</p>
+                  <p>Technologies:</p>
+                  <ul>
+                    <li *ngFor="let tech of user.profile.technologies">
+                      {{tech.name}}
+                    </li>
+                  </ul>
+                </div>
+                <!-- </div>
+                  </div> -->
+                <!-- </div> -->
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <!-- acc section END -->
+
+            <div class="postinfobot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <!-- End Other User Info -->
+
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+
+          <!-- Posts Sidebar -->
+          <div class="sidebarblock">
+            <h3>Top Posts</h3>
+            <div class="divline"></div>
+            <div class="blocktxt">
+              <ul class="cats">
+                <li *ngFor="let post of posts">
+                  <p (click)="showPost(post)">{{post.name}}
+                    <span class="badge pull-right">20</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+            <form *ngIf="updateForm">
+                <div class="col-lg-3 col-md-3">
+            <input type="text" placeholder="First Name" class="form-control" name="firstName" [(ngModel)]="user.profile.firstName"/>
+            </div>
+          <div class="col-lg-3 col-md-3">
+            <input type="text" placeholder="Last Name" class="form-control" name="lastName" [(ngModel)]="user.profile.lastName"/>
+          </div>
+          <div class="col-lg-3 col-md-3">
+          <input type="text" placeholder="Email Address" class="form-control" name="email" [(ngModel)]="user.profile.email"/>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <input type="text" placeholder="Cohort" class="form-control" name="cohort" [(ngModel)]="user.profile.cohort"/>
+        </div>
+          <div class="col-lg-3 col-md-3">
+            <input type="password" placeholder="Password" class="form-control" id="pass" name="pass" [(ngModel)]="user.password"/>
+          </div>
+          <button (click)='updateProfile()' class="btn btn-primary text-center" style="padding-left: 25px">Update Profile</button>
+          </form>
+
+  </section>
+
+</div>

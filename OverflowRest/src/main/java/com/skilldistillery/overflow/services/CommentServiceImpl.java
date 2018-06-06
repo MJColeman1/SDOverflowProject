@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.overflow.entities.Comment;
+import com.skilldistillery.overflow.entities.CommentVote;
+import com.skilldistillery.overflow.entities.CommentVoteKey;
 import com.skilldistillery.overflow.entities.Post;
 import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.CommentRepository;
+import com.skilldistillery.overflow.respositories.CommentVoteRepository;
 import com.skilldistillery.overflow.respositories.PostRepository;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
@@ -24,6 +27,9 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Autowired 
 	private PostRepository postRepo;
+	
+	@Autowired
+	private CommentVoteRepository cvRepo;
 
 	@Override
 	public List<Comment> getAllComments(int postId) {
@@ -85,6 +91,25 @@ public class CommentServiceImpl implements CommentService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public CommentVote createVote(Comment comment, User user, Boolean vote) {
+		CommentVoteKey cvk = new CommentVoteKey();
+		cvk.setComment(comment);
+		cvk.setUser(user);
+		
+		CommentVote cv = new CommentVote();
+		cv.setId(cvk);
+		cv.setVote(vote);
+		
+		return cvRepo.saveAndFlush(cv);
+	}
+
+	@Override
+	public CommentVote updateVote(Comment comment, User user, Boolean vote) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
+  loggedIn = false;
+
   // END OF FIELDS
 
    logout = function() {
     this.authService.logout();
     if (!this.authService.checkLogin()) {
-      this.router.navigateByUrl('posts');
+      this.router.navigateByUrl('login');
     }
   };
 
