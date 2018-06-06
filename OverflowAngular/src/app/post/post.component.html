@@ -701,7 +701,7 @@
                 <div class="posttext pull-left">
 
                   <div>
-                    <input type="text" placeholder="Enter Topic Title" class="form-control" name="postname" [(ngModel)]='post.name' />
+                    <input type="text" placeholder="Enter Topic Title" class="form-control" name="postname" [(ngModel)]='post.name' required/>
                   </div>
 
                   <div class="row">
@@ -721,7 +721,7 @@
                   </div>
 
                   <div>
-                    <textarea name="description" id="desc" placeholder="Description" class="form-control" [(ngModel)]='post.description'></textarea>
+                    <textarea name="description" id="desc" placeholder="Description" class="form-control" [(ngModel)]='post.description' required></textarea>
                   </div>
                 </div>
                 <div class="clearfix"></div>

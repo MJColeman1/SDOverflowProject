@@ -64,6 +64,8 @@ export class PostComponent implements OnInit {
 
   end = 4;
 
+  username = '';
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -78,6 +80,10 @@ export class PostComponent implements OnInit {
         this.post = new Post();
         this.selectedCategoryId = null;
         this.selected = null;
+        if (localStorage.getItem('token')) {
+          this.username = atob(localStorage.getItem('token')).split(':')[0];
+        }
+        console.log(this.username);
       },
       err => console.error('Observer got an error: ' + err)
     );
