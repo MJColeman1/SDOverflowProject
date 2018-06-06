@@ -24,7 +24,11 @@ export class RegisterComponent implements OnInit {
       // IF THEY MATCH SUBSCRIBE AND CALL THE SERVICE REGISTER METHOD
       this.authService.register(dto).subscribe(
         // NAVIGATE BACK TO POSTS
-        data => this.router.navigateByUrl('posts'),
+        data => {
+          console.log(dto.userUsername);
+          console.log(dto.userPassword);
+          this.router.navigateByUrl('posts');
+        },
         // OR LOG THE ERROR
         err => console.log(err)
       );
