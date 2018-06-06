@@ -29,6 +29,17 @@ public class ProfileController {
 	@Autowired
 	private ProfileRepository pr;
 	
+	@RequestMapping(path="/profile", method=RequestMethod.GET)
+	public Profile getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		Profile p = pr.findProfileByUserUsername(principal.getName());
+		if (p != null) {
+			res.setStatus(200);
+			return p;
+		}
+		res.setStatus(400);
+		return null;
+	}
+	
 	@RequestMapping(path="/profile", method=RequestMethod.PUT)
 	public Profile updateProfile(@RequestBody ProfileDTO dto, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		Profile p = ps.updateProfileByLoggedInUser(dto, principal.getName());
