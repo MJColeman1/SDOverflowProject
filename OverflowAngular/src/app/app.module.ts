@@ -18,7 +18,12 @@ import { UserService } from './user.service';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherUserService } from './other-user.service';
+
+import { HomeComponent } from './home/home.component';
+
 import { SelectedPostService } from './selected-post.service';
+import { EmployersComponent } from './employers/employers.component';
+import { EmployerService } from './employer.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,9 @@ import { SelectedPostService } from './selected-post.service';
     LogoutComponent,
     AboutComponent,
     OtherProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent,
+    EmployersComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ import { SelectedPostService } from './selected-post.service';
     PostService,
     UserService,
     OtherUserService,
-    SelectedPostService
+    SelectedPostService,
+    EmployerService
   ],
   bootstrap: [AppComponent]
 })
