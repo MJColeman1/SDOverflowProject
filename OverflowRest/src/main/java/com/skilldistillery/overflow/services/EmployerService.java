@@ -8,9 +8,9 @@ import com.skilldistillery.overflow.entities.Technology;
 
 public interface EmployerService {
 	
-	List<Employer> getAllEmployers();
+	List<Employer> getAllEmployers(String username);
 	
-	Employer findEmployerById(int empId);
+	Employer findEmployerById(int empId, String username);
 	
 	Employer createNewEmployer(int userId, EmployerDTO dto, String username);
 	
