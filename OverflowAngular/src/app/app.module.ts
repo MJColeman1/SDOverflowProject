@@ -18,6 +18,7 @@ import { UserService } from './user.service';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherUserService } from './other-user.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OtherUserService } from './other-user.service';
     LogoutComponent,
     AboutComponent,
     OtherProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

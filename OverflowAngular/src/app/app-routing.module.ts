@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'posts'},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user', component: UserComponent}
+  {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
