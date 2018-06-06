@@ -14,7 +14,6 @@ import { Post } from '../models/post';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
   posts = [];
 
   post = new Post();
@@ -106,18 +105,22 @@ export class PostComponent implements OnInit {
 
   // EDIT SELECTED POST (DOES NOT WORK YET)
   editPost = function(post) {
-    this.postService.updatePost(1, post.category.id, post).subscribe(
-      data => this.reload(),
-      err => console.error('Update Post got an error: ' + err)
-    );
+    this.postService
+      .updatePost(1, post.category.id, post)
+      .subscribe(
+        data => this.reload(),
+        err => console.error('Update Post got an error: ' + err)
+      );
   };
 
   // DELETE SELECTED POST
   deletePost = function(post) {
-    this.postService.deletePost(1, post.category.id, post.id).subscribe(
-      data => this.reload(),
-      err => console.error('Delete Post got an error: ' + err)
-    );
+    this.postService
+      .deletePost(1, post.category.id, post.id)
+      .subscribe(
+        data => this.reload(),
+        err => console.error('Delete Post got an error: ' + err)
+      );
   };
 
   // INITIATE COMMENT EDIT
@@ -180,22 +183,26 @@ export class PostComponent implements OnInit {
 
   // DISPLAY ALL COMMENTS FOR A SPECIFIC POST
   displayCommentsByPost = function(postId) {
-    this.postService.getCommentsByPost(postId).subscribe(
-      data => this.comments = data,
-      err => console.error('Post Comments got an error: ' + err)
-    );
+    this.postService
+      .getCommentsByPost(postId)
+      .subscribe(
+        data => (this.comments = data),
+        err => console.error('Post Comments got an error: ' + err)
+      );
   };
 
   // CREATE A NEW POST (TOPIC)
   createPost = function() {
     if (this.post.name && this.post.description) {
-      this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
-        data => {
-          this.reload();
-          this.newTopic = false;
-        },
-        err => console.error('Create got an error: ' + err)
-      );
+      this.postService
+        .createPost(1, this.selectedCategoryId, this.post)
+        .subscribe(
+          data => {
+            this.reload();
+            this.newTopic = false;
+          },
+          err => console.error('Create got an error: ' + err)
+        );
     }
   };
 
@@ -219,7 +226,10 @@ export class PostComponent implements OnInit {
       for (let i = 0; i < this.categories.length; i++) {
         if (this.categories[i].name === this.category.name) {
           catExist = true;
-          this.newCatMessage = '(' + this.category.name + ' Already Exists: Click Cancel or Enter New Category)';
+          this.newCatMessage =
+            '(' +
+            this.category.name +
+            ' Already Exists: Click Cancel or Enter New Category)';
           break;
         }
       }
@@ -238,11 +248,9 @@ export class PostComponent implements OnInit {
 
   // DISPLAY SELECTED POST AND COMMENTS
   displayPost = function(post) {
-    if (!post) {
-      this.selectedService.cast.subscribe(
-        data => (this.selected = data)
-      );
-    }
+    // if (!post) {
+    //   this.selectedService.cast.subscribe(data => (this.selected = data));
+    // }
     this.selected = post;
     this.displayCommentsByPost(post.id);
   };
@@ -260,10 +268,12 @@ export class PostComponent implements OnInit {
 
   // OBTAIN ALL THE CATEGORIES OF POSTS
   displayCategories = function() {
-    this.postService.getCategories().subscribe(
-      data => this.categories = data,
-      err => console.error('Category got an error: ' + err)
-    );
+    this.postService
+      .getCategories()
+      .subscribe(
+        data => (this.categories = data),
+        err => console.error('Category got an error: ' + err)
+      );
   };
 
   // DISPLAY ALL POSTS BY SELECTED CATEGORY
@@ -328,18 +338,15 @@ export class PostComponent implements OnInit {
     private otherUserService: OtherUserService,
     private selectedService: SelectedPostService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.selectedService.cast.subscribe(
-      data => (this.selected = data)
-    );
     this.reload();
+    // this.selectedService.cast.subscribe(data => (this.selected = data));
     this.displayCategories();
     this.otherUserService.cast.subscribe(
-      data => this.otherUser = data,
-      err => console.error(err),
+      data => (this.otherUser = data),
+      err => console.error(err)
     );
   }
-
 }

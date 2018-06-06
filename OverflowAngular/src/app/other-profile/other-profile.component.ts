@@ -52,8 +52,9 @@ export class OtherProfileComponent implements OnInit {
 
   // PASSES THE POST FROM OTHER USER TO SERVICE
   showPost = function(post) {
-    this.selectedService.getOtherUserPost(post);
-    this.router.navigateByUrl('/posts');
+    console.log(post);
+    // this.selectedService.getOtherUserPost(post);
+    // this.router.navigateByUrl('/posts');
   };
 
   constructor(
@@ -67,9 +68,9 @@ export class OtherProfileComponent implements OnInit {
     this.otherUserService.cast.subscribe(
       data => (this.otherUser = data));
     this.reload();
-    this.selectedService.cast.subscribe(
-      data => this.selected = data,
-      err => console.error(err),
-    );
+    // this.selectedService.cast.subscribe(
+    //   data => this.selected = data,
+    //   err => console.error(err),
+    // );
   }
 }
