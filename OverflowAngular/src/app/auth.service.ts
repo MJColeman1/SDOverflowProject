@@ -14,23 +14,18 @@ export class AuthService {
 
   login(username, password) {
     // Make token
-    console.log('*********** in login *************');
     const token = this.generateBasicAuthToken(username, password);
     // Send token as Authorization header (this is spring security convention for basic auth)
     const headers = new HttpHeaders()
       .set('Authorization', `Basic ${token}`);
-    console.log(token);
-    console.log(atob(token));
     // create request to authenticate credentials
     return this.http.get('http://localhost:8080/authenticate', {headers})
       .pipe(
         tap((res) => {
-          console.log('*********** in tap *************');
           localStorage.setItem('token' , token);
           return res;
         }),
         catchError((err: any) => {
-          console.log('*********** in error *************');
           console.log(err);
           return throwError('KABOOM');
         })
