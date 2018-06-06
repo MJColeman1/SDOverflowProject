@@ -1,3 +1,4 @@
+import { SelectedPostService } from './../selected-post.service';
 import { User } from './../models/user';
 import { Router } from '@angular/router';
 import { OtherUserService } from './../other-user.service';
@@ -215,6 +216,11 @@ export class PostComponent implements OnInit {
 
   // DISPLAY SELECTED POST AND COMMENTS
   displayPost = function(post) {
+    if (!post) {
+      this.selectedService.cast.subscribe(
+        data => (this.selected = data)
+      );
+    }
     this.selected = post;
     this.displayCommentsByPost(post.id);
   };
@@ -298,10 +304,14 @@ export class PostComponent implements OnInit {
   constructor(
     private postService: PostService,
     private otherUserService: OtherUserService,
+    private selectedService: SelectedPostService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.selectedService.cast.subscribe(
+      data => (this.selected = data)
+    );
     this.reload();
     this.displayCategories();
     this.otherUserService.cast.subscribe(
