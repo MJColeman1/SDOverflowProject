@@ -91,6 +91,14 @@ export class PostComponent implements OnInit {
     );
   };
 
+  // ADD A VOTE FOR A COMMENT
+  addVote = function(commentId, vote) {
+    this.postService.addVote(commentId, vote).subscribe(
+      data => this.reload(),
+      err => console.error('Vote got an error: ' + err)
+    );
+  };
+
   // DISPLAY POSTS BY SEARCH KEYWORD
   displayPostsBySearch = function(keyword) {
     this.postsByKeyword = [];
