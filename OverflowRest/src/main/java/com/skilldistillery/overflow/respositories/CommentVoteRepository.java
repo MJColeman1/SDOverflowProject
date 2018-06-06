@@ -10,5 +10,8 @@ public interface CommentVoteRepository extends JpaRepository<CommentVote, Intege
 	
 	@Query("Select cv from CommentVote cv where cv.id.comment.id = :commentId AND cv.id.user.id = :userId")
 	CommentVote findByCommentAndUser(@Param("commentId")int commentId, @Param("userId") int userId);
+	
+	@Query("Select Count(cv.vote) FROM CommentVote cv where cv.id.comment.id = :commentId AND cv.vote= :vote")
+	int voteCount(@Param("commentId")int commentId, @Param("vote") boolean vote);
 
 }
