@@ -1,3 +1,35 @@
 h1{
   text-align: center;
+  padding-bottom: 20px;
+  padding-top: 30px;
 }
+img{
+  padding-right: 630px;
+  padding-left: 630px;
+  padding-bottom: 25px;
+  padding-top: 20px;
+}
+.textbox{
+  text-align: center;
+  font-size: 25px;
+  background-color: white;
+  padding-right: 200px;
+  padding-left: 200px;
+  padding-bottom: 20px;
+  background-color: white;
+
+}
+.logopic img{
+  padding-right: 175px;
+  padding-left: 300px;
+  width:1300px;
+  height: auto;
+}
+.logopic{
+  background-color: white;
+
+}
+
+
+
+

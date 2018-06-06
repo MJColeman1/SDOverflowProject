@@ -14,43 +14,71 @@
 
 
             <!-- acc section -->
-            <div class="accsection" *ngFor="let employer of employers">
+            <div class="accsection">
               <div class="acccap">
                 <div class="userinfo pull-left">&nbsp;</div>
                 <div class="clearfix"></div>
               </div>
-              <div class="topwrap">
-                <div class="userProfile" *ngIf="!selected">
-                  <h2>Username: {{employer.name | titlecase}}</h2>
-                  <p>Address: {{employer.address.street}}</p>
-                  <p *ngIf="employer.address.street2">Suite: {{employer.address.street}}</p>
-                  <p>City: {{employer.address.city}}</p>
-                  <p>State: {{employer.address.state}}</p>
-                  <p>Country: {{employer.address.country}}</p>
-                  <p>Zip: {{employer.address.zip}}</p>
-                  <p>Technologies:</p>
-                  <ul>
-                    <li *ngFor="let tech of employer.technologies">
-                      {{tech.name}}
-                    </li>
-                  </ul>
+              <div class="topwrap" *ngFor="let employer of employers">
+                <div class="employerInfo" *ngIf="!selected">
+                  <h2 (click)="showOneEmployer(employer.id)">Employer Name: {{employer.name | titlecase}}</h2>
+                  <p>Hiring: {{employer.hiring}}</p>
+                  <p>Address: </p>
+                  <p>{{employer.address.street}}
+                    <span *ngIf="employer.address.street2">
+                      Suite: {{employer.address.street}}
+                    </span>
+                    <p>{{employer.address.city}}, {{employer.address.state}}, {{employer.address.country}}, {{employer.address.zip}}</p>
+                    <p>Technologies:</p>
+                    <ul>
+                      <li *ngFor="let tech of employer.technologies">
+                        {{tech.name}}
+                      </li>
+                    </ul>
                 </div>
-                <!-- </div>
-                    </div> -->
-                <!-- </div> -->
-                <div class="clearfix"></div>
+                <!-- <div class="clearfix"></div> -->
               </div>
             </div>
             <!-- acc section END -->
 
             <div class="postinfobot">
-              <div class="clearfix"></div>
+              <!-- <div class="clearfix"></div> -->
             </div>
           </div>
           <!-- End Other User Info -->
 
-
+          <!-- SELECTED EMPLOYER -->
+          <div class="post">
+            <div class="accsection" *ngIf="selected">
+              <div class="acccap">
+                <div class="userinfo pull-left">&nbsp;</div>
+                <!-- <div class="clearfix"></div> -->
+              </div>
+              <div class="topwrap">
+                <div class="employerInfo">
+                  <h2>Employer Name: {{employer.name | titlecase}}</h2>
+                  <p>Hiring: {{employer.hiring}}</p>
+                  <p>Address:</p>
+                  <p>{{employer.address.street}}
+                    <span *ngIf="employer.address.street2">
+                      Suite: {{employer.address.street}}
+                    </span>
+                    <p>{{employer.address.city}}, {{employer.address.state}}, {{employer.address.country}}, {{employer.address.zip}}</p>
+                    <p>Technologies:</p>
+                    <ul>
+                      <li *ngFor="let tech of employer.technologies">
+                        {{tech.name}}
+                      </li>
+                    </ul>
+                </div>
+                <!-- <div class="clearfix"></div> -->
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- END SELECTED EMPLOYER -->
+
+
         <div class="col-lg-4 col-md-4">
 
           <!-- Posts Sidebar -->
