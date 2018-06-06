@@ -3,22 +3,26 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
-table img {
-
+img {
   border-radius: 50%;
   padding-top: 15px;
   padding-bottom: 30px;
-  width:250px;
+  width: 250px;
   height: auto;
-
 }
-tr{
+
+.aboutUs {
+  margin: 0 auto;
+	padding: 15px;
+	text-align: center;
+}
+/* tr {
   text-align: center;
 }
-td{
+td {
   padding-right: 55px;
   padding-left: 55px;
 }
-th{
+th {
   font-size: 20px;
-}
+} */
