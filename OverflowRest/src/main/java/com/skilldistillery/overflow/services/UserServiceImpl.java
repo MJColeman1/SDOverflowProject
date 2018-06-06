@@ -20,6 +20,8 @@ public class UserServiceImpl implements UserService{
 		Profile profile = new Profile();
 		user.setUsername(dto.getUserUsername());
 		user.setPassword(dto.getUserPassword());
+		user.setEnabled(true);
+		user.setRole("standard");
 		profile.setFirstName(dto.getProfileFirstName());
 		profile.setLastName(dto.getProfileLastName());
 		profile.setEmail(dto.getProfileEmail());

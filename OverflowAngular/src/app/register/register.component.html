@@ -44,21 +44,21 @@
                   <div class="posttext pull-left">
                     <div class="row">
                       <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="First Name" class="form-control" name="firstName" [(ngModel)]="user.profile.firstName"/>
+                        <input type="text" placeholder="First Name" class="form-control" name="firstName" [(ngModel)]="dto.profileFirstName"/>
                       </div>
                       <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="Last Name" class="form-control" name="lastName" [(ngModel)]="user.profile.lastName"/>
+                        <input type="text" placeholder="Last Name" class="form-control" name="lastName" [(ngModel)]="dto.profileLastName"/>
                       </div>
                     </div>
                     <div>
-                      <input type="text" placeholder="Email Address" class="form-control" name="email" [(ngModel)]="user.profile.email"/>
+                      <input type="email" placeholder="Email Address" class="form-control" name="email" [(ngModel)]="dto.profileEmail"/>
                     </div>
                     <div>
-                      <input type="text" placeholder="User Name" class="form-control" name="username" [(ngModel)]="user.username"/>
+                      <input type="text" placeholder="User Name" class="form-control" name="username" [(ngModel)]="dto.userUsername"/>
                     </div>
                     <div class="row">
                       <div class="col-lg-6 col-md-6">
-                        <input type="password" placeholder="Password" class="form-control" id="pass" name="pass" [(ngModel)]="user.password"/>
+                        <input type="password" placeholder="Password" class="form-control" id="pass" name="pass" [(ngModel)]="dto.userPassword"/>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <input type="password" placeholder="Retype Password" class="form-control" id="pass2" name="confirmPassword" [(ngModel)]="confirmPassword"/>
@@ -88,7 +88,7 @@
                     </a>
                   </div>
                   <div class="pull-left">
-                    <button type="submit" class="btn btn-primary" (click)="register(user, confirmPassword)">Sign Up</button>
+                    <button type="submit" class="btn btn-primary" (click)="register(dto, confirmPassword)">Sign Up</button>
                   </div>
                   <div class="clearfix"></div>
                 </div>

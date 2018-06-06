@@ -33,6 +33,7 @@ export class PostService {
     }
 
     const headers = this.getToken();
+    console.log(headers);
     return this.http.get<Post[]>(this.url, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
