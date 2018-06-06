@@ -1,3 +1,4 @@
+import { SelectedPostService } from './../selected-post.service';
 import { User } from './../models/user';
 import { Router } from '@angular/router';
 import { OtherUserService } from './../other-user.service';
@@ -64,6 +65,10 @@ export class PostComponent implements OnInit {
 
   end = 4;
 
+  username = '';
+
+  newCatMessage = '';
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -78,6 +83,10 @@ export class PostComponent implements OnInit {
         this.post = new Post();
         this.selectedCategoryId = null;
         this.selected = null;
+        if (localStorage.getItem('token')) {
+          this.username = atob(localStorage.getItem('token')).split(':')[0];
+        }
+        console.log(this.username);
       },
       err => console.error('Observer got an error: ' + err)
     );
@@ -179,14 +188,15 @@ export class PostComponent implements OnInit {
 
   // CREATE A NEW POST (TOPIC)
   createPost = function() {
-    console.log('post post post');
-    this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
-      data => {
-        this.reload();
-        this.newTopic = false;
-      },
-      err => console.error('Create got an error: ' + err)
-    );
+    if (this.post.name && this.post.description) {
+      this.postService.createPost(1, this.selectedCategoryId, this.post).subscribe(
+        data => {
+          this.reload();
+          this.newTopic = false;
+        },
+        err => console.error('Create got an error: ' + err)
+      );
+    }
   };
 
   // CREATE A NEW COMMENT FOR A POST
@@ -203,18 +213,36 @@ export class PostComponent implements OnInit {
 
   // CREATE A NEW CATEGORY FROM NEW TOPIC PAGE
   createCategory = function() {
-    this.postService.createCategory(1, this.category).subscribe(
-      data => {
-        console.log(data.id);
-        this.selectedCategoryId = data.id;
-        this.displayCategories();
-      },
-      err => console.error('Create Category got an error: ' + err)
-    );
+    console.log(this.categories);
+    if (this.category.name) {
+      let catExist = false;
+      for (let i = 0; i < this.categories.length; i++) {
+        if (this.categories[i].name === this.category.name) {
+          catExist = true;
+          this.newCatMessage = '(' + this.category.name + ' Already Exists: Click Cancel or Enter New Category)';
+          break;
+        }
+      }
+      if (!catExist) {
+        this.postService.createCategory(1, this.category).subscribe(
+          data => {
+            console.log(data.id);
+            this.selectedCategoryId = data.id;
+            this.displayCategories();
+          },
+          err => console.error('Create Category got an error: ' + err)
+        );
+      }
+    }
   };
 
   // DISPLAY SELECTED POST AND COMMENTS
   displayPost = function(post) {
+    if (!post) {
+      this.selectedService.cast.subscribe(
+        data => (this.selected = data)
+      );
+    }
     this.selected = post;
     this.displayCommentsByPost(post.id);
   };
@@ -298,10 +326,14 @@ export class PostComponent implements OnInit {
   constructor(
     private postService: PostService,
     private otherUserService: OtherUserService,
+    private selectedService: SelectedPostService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.selectedService.cast.subscribe(
+      data => (this.selected = data)
+    );
     this.reload();
     this.displayCategories();
     this.otherUserService.cast.subscribe(

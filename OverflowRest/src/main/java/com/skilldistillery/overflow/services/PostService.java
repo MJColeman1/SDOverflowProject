@@ -8,11 +8,11 @@ public interface PostService {
 
 	List<Post> getAllPosts(String username);
 	
-	List<Post> getAllPostsByOtherUser(int userId);
+	List<Post> getAllPostsByOtherUser(int userId, String username);
 	
 	Post findPostsByPostId(int postId);
 	
-	Post findPostsByOtherUserIdPostId(int userId, int postId);
+	Post findPostsByOtherUserIdPostId(int userId, int postId, String username);
 	
 	Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username);
 	

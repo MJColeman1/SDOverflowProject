@@ -97,7 +97,7 @@ public class PostServiceImpl implements PostService {
 	public List<Post> findByName(String name) {
 		return postRepo.findByNameContaining(name);
 	}
-	public Post findPostsByOtherUserIdPostId(int userId, int postId) {
+	public Post findPostsByOtherUserIdPostId(int userId, int postId, String username) {
 		User otherUser = userRepo.findById(userId).get();
 		Post post = postRepo.findById(postId).get();
 		if (post.getUser() == otherUser) {
@@ -107,7 +107,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> getAllPostsByOtherUser(int userId) {
+	public List<Post> getAllPostsByOtherUser(int userId, String username) {
 		User otherUser = userRepo.findById(userId).get();
 		List<Post> posts = postRepo.findAll();
 		

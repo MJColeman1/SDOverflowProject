@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
-  loggedIn = false;
-
   // END OF FIELDS
 
    logout = function() {
@@ -19,6 +17,13 @@ export class LogoutComponent implements OnInit {
       this.router.navigateByUrl('login');
     }
   };
+
+  loggedIn() {
+    if (this.authService.checkLogin()) {
+      return true;
+    }
+    return false;
+  }
 
   // END OF METHODS
 
