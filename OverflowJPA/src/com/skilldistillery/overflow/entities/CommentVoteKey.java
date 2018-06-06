@@ -41,5 +41,7 @@ public class CommentVoteKey implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 
 }

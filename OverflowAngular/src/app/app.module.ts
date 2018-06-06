@@ -18,6 +18,7 @@ import { UserService } from './user.service';
 import { OtherProfileComponent } from './other-profile/other-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OtherUserService } from './other-user.service';
+import { SelectedPostService } from './selected-post.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { OtherUserService } from './other-user.service';
   providers: [
     PostService,
     UserService,
-    OtherUserService
+    OtherUserService,
+    SelectedPostService
   ],
   bootstrap: [AppComponent]
 })

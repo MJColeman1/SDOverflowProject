@@ -20,8 +20,8 @@ public interface CommentService {
 
 	List<Comment> getCommentsByUserId(int userId);
 	
-	public CommentVote createVote(Comment comment, User user, Boolean vote);
+	public CommentVote createVote(int commentId, String username, Boolean vote);
 	
-	public CommentVote updateVote(Comment comment, User user, Boolean vote);
+	public CommentVote updateVote(int commentId, String username, Boolean vote);
 
 }
