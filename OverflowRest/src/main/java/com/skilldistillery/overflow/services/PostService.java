@@ -6,7 +6,7 @@ import com.skilldistillery.overflow.entities.Post;
 
 public interface PostService {
 
-	List<Post> getAllPosts();
+	List<Post> getAllPosts(String username);
 	
 	List<Post> getAllPostsByOtherUser(int userId);
 	

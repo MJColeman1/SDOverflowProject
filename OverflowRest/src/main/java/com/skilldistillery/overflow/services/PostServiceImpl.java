@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostService {
 	private CategoryRepository categoryRepo;
 
 	@Override
-	public List<Post> getAllPosts() {
+	public List<Post> getAllPosts(String username) {
 		return postRepo.findAll();
 	}
 

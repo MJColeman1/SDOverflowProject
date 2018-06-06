@@ -1,9 +1,11 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Post } from './models/post';
 import { Category } from './models/category';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,20 @@ export class PostService {
   private deleteUrl = 'http://localhost:8080/api/users/';
   private updateUrl = 'http://localhost:8080/api/users/';
 
+  getToken() {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders()
+      .set('Authorization', `Basic ${token}`);
+    return headers;
+  }
+
   index() {
-    return this.http.get<Post[]>(this.url).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.get<Post[]>(this.url, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Index Error');
@@ -48,7 +62,12 @@ export class PostService {
   }
 
   getCommentsByPost(postId) {
-    return this.http.get<Post[]>(this.url + postId + '/comments/').pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.get<Post[]>(this.url + postId + '/comments/', {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Comments Post Error');
@@ -57,7 +76,12 @@ export class PostService {
   }
 
   createPost(userId, catId, post) {
-    return this.http.post(this.createUrl + userId + '/category/' + catId + '/posts', post).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.post(this.createUrl + userId + '/category/' + catId + '/posts', post, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');
@@ -66,7 +90,12 @@ export class PostService {
   }
 
   createComment(pId, comment) {
-    return this.http.post(this.url + pId + '/comments', comment).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.post(this.url + pId + '/comments', comment, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');
@@ -75,7 +104,12 @@ export class PostService {
   }
 
   createCategory(userId, category) {
-    return this.http.post(this.catUrl + userId + '/categories', category).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.post(this.catUrl + userId + '/categories', category, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Category Error');
@@ -84,7 +118,13 @@ export class PostService {
   }
 
   getCategories() {
-    return this.http.get<Category[]>(this.categoryUrl).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+
+    return this.http.get<Category[]>(this.categoryUrl, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Category Error');
@@ -93,7 +133,12 @@ export class PostService {
   }
 
   deletePost(userId, catId, postId) {
-    return this.http.delete(this.deleteUrl + userId + '/category/' + catId + '/posts/' + postId).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.delete(this.deleteUrl + userId + '/category/' + catId + '/posts/' + postId, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Delete Error');
@@ -102,7 +147,12 @@ export class PostService {
   }
 
   updatePost(userId, catId, post) {
-    return this.http.put(this.updateUrl + userId + '/category/' + catId + '/posts/' + post.id, post).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.put(this.updateUrl + userId + '/category/' + catId + '/posts/' + post.id, post, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Update Error');
@@ -111,7 +161,12 @@ export class PostService {
   }
 
   updateComment(postId, comment) {
-    return this.http.put(this.url + postId + '/comments/' + comment.id, comment).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.put(this.url + postId + '/comments/' + comment.id, comment, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Update Commment Error');
@@ -120,7 +175,12 @@ export class PostService {
   }
 
   deleteComment(postId, commentId) {
-    return this.http.delete(this.url + postId + '/comments/' + commentId).pipe(
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.delete(this.url + postId + '/comments/' + commentId, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Delete Comment Error');
@@ -128,5 +188,5 @@ export class PostService {
     );
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 }

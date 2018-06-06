@@ -1,7 +1,9 @@
 package com.skilldistillery.overflow.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,8 @@ public class PostController {
 	private String username = "jackson";
 
 	@RequestMapping(path = "/posts", method = RequestMethod.GET)
-	public List<Post> index() {
-		return postService.getAllPosts();
+	public List<Post> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		return postService.getAllPosts(principal.getName());
 	}
 	
 	@RequestMapping(path = "user/{userId}/posts", method = RequestMethod.GET)
