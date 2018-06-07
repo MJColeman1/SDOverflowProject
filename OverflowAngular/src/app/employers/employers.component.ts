@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployerService } from '../employer.service';
 import { Employer } from '../models/employer';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-employers',
@@ -13,18 +14,21 @@ export class EmployersComponent implements OnInit {
   employers: Employer[] = [];
   employer: Employer = new Employer();
   selected = null;
+  cityCount = 0;
 
-  // CLASS METHODS
+  // LOADS ALL EMPLOYERS
   reload = function() {
     this.employerService.index().subscribe(
       data => {
         this.employers = data;
         this.selected = null;
+        this.employersInCityCounter();
       },
       err => console.error(err)
     );
   };
 
+  // SHOWS ONE SPECIFIC EMPLOYER
   showOneEmployer = function(employerId: number) {
     this.employerService.show(employerId).subscribe(
       data => {
@@ -35,8 +39,20 @@ export class EmployersComponent implements OnInit {
     );
   };
 
+  // GOES BACK TO ALL EMPLOYERS PAGE
   return = function () {
     this.reload();
+  };
+
+  // COUNTS EMPLOYERS IN CITY
+  employersInCityCounter = function (city) {
+   for (let i = 0; i < this.employers.length; i++) {
+     if (this.employers[i].address.city === city ) {
+       this.cityCount++;
+     }
+     this.cityCount = this.employers[i];
+
+   }
   };
 
   constructor(
