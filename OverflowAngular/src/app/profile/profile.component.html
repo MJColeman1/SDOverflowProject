@@ -68,7 +68,7 @@
             <div class="divline"></div>
             <div class="blocktxt">
               <ul class="cats">
-                <li *ngFor="let post of posts">
+                <li *ngFor="let post of user.posts">
                   <!-- <p (click)="showPost(post)">{{post.name}} -->
                     <!-- <span class="badge pull-right">20</span>
                   </p> -->
@@ -140,7 +140,7 @@
           <div class="form-group">
             <label for="employer">Select your employer</label>
             <select class="form-control">
-
+              <option *ngFor="let employer of employers">{{employer.name}}</option>
             </select>
           </div>
           <div class="form-group">

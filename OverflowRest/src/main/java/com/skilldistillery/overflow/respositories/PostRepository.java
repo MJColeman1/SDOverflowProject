@@ -10,9 +10,6 @@ import com.skilldistillery.overflow.entities.Post;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
 	
-	@Query("SELECT p FROM Post p where p.user.username = :username")
-	public List<Post> getPostsForUserByUsername(@Param("username") String username);
-	
 	@Query("SELECT p FROM Post p where p.user.id = :id")
 	public List<Post> getPostsForUser(@Param("id")int id);
 	
