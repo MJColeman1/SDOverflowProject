@@ -311,7 +311,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sdoverflowdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `profile_id`, `admin`) VALUES (1, 'jackson', 'jackson', 'standard', 1, 1, 0);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `profile_id`, `admin`) VALUES (1, 'jackson', '$2a$10$p9yj2W/H0WfK65ZL8u7bJuUODhIHBvGZqaGInL4ZnhjA/bEwnXayq', 'standard', 1, 1, 0);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `profile_id`, `admin`) VALUES (2, 'admin', 'admin', 'admin', 1, 2, 1);
 
 COMMIT;
