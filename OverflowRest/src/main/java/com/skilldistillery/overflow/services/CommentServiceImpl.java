@@ -117,5 +117,10 @@ public class CommentServiceImpl implements CommentService {
 		managed.setVote(vote);
 		return cvRepo.saveAndFlush(managed);
 	}
+
+	@Override
+	public int voteCount(int commentId, boolean vote) {
+		return cvRepo.voteCount(commentId, vote);
+	}
 	
 }

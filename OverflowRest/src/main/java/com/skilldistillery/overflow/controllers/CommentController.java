@@ -66,4 +66,8 @@ public class CommentController {
 		return commentService.updateVote(commentId, principal.getName(), Boolean.parseBoolean(vote));
 	}
 
+	@RequestMapping(path = "comment/{commentId}/{vote}", method = RequestMethod.GET) 
+	public int voteCount(@PathVariable int commentId, @PathVariable String vote) {
+		return commentService.voteCount(commentId, Boolean.parseBoolean(vote));
+	}
 }
