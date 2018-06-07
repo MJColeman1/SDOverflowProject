@@ -123,4 +123,8 @@ public class CommentServiceImpl implements CommentService {
 		return cvRepo.voteCount(commentId, vote);
 	}
 	
+	public void deleteComment(int commentId) {
+		cvRepo.deleteComment(commentId);
+	}
+	
 }
