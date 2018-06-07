@@ -304,7 +304,13 @@
                 <h2>
                   <a (click)='displayPost(p)' onmouseover="this.style.cursor='pointer';">{{p.name}}</a>
                 </h2>
+                <!-- <p>{{p.description}}</p> -->
+                <h6>Category: {{p.category.name}}</h6>
                 <p>{{p.description}}</p>
+                <a *ngIf='p.user.username === username' (click)='editPost(p)' onmouseover="this.style.cursor='pointer'; this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Update</a>
+                <span>
+                <a *ngIf='p.user.username === username' (click)='deletePost(p)' onmouseover="this.style.cursor='pointer'; this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';"style='margin-left: 10px'>Delete</a>
+                </span>
               </div>
               <div class="clearfix"></div>
             </div>
