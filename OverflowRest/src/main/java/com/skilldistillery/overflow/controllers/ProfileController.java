@@ -26,14 +26,14 @@ import com.skilldistillery.overflow.services.UserService;
 public class ProfileController {
 	
 	@Autowired
-	private ProfileService ps;
+	private ProfileService profileService;
 	
 	@Autowired
-	private UserService us;
+	private UserService userService;
 	
 	@RequestMapping(path="/profile", method=RequestMethod.GET)
 	public User getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		User u = us.getProfile(principal.getName());
+		User u = userService.getProfile(principal.getName());
 		if (u != null) {
 			res.setStatus(200);
 			return u;
@@ -44,7 +44,7 @@ public class ProfileController {
 	
 	@RequestMapping(path="/profile", method=RequestMethod.PUT)
 	public Profile updateProfile(@RequestBody ProfileDTO dto, HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		Profile p = ps.updateProfileByLoggedInUser(dto, principal.getName());
+		Profile p = profileService.updateProfileByLoggedInUser(dto, principal.getName());
 		if (p != null) {
 			res.setStatus(200);
 			return p;
@@ -55,13 +55,13 @@ public class ProfileController {
 	
 	@RequestMapping(path="/profile/{bool}", method=RequestMethod.PATCH)
 	public Profile changeTechnologies(@RequestBody Technology technology, @PathVariable int bool, HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		Profile p = ps.getProfileByUsername(principal.getName());
+		Profile p = profileService.getProfileByUsername(principal.getName());
 		if (bool == 1) {
-			p = ps.addTechnologyForLoggedInUser(technology, principal.getName());
+			p = profileService.addTechnologyForLoggedInUser(technology, principal.getName());
 			return p;
 		}
 		if (bool == 0) {
-			p = ps.deleteTechnologyForLoggedInUser(technology, principal.getName());
+			p = profileService.deleteTechnologyForLoggedInUser(technology, principal.getName());
 			return p;
 		}
 		return p;
