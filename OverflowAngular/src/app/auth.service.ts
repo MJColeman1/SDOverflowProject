@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -11,6 +12,7 @@ import { User } from './models/user';
 export class AuthService {
 
   user: User = new User();
+  private baseUrl = environment.baseUrl;
 
   login(username, password) {
     // Make token
@@ -19,7 +21,7 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Authorization', `Basic ${token}`);
     // create request to authenticate credentials
-    return this.http.get('http://localhost:8080/authenticate', {headers})
+    return this.http.get(this.baseUrl + 'authenticate', {headers})
       .pipe(
         tap((res) => {
           localStorage.setItem('token' , token);
@@ -34,7 +36,7 @@ export class AuthService {
 
   register(dto) {
     // create request to register a new account
-    return this.http.post('http://localhost:8080/register', dto)
+    return this.http.post(this.baseUrl + 'register', dto)
     .pipe(
         catchError((err: any) => {
           console.log(err);
