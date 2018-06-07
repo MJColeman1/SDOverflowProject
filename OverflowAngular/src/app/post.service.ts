@@ -82,13 +82,13 @@ export class PostService {
     );
   }
 
-  createPost(userId, catId, post) {
+  createPost(catId, post) {
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
 
     const headers = this.getToken();
-    return this.http.post(this.createUrl + userId + '/category/' + catId + '/posts', post, {headers}).pipe(
+    return this.http.post(this.baseUrl + '/api/category/' + catId + '/posts', post, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');
@@ -191,6 +191,48 @@ export class PostService {
       catchError((err: any) => {
         console.log(err);
         return throwError('Delete Comment Error');
+      })
+    );
+  }
+
+  addVote(commentId, vote) {
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.post(this.baseUrl + '/api/comment/' + commentId + '/vote', vote, {headers}).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Vote Error');
+      })
+    );
+  }
+
+  updateVote(commentId, vote) {
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.put(this.baseUrl + '/api/comment/' + commentId + '/vote', vote, {headers}).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Update Vote Error');
+      })
+    );
+  }
+
+  getVotesByComment(commentId, vote) {
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.get(this.baseUrl + '/api/comment/' + commentId + '/' + vote, {headers}).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Get Vote Error');
       })
     );
   }
