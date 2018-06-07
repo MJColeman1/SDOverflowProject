@@ -14,8 +14,6 @@ export class UserService {
   private url = 'http://localhost:8080/api/users/';
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
-
-
   updateUser( user: User) {
     const token = this.authService.getToken();
     const headers = new HttpHeaders()

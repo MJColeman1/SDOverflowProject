@@ -20,8 +20,6 @@ export class ProfileComponent implements OnInit {
 
   updateForm = null;
 
-
-
   employed = null;
 
   user = new User();
@@ -30,36 +28,9 @@ export class ProfileComponent implements OnInit {
 
   selected: Post = new Post();
 
-  // GETS OTHER USER INFO FROM POST
-  passOtherUserInfo = function() {
-    this.OtherUserService.getOtherUserInfo().subscribe(
-      data => (this.otherUser = data),
-      err => console.log(err)
-    );
-  };
-
   // GOES BACK TO LIST OF POSTS
   backToPost = function() {
     this.router.navigateByUrl('/posts');
-  };
-
-  // GETS ALL THE POSTS BY THE OTHER USER
-  reload = function() {
-    console.log(this.otherUser.id);
-    this.postService
-      .indexOfPostsByOtherUser(this.otherUser.id)
-      .subscribe(data => (this.posts = data), err => console.error(err));
-  };
-
-  // SHOWS THE POST FROM OTHER USER
-  showPost = function(post) {
-    this.postService.getPostByOtherUser(this.otherUser.id, post.id).subscribe(
-      data => {
-        this.post = data;
-        console.log(this.post);
-      },
-      err => console.error(err)
-    );
   };
 
   // GET PROFILE FOR A LOGGED IN USER
@@ -74,6 +45,10 @@ export class ProfileComponent implements OnInit {
     );
   };
 
+  // GET ALL THE USER'S POSTS
+  getAllPostsForUser = function() {
+  };
+
   // UPDATE A USER'S PROFILE
   updateProfile = function(profile) {
     this.profileService.update(profile).subscribe(
@@ -85,7 +60,11 @@ export class ProfileComponent implements OnInit {
     );
   };
 
-  constructor(private profileService: ProfileService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private profileService: ProfileService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.getProfileForLoggedInUser();
