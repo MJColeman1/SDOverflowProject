@@ -1,4 +1,9 @@
 export class Profiledto {
+  profileFirstName: string;
+  profileLastName: string;
+  profileEmail: string;
+  profileCohort: string;
+  profileEmployed: boolean;
   addressStreet: string;
   addressStreet2: string;
   addressCity: string;
@@ -7,11 +12,6 @@ export class Profiledto {
   addressZip: string;
   employerName: string;
   employerHiring: string;
-  profileFirstName: string;
-  profileLastName: string;
-  profileEmail: string;
-  profileCohort: string;
-  profileEmployed: boolean;
   employerAddressStreet: string;
   employerAddressStreet2: string;
   employerAddressCity: string;

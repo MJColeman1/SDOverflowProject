@@ -20,6 +20,10 @@ export class ProfileComponent implements OnInit {
 
   updateForm = null;
 
+
+
+  employed = null;
+
   user = new User();
 
   posts: Post[] = [];
