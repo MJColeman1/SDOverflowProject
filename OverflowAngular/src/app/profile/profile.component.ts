@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Profile } from '../models/profile';
 import { User } from '../models/user';
 import { Post } from '../models/post';
+import { Employer } from '../models/employer';
+import { EmployerService } from '../employer.service';
 
 
 @Component({
@@ -28,6 +30,8 @@ export class ProfileComponent implements OnInit {
 
   selected: Post = new Post();
 
+  employers: Employer[] = [];
+
   // GOES BACK TO LIST OF POSTS
   backToPost = function() {
     this.router.navigateByUrl('/posts');
@@ -45,10 +49,6 @@ export class ProfileComponent implements OnInit {
     );
   };
 
-  // GET ALL THE USER'S POSTS
-  getAllPostsForUser = function() {
-  };
-
   // UPDATE A USER'S PROFILE
   updateProfile = function(profile) {
     this.profileService.update(profile).subscribe(
@@ -60,14 +60,26 @@ export class ProfileComponent implements OnInit {
     );
   };
 
+  // POPULATE THE EMPLOYER SELECT LIST
+  populateSelectList = function() {
+    this.employerService.index().subscribe(
+      data => {
+        this.employers = data;
+      },
+      err => console.log(err)
+    );
+  };
+
   constructor(
     private profileService: ProfileService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private employerService: EmployerService
   ) {}
 
   ngOnInit() {
     this.getProfileForLoggedInUser();
+    console.log(this.user.posts);
   }
 
 }
