@@ -17,6 +17,7 @@ import com.skilldistillery.overflow.services.UserService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4200" })
+@RequestMapping(path = "/api")
 public class UserController {
 	
 	@Autowired

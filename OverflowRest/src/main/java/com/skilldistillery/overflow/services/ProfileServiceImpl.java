@@ -107,6 +107,12 @@ public class ProfileServiceImpl implements ProfileService {
 		profile.setEmployed(dto.isProfileEmployed());
 		return profileRepo.saveAndFlush(profile);
 	}
+	
+	@Override
+	public Profile getProfileByUsername(String username) {
+		Profile p = profileRepo.findProfileByUserUsername(username);
+		return p;
+	}
 
 	@Override
 	public Profile addTechnologyForLoggedInUser(Technology technology, String username) {

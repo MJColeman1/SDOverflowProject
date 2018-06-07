@@ -1,8 +1,6 @@
 package com.skilldistillery.overflow.entities;
 
 public class ProfileDTO {
-
-	private Profile userProfile;
 	
 	private String addressStreet;
 	
@@ -96,14 +94,6 @@ public class ProfileDTO {
 
 	public void setEmployerAddressZip(String employerAddressZip) {
 		this.employerAddressZip = employerAddressZip;
-	}
-
-	public Profile getUserProfile() {
-		return userProfile;
-	}
-
-	public void setUserProfile(Profile userProfile) {
-		this.userProfile = userProfile;
 	}
 
 	public String getAddressStreet() {

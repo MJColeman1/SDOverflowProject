@@ -16,25 +16,27 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.overflow.entities.Profile;
 import com.skilldistillery.overflow.entities.ProfileDTO;
 import com.skilldistillery.overflow.entities.Technology;
-import com.skilldistillery.overflow.respositories.ProfileRepository;
+import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.services.ProfileService;
+import com.skilldistillery.overflow.services.UserService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4200" })
+@RequestMapping(path = "/api")
 public class ProfileController {
 	
 	@Autowired
 	private ProfileService ps;
 	
 	@Autowired
-	private ProfileRepository pr;
+	private UserService us;
 	
 	@RequestMapping(path="/profile", method=RequestMethod.GET)
-	public Profile getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		Profile p = pr.findProfileByUserUsername(principal.getName());
-		if (p != null) {
+	public User getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		User u = us.getProfile(principal.getName());
+		if (u != null) {
 			res.setStatus(200);
-			return p;
+			return u;
 		}
 		res.setStatus(400);
 		return null;
@@ -53,7 +55,7 @@ public class ProfileController {
 	
 	@RequestMapping(path="/profile/{bool}", method=RequestMethod.PATCH)
 	public Profile changeTechnologies(@RequestBody Technology technology, @PathVariable int bool, HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		Profile p = pr.findProfileByUserUsername(principal.getName());
+		Profile p = ps.getProfileByUsername(principal.getName());
 		if (bool == 1) {
 			p = ps.addTechnologyForLoggedInUser(technology, principal.getName());
 			return p;
