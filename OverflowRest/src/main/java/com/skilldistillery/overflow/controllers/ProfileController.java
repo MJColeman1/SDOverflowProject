@@ -18,8 +18,8 @@ import com.skilldistillery.overflow.entities.ProfileDTO;
 import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.ProfileRepository;
-import com.skilldistillery.overflow.respositories.UserRepository;
 import com.skilldistillery.overflow.services.ProfileService;
+import com.skilldistillery.overflow.services.UserService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4200" })
@@ -30,14 +30,11 @@ public class ProfileController {
 	private ProfileService ps;
 	
 	@Autowired
-	private ProfileRepository pr;
-	
-	@Autowired
-	private UserRepository ur;
+	private UserService us;
 	
 	@RequestMapping(path="/profile", method=RequestMethod.GET)
 	public User getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		User u = ur.findByUsername(principal.getName());
+		User u = us.getProfile(principal.getName());
 		if (u != null) {
 			res.setStatus(200);
 			return u;
@@ -59,7 +56,7 @@ public class ProfileController {
 	
 	@RequestMapping(path="/profile/{bool}", method=RequestMethod.PATCH)
 	public Profile changeTechnologies(@RequestBody Technology technology, @PathVariable int bool, HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		Profile p = pr.findProfileByUserUsername(principal.getName());
+		Profile p = ps.getProfileByUsername(principal.getName());
 		if (bool == 1) {
 			p = ps.addTechnologyForLoggedInUser(technology, principal.getName());
 			return p;

@@ -11,6 +11,8 @@ public interface UserService {
 //	boolean deleteUser(int userId);
 
 	User updateUserByLoggedInUser(User user, String username);
+
+	User getProfile(String username);
 	
 	
 	

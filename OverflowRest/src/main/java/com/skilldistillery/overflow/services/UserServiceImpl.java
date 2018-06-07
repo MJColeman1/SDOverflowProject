@@ -13,6 +13,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private UserRepository ur;
 
 	@Override
 	public User createUser(UserDTO dto) {
@@ -55,6 +58,12 @@ public class UserServiceImpl implements UserService{
 			e.printStackTrace();
 		}
 		return managedUser;
+	}
+	
+	@Override
+	public User getProfile(String username) {
+		User u = ur.findByUsername(username);
+		return u;
 	}
 
 }

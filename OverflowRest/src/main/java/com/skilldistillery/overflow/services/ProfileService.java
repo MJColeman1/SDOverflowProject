@@ -11,5 +11,7 @@ public interface ProfileService {
 	Profile addTechnologyForLoggedInUser(Technology technology, String username);
 	
 	Profile deleteTechnologyForLoggedInUser(Technology technology, String username);
+
+	Profile getProfileByUsername(String username);
 	
 }
