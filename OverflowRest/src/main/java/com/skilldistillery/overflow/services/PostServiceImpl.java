@@ -36,8 +36,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post createPostByLoggedInUser(Post post, int categoryId, int userId, String username) {
-		User user = userRepo.findById(userId).get();
+	public Post createPostByLoggedInUser(Post post, int categoryId, String username) {
+		User user = userRepo.findByUsername(username);
 		post.setUser(user);
 
 		Category category = categoryRepo.findById(categoryId).get();

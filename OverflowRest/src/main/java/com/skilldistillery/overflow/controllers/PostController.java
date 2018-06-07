@@ -58,10 +58,10 @@ public class PostController {
 		return null;
 	}
 
-	@RequestMapping(path = "/users/{userId}/category/{categoryId}/posts", method = RequestMethod.POST)
-	public Post create(@PathVariable int userId, @PathVariable int categoryId, @RequestBody Post post,
-			HttpServletResponse res) {
-		Post createdPost = postService.createPostByLoggedInUser(post, categoryId, userId, username);
+	@RequestMapping(path = "category/{categoryId}/posts", method = RequestMethod.POST)
+	public Post create(@PathVariable int categoryId, @RequestBody Post post,
+			HttpServletResponse res, Principal principal) {
+		Post createdPost = postService.createPostByLoggedInUser(post, categoryId, principal.getName());
 		if (createdPost == null) {
 			res.setStatus(400);
 			return null;
