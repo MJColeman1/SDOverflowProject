@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -14,7 +15,8 @@ import { Profiledto } from './models/profiledto';
 })
 export class ProfileService {
 
-  private url = 'http://localhost:8080/api/profile';
+  // private url = 'http://localhost:8080/api/profile';
+  private baseUrl = environment.baseUrl;
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
   // GET A USER'S PROFILE
@@ -25,7 +27,7 @@ export class ProfileService {
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
-    return this.http.get<User>(this.url, {headers})
+    return this.http.get<User>(this.baseUrl + 'api/profile', {headers})
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -43,7 +45,7 @@ export class ProfileService {
       this.router.navigateByUrl('login');
 
     }
-    return this.http.put<Profile>(this.url, dto, {headers})
+    return this.http.put<Profile>(this.baseUrl + 'api/profile', dto, {headers})
     .pipe(
       catchError((err: any) => {
         console.log(err);

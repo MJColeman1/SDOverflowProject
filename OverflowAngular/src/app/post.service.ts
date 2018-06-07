@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,13 +13,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PostService {
 
-  private baseUrl = 'http://localhost:8080';
-  private url = this.baseUrl + '/api/posts/';
-  private categoryUrl = 'http://localhost:8080/api/categories';
-  private createUrl = 'http://localhost:8080/api/users/';
-  private catUrl = 'http://localhost:8080/api/user/';
-  private deleteUrl = 'http://localhost:8080/api/users/';
-  private updateUrl = 'http://localhost:8080/api/users/';
+  // private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
+  private url = this.baseUrl + 'api/posts/';
+  // private categoryUrl = 'http://localhost:8080/api/categories';
+  // private createUrl = 'http://localhost:8080/api/users/';
+  // private catUrl = 'http://localhost:8080/api/user/';
+  // private deleteUrl = 'http://localhost:8080/api/users/';
+  // private updateUrl = 'http://localhost:8080/api/users/';
 
   getToken() {
     const token = this.authService.getToken();
@@ -47,7 +49,7 @@ export class PostService {
       this.router.navigateByUrl('login');
     }
     const headers = this.getToken();
-    return this.http.get<Post[]>(this.baseUrl + '/api/user/' + userId + '/posts', {headers}).pipe(
+    return this.http.get<Post[]>(this.baseUrl + 'api/user/' + userId + '/posts', {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Index Other User Posts Error');
@@ -60,7 +62,7 @@ export class PostService {
       this.router.navigateByUrl('login');
     }
     const headers = this.getToken();
-    return this.http.get<Post>(this.baseUrl + '/api/user/' + userId + '/posts/' + postId, {headers}).pipe(
+    return this.http.get<Post>(this.baseUrl + 'api/user/' + userId + '/posts/' + postId, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Index Other User Posts Error');
@@ -88,7 +90,7 @@ export class PostService {
     }
 
     const headers = this.getToken();
-    return this.http.post(this.baseUrl + '/api/category/' + catId + '/posts', post, {headers}).pipe(
+    return this.http.post(this.baseUrl + 'api/category/' + catId + '/posts', post, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Error');
@@ -114,9 +116,9 @@ export class PostService {
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
-
+    // catUrl = 'http://localhost:8080/api/user/'
     const headers = this.getToken();
-    return this.http.post(this.catUrl + userId + '/categories', category, {headers}).pipe(
+    return this.http.post(this.baseUrl + 'api/user/' + userId + '/categories', category, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Create Category Error');
@@ -130,8 +132,8 @@ export class PostService {
     }
 
     const headers = this.getToken();
-
-    return this.http.get<Category[]>(this.categoryUrl, {headers}).pipe(
+    // categoryUrl = 'http://localhost:8080/api/categories'
+    return this.http.get<Category[]>(this.baseUrl + 'api/categories', {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Category Error');
@@ -143,9 +145,9 @@ export class PostService {
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
-
+    // deleteUrl = 'http://localhost:8080/api/users/'
     const headers = this.getToken();
-    return this.http.delete(this.deleteUrl + userId + '/category/' + catId + '/posts/' + postId, {headers}).pipe(
+    return this.http.delete(this.baseUrl + 'api/users/' + userId + '/category/' + catId + '/posts/' + postId, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Delete Error');
@@ -157,9 +159,9 @@ export class PostService {
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
-
+    // updateUrl = 'http://localhost:8080/api/users/'
     const headers = this.getToken();
-    return this.http.put(this.updateUrl + userId + '/category/' + catId + '/posts/' + post.id, post, {headers}).pipe(
+    return this.http.put(this.baseUrl + 'api/users/' + userId + '/category/' + catId + '/posts/' + post.id, post, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Update Error');
@@ -202,7 +204,7 @@ export class PostService {
     }
 
     const headers = this.getToken();
-    return this.http.post(this.baseUrl + '/api/comment/' + commentId + '/vote', vote, {headers}).pipe(
+    return this.http.post(this.baseUrl + 'api/comment/' + commentId + '/vote', vote, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Vote Error');
@@ -216,7 +218,7 @@ export class PostService {
     }
 
     const headers = this.getToken();
-    return this.http.put(this.baseUrl + '/api/comment/' + commentId + '/vote', vote, {headers}).pipe(
+    return this.http.put(this.baseUrl + 'api/comment/' + commentId + '/vote', vote, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Update Vote Error');
@@ -230,7 +232,7 @@ export class PostService {
     }
 
     const headers = this.getToken();
-    return this.http.get(this.baseUrl + '/api/comment/' + commentId + '/' + vote, {headers}).pipe(
+    return this.http.get(this.baseUrl + 'api/comment/' + commentId + '/' + vote, {headers}).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Get Vote Error');
