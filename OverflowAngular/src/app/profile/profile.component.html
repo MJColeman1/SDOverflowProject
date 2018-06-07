@@ -22,15 +22,30 @@
               <div class="topwrap">
                 <div class="userProfile">
                   <h2>Username: {{user.username | titlecase}}</h2>
-                  <p>Skill Distillery Cohort: {{user.profile.cohort}}</p>
+                  <p>Name: {{user.profile.firstName}} {{user.profile.lastName}}</p>
+                  <p>Email: {{user.profile.email}}</p>
+                  <div *ngIf="user.profile.address">
+                    <p>Address:</p>
+                    <ul>
+                      <li>Street: {{user.profile.address.street}}</li>
+                      <li>Street (cont...): {{user.profile.address.street2}}</li>
+                      <li>City: {{user.profile.address.city}}</li>
+                      <li>State: {{user.profile.address.state}}</li>
+                      <li>Country: {{user.profile.address.country}}</li>
+                      <li>Zip: {{user.profile.address.zip}}</li>
+                    </ul>
+                  </div>
+                  <p *ngIf="user.profile.cohort">Skill Distillery Cohort: {{user.profile.cohort}}</p>
                   <p>Employed: {{user.profile.employed}}</p>
                   <p *ngIf="user.profile.employed">Current Employer: {{user.profile.employer.name}}</p>
-                  <p>Technologies:</p>
-                  <ul>
-                    <li *ngFor="let tech of user.profile.technologies">
-                      {{tech.name}}
-                    </li>
-                  </ul>
+                  <div *ngIf="user.profile.technologies.length > 0">
+                    <p>Technologies:</p>
+                    <ul>
+                      <li *ngFor="let tech of user.profile.technologies">
+                        {{tech.name}}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="clearfix"></div>
               </div>
