@@ -29,6 +29,11 @@ public class PostServiceImpl implements PostService {
 	public List<Post> getAllPosts(String username) {
 		return postRepo.findAll();
 	}
+	
+	@Override
+	public List<Post> getPostsForUserByUsername(String username) {
+		return postRepo.getPostsForUserByUsername(username);
+	}
 
 	@Override
 	public Post findPostsByPostId(int postId) {

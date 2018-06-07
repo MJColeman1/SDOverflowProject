@@ -11,30 +11,44 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'http://localhost:8080/api/users/';
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+  // URL
+  private baseUrl = 'http://localhost:8080/';
+  private url = this.baseUrl + '/api/users/';
 
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-
-  updateUser( user: User) {
+  index() {
     const token = this.authService.getToken();
-    const headers = new HttpHeaders()
-    .set('Authorization', `Basic ${token}`);
-    if (!this.authService.checkLogin()) {
-      this.router.navigateByUrl('login');
+    const headers = new HttpHeaders().set('Authorization', `Basic ${token}`);
 
-    }
+    return this.http.get<User[]>(this.url)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('updateUser Error');
+        })
+      );
 
-    return this.http.put<User>(this.url + '/' + user.id, user, {headers})
-    .pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('updateUser Error');
-
-      })
-    );
   }
 
+  updateUser(user: User) {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Basic ${token}`);
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
 
-
+    return this.http
+      .put<User>(this.url + '/' + user.id, user, { headers })
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('updateUser Error');
+        })
+      );
+  }
 }
