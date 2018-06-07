@@ -442,7 +442,7 @@
       </div>
 
       <!-- Single Comment -->
-      <div *ngFor='let comment of comments' class="media mb-4">
+      <div *ngFor='let comment of comments' class="media mb-5">
         <hr>
         <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt=""> -->
         <div class="media-body">
@@ -457,7 +457,9 @@
         </div>
         <div>
           <a *ngIf='comment.user.username === username' (click)='deleteComment(comment)' onmouseover="this.style.cursor='pointer';">Delete</a><span style='margin-left: 10px'><a *ngIf='comment.user.username === username' (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
-
+          <a *ngIf='comment.user.username !== username'>Delete</a><span style='margin-left: 10px'><a *ngIf='comment.user.username !== username'>Edit</a></span>
+          <p> </p>
+          <br>
           <span><i (click)="addVote(comment.id, 'true')" class="fa fa-thumbs-up" style="position: absolute; margin-left: 10px;" onmouseover="this.style.cursor='pointer';">{{trueVotes[comment.id]}}</i></span><span>
           <i (click)="addVote(comment.id, 'false')" class="fa fa-thumbs-down" style="position: absolute; margin-left: 50px" onmouseover="this.style.cursor='pointer';">{{falseVotes[comment.id]}}</i>
         </span>

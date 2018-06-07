@@ -69,9 +69,9 @@
             <div class="blocktxt">
               <ul class="cats">
                 <li *ngFor="let post of posts">
-                  <p (click)="showPost(post)">{{post.name}}
-                    <span class="badge pull-right">20</span>
-                  </p>
+                  <!-- <p (click)="showPost(post)">{{post.name}} -->
+                    <!-- <span class="badge pull-right">20</span>
+                  </p> -->
                 </li>
               </ul>
             </div>
@@ -87,45 +87,55 @@
 
       <div *ngIf="updateForm">
         <form  #updateForm="ngForm">
-          <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" placeholder="First Name" class="form-control" name="firstName" [ngModel]="user.profile.firstName"/>
+          <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="firstName">First Name</label>
+              <input type="text" placeholder="First Name" class="form-control" name="firstName" [ngModel]="user.profile.firstName"/>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="lastName">Last Name</label>
+              <input type="text" placeholder="Last Name" class="form-control" name="lastName" [ngModel]="user.profile.lastName"/>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" placeholder="Last Name" class="form-control" name="lastName" [ngModel]="user.profile.lastName"/>
+          <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="email">Email Address</label>
+              <input type="text" placeholder="Email Address" class="form-control" name="email" [ngModel]="user.profile.email"/>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="cohort">Cohort</label>
+              <input type="text" placeholder="Cohort" class="form-control" name="cohort" [ngModel]="user.profile.cohort"/>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="text" placeholder="Email Address" class="form-control" name="email" [ngModel]="user.profile.email"/>
+          <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="Street">Street</label>
+              <input type="text" placeholder="Street" class="form-control" name="street" [ngModel]="user.profile.address.street"/>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="Street2">Street cont...</label>
+              <input type="text" placeholder="Street (cont...)" class="form-control" name="street2" [ngModel]="user.profile.address.street2"/>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="cohort">Cohort</label>
-            <input type="text" placeholder="Cohort" class="form-control" name="cohort" [ngModel]="user.profile.cohort"/>
+          <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="City">City</label>
+              <input type="text" placeholder="City" class="form-control" name="city" [ngModel]="user.profile.address.city"/>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="State">State</label>
+              <input type="text" placeholder="State" class="form-control" name="state" [ngModel]="user.profile.address.state"/>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="Street">Street</label>
-            <input type="text" placeholder="Street" class="form-control" name="street" [ngModel]="user.profile.address.street"/>
-          </div>
-          <div class="form-group">
-            <label for="Street2">Employed</label>
-            <input type="text" placeholder="Street (cont...)" class="form-control" name="street2" [ngModel]="user.profile.address.street2"/>
-          </div>
-          <div class="form-group">
-            <label for="City">City</label>
-            <input type="text" placeholder="City" class="form-control" name="city" [ngModel]="user.profile.address.city"/>
-          </div>
-          <div class="form-group">
-            <label for="State">State</label>
-            <input type="text" placeholder="State" class="form-control" name="state" [ngModel]="user.profile.address.state"/>
-          </div>
-          <div class="form-group">
-            <label for="Country">Employed</label>
-            <input type="text" placeholder="Country" class="form-control" name="country" [ngModel]="user.profile.address.country"/>
-          </div>
-          <div class="form-group">
-            <label for="Zip">Zip</label>
-            <input type="text" placeholder="Zip" class="form-control" name="zip" [ngModel]="user.profile.address.zip"/>
+          <div class="row">
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="Country">Employed</label>
+              <input type="text" placeholder="Country" class="form-control" name="country" [ngModel]="user.profile.address.country"/>
+            </div>
+            <div class="form-group col-lg-6 col-md-6">
+              <label for="Zip">Zip</label>
+              <input type="text" placeholder="Zip" class="form-control" name="zip" [ngModel]="user.profile.address.zip"/>
+            </div>
           </div>
           <div class="form-group">
             <label for="employer">Select your employer</label>
