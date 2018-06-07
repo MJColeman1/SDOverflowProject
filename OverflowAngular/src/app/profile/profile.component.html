@@ -2,20 +2,16 @@
 
   <section class="content">
 
-    <!-- Other User Info -->
+    <!-- OPEN USER INFO DIV -->
     <div class="container">
+
+      <h2>{{user.username | titlecase}}'s Profile</h2>
+      <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
+      <button (click)='updateForm=true' class="btn btn-primary" style="padding-right: 20px">Update Profile</button>
       <div class="row">
         <div class="col-lg-8 col-md-8">
 
-
-          <h2>{{user.username | titlecase}}'s Profile</h2>
-          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
-          <button (click)='updateForm=true' class="btn btn-primary" style="padding-right: 20px">Update Profile</button>
-
           <div class="post">
-            <!-- <div class="postinfotop"> -->
-
-
 
             <!-- acc section -->
             <div class="accsection">
@@ -24,27 +20,33 @@
                 <div class="clearfix"></div>
               </div>
               <div class="topwrap">
-
-
-                <!-- </div> -->
-                <!-- <div class="posttext pull-left"> -->
-                <!-- <div class="row">
-                    <div class="col-lg-6 col-md-6"> -->
                 <div class="userProfile">
                   <h2>Username: {{user.username | titlecase}}</h2>
-                  <p>Skill Distillery Cohort: {{user.profile.cohort}}</p>
+                  <p>Name: {{user.profile.firstName}} {{user.profile.lastName}}</p>
+                  <p>Email: {{user.profile.email}}</p>
+                  <div *ngIf="user.profile.address">
+                    <p>Address:</p>
+                    <ul>
+                      <li>Street: {{user.profile.address.street}}</li>
+                      <li>Street (cont...): {{user.profile.address.street2}}</li>
+                      <li>City: {{user.profile.address.city}}</li>
+                      <li>State: {{user.profile.address.state}}</li>
+                      <li>Country: {{user.profile.address.country}}</li>
+                      <li>Zip: {{user.profile.address.zip}}</li>
+                    </ul>
+                  </div>
+                  <p *ngIf="user.profile.cohort">Skill Distillery Cohort: {{user.profile.cohort}}</p>
                   <p>Employed: {{user.profile.employed}}</p>
                   <p *ngIf="user.profile.employed">Current Employer: {{user.profile.employer.name}}</p>
-                  <p>Technologies:</p>
-                  <ul>
-                    <li *ngFor="let tech of user.profile.technologies">
-                      {{tech.name}}
-                    </li>
-                  </ul>
+                  <div *ngIf="user.profile.technologies.length > 0">
+                    <p>Technologies:</p>
+                    <ul>
+                      <li *ngFor="let tech of user.profile.technologies">
+                        {{tech.name}}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <!-- </div>
-                  </div> -->
-                <!-- </div> -->
                 <div class="clearfix"></div>
               </div>
             </div>
@@ -54,7 +56,7 @@
               <div class="clearfix"></div>
             </div>
           </div>
-          <!-- End Other User Info -->
+          <!-- End User Info -->
 
 
         </div>
@@ -76,27 +78,69 @@
           </div>
         </div>
       </div>
+
+    <!-- CLOSE USER INFO DIV -->
     </div>
 
+    <!-- OPEN FORM DIV -->
+    <div class="container">
 
-            <form *ngIf="updateForm">
-                <div class="col-lg-3 col-md-3">
-            <input type="text" placeholder="First Name" class="form-control" name="firstName" [(ngModel)]="user.profile.firstName"/>
-            </div>
-          <div class="col-lg-3 col-md-3">
-            <input type="text" placeholder="Last Name" class="form-control" name="lastName" [(ngModel)]="user.profile.lastName"/>
+      <div *ngIf="updateForm">
+        <form  #updateForm="ngForm">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" placeholder="First Name" class="form-control" name="firstName" [ngModel]="user.profile.firstName"/>
           </div>
-          <div class="col-lg-3 col-md-3">
-          <input type="text" placeholder="Email Address" class="form-control" name="email" [(ngModel)]="user.profile.email"/>
-        </div>
-        <div class="col-lg-3 col-md-3">
-          <input type="text" placeholder="Cohort" class="form-control" name="cohort" [(ngModel)]="user.profile.cohort"/>
-        </div>
-          <div class="col-lg-3 col-md-3">
-            <input type="password" placeholder="Password" class="form-control" id="pass" name="pass" [(ngModel)]="user.password"/>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" placeholder="Last Name" class="form-control" name="lastName" [ngModel]="user.profile.lastName"/>
           </div>
-          <button (click)='updateProfile()' class="btn btn-primary text-center" style="padding-left: 25px">Update Profile</button>
-          </form>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="text" placeholder="Email Address" class="form-control" name="email" [ngModel]="user.profile.email"/>
+          </div>
+          <div class="form-group">
+            <label for="cohort">Cohort</label>
+            <input type="text" placeholder="Cohort" class="form-control" name="cohort" [ngModel]="user.profile.cohort"/>
+          </div>
+          <div class="form-group">
+            <label for="Street">Street</label>
+            <input type="text" placeholder="Street" class="form-control" name="street" [ngModel]="user.profile.address.street"/>
+          </div>
+          <div class="form-group">
+            <label for="Street2">Employed</label>
+            <input type="text" placeholder="Street (cont...)" class="form-control" name="street2" [ngModel]="user.profile.address.street2"/>
+          </div>
+          <div class="form-group">
+            <label for="City">City</label>
+            <input type="text" placeholder="City" class="form-control" name="city" [ngModel]="user.profile.address.city"/>
+          </div>
+          <div class="form-group">
+            <label for="State">State</label>
+            <input type="text" placeholder="State" class="form-control" name="state" [ngModel]="user.profile.address.state"/>
+          </div>
+          <div class="form-group">
+            <label for="Country">Employed</label>
+            <input type="text" placeholder="Country" class="form-control" name="country" [ngModel]="user.profile.address.country"/>
+          </div>
+          <div class="form-group">
+            <label for="Zip">Zip</label>
+            <input type="text" placeholder="Zip" class="form-control" name="zip" [ngModel]="user.profile.address.zip"/>
+          </div>
+          <div class="form-group">
+            <label for="employer">Select your employer</label>
+            <select class="form-control">
+
+            </select>
+          </div>
+          <div class="form-group">
+            <button (click)='updateProfile()' class="btn btn-primary text-center" style="padding-left: 25px">Update Profile</button>
+          </div>
+        </form>
+      </div>
+
+    <!-- CLOSE FORM DIV -->
+    </div>
 
   </section>
 

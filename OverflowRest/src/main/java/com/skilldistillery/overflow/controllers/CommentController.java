@@ -20,7 +20,7 @@ import com.skilldistillery.overflow.services.CommentService;
 
 @RestController
 @CrossOrigin({"*", "http://localhost:4200"})
-@RequestMapping("api")
+@RequestMapping(path = "/api")
 public class CommentController {
 	
 	@Autowired

@@ -4,10 +4,10 @@
 
     <!-- Other User Info -->
     <div class="container">
+      <h2>{{otherUser.username | titlecase}}'s Profile</h2>
+      <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
       <div class="row">
         <div class="col-lg-8 col-md-8">
-          <h2>{{otherUser.username | titlecase}}'s Profile</h2>
-          <button (click)='backToPost()' class="btn btn-primary" style="padding-right: 10px">Back to Posts</button>
 
           <div class="post">
             <!-- <div class="postinfotop"> -->
