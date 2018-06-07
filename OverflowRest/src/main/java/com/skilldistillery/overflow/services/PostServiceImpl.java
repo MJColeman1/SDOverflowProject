@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.overflow.entities.Category;
+import com.skilldistillery.overflow.entities.Comment;
 import com.skilldistillery.overflow.entities.Post;
 import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.CategoryRepository;
+import com.skilldistillery.overflow.respositories.CommentVoteRepository;
 import com.skilldistillery.overflow.respositories.PostRepository;
 import com.skilldistillery.overflow.respositories.UserRepository;
 
@@ -24,6 +26,9 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private CategoryRepository categoryRepo;
+	
+	@Autowired
+	private CommentVoteRepository cvRepo;
 
 	@Override
 	public List<Post> getAllPosts(String username) {
@@ -79,7 +84,11 @@ public class PostServiceImpl implements PostService {
 		try {
 			if (post.getUser().getUsername().equals(username)) {
 				if (post.getCategory() == category) {
-
+					List<Comment> comments = post.getComments();
+					for (Comment comment : comments) {
+						cvRepo.deleteCommentVotes(comment.getId());
+					}
+					
 					postRepo.deleteById(postId);
 					deleted = true;
 					return deleted;
