@@ -84,6 +84,7 @@ public class CommentServiceImpl implements CommentService {
 		c.setUser(u);
 		c.setPost(p);
 		try {
+			cvRepo.deleteCommentVotes(commentId);
 			commentRepo.delete(c);
 			return true;
 		}
@@ -121,10 +122,6 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public int voteCount(int commentId, boolean vote) {
 		return cvRepo.voteCount(commentId, vote);
-	}
-	
-	public void deleteComment(int commentId) {
-		cvRepo.deleteComment(commentId);
 	}
 	
 }

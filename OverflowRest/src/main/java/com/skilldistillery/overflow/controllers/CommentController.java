@@ -40,7 +40,6 @@ public class CommentController {
 	@RequestMapping(path = "posts/{postId}/comments", method = RequestMethod.POST)
 	public Comment create(@PathVariable int postId, @RequestBody Comment comment, Principal principal) {
 		return commentService.createCommentByLoggedInUser(postId, comment, principal.getName());
-		
 	}
 	
 	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.PUT)
@@ -51,7 +50,6 @@ public class CommentController {
 	
 	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
 	public Boolean delete(@PathVariable int commentId, @PathVariable int postId, Principal principal) {
-		commentService.deleteComment(commentId);
 		return commentService.destroyCommentByLoggedInUser(postId, commentId, principal.getName());
 	}
 	
