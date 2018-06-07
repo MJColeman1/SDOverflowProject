@@ -88,6 +88,8 @@ export class PostComponent implements OnInit {
         this.post = new Post();
         this.selectedCategoryId = null;
         this.selected = null;
+        this.start = 0;
+        this.end = 4;
         if (localStorage.getItem('token')) {
           this.username = atob(localStorage.getItem('token')).split(':')[0];
         }
