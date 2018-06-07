@@ -183,8 +183,10 @@ export class PostComponent implements OnInit {
 
   // DELETE COMMENT
   deleteComment = function(comment) {
+    console.log('made it to delete');
     this.postService.deleteComment(this.selected.id, comment.id).subscribe(
       data => {
+        console.log('made it here also');
         this.initEdit = 0;
         this.displayPost(this.selected);
       },
