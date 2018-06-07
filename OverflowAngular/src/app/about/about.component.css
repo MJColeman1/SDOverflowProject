@@ -17,11 +17,10 @@ img {
 }
 
 .aboutUs {
-  margin: 0 auto;
-  padding: 15px;
-  text-align: center;
+  padding-top: 25%;
+  padding-bottom: 25%;
 }
-/* tr {
+/*  tr {
   text-align: center;
 }
 td {
