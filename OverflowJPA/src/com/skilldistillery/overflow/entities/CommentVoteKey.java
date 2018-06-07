@@ -2,6 +2,7 @@ package com.skilldistillery.overflow.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,11 +10,11 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class CommentVoteKey implements Serializable {
 
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "comment_id")
 	private Comment comment;
 
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name = "user_id")
 	private User user;
 
