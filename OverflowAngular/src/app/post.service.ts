@@ -223,5 +223,19 @@ export class PostService {
     );
   }
 
+  getVotesByComment(commentId, vote) {
+    if (!this.authService.checkLogin()) {
+      this.router.navigateByUrl('login');
+    }
+
+    const headers = this.getToken();
+    return this.http.get(this.baseUrl + '/api/comment/' + commentId + '/' + vote, {headers}).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Get Vote Error');
+      })
+    );
+  }
+
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 }

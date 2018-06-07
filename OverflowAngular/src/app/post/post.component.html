@@ -404,7 +404,7 @@
         <p> </p>
         <button *ngIf='selectedCategory' (click)='return()' class="btn btn-primary" style="margin-left: 10px">{{selectedCategory}} Posts</button>
         <p> </p>
-        <button (click)='deletePost(selected)' class='btn btn-primary' style='margin-left: 10px;'>Delete Post</button>
+        <button *ngIf='selected.user.username === username' (click)='deletePost(selected)' class='btn btn-primary' style='margin-left: 10px;'>Delete Post</button>
       </div>
       <hr>
 
@@ -421,20 +421,6 @@
       <!-- Post Content -->
       <h4>Original Question:</h4>
       <p class="lead">{{selected.description}}</p>
-
-      <!-- <blockquote class="blockquote">
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <footer class="blockquote-footer">Someone famous in
-            <cite title="Source Title">Source Title</cite>
-          </footer>
-        </blockquote>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt
-          tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur
-          ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus,
-          est!</p> -->
 
       <hr>
 
@@ -463,18 +449,18 @@
           <h5 class="mt-0">Comment from: {{comment.user.username}}</h5>
           {{comment.description}}
           <div>
-          <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea><span>
-          <br><a *ngIf='initEdit === comment.id' (click)='editComment(comment)'style="position: absolute; margin-left: 20px" onmouseover="this.style.cursor='pointer';">Submit</a></span><span>
-          <a *ngIf='initEdit === comment.id' (click)='cancelEdit()' style="position: absolute; margin-left: 80px;" onmouseover="this.style.cursor='pointer';">Cancel</a></span>
-          <p> </p>
-        </div>
+            <textarea *ngIf='initEdit === comment.id' name="comment" id="" cols="70" rows="2" style="border: none" [(ngModel)]='comment.description'>{{comment.description}}</textarea><span>
+            <br><a *ngIf='initEdit === comment.id' (click)='editComment(comment)'style="position: absolute; margin-left: 20px" onmouseover="this.style.cursor='pointer';">Submit</a></span><span>
+            <a *ngIf='initEdit === comment.id' (click)='cancelEdit()' style="position: absolute; margin-left: 80px;" onmouseover="this.style.cursor='pointer';">Cancel</a></span>
+            <p> </p>
+          </div>
         </div>
         <div>
-          <a (click)='deleteComment(comment)' onmouseover="this.style.cursor='pointer';">Delete</a><span style='margin-left: 10px'><a (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
-          <p> </p>
-          <i (click)="addVote(comment.id, 'true')" class="fa fa-thumbs-up" style="position: absolute; margin-left: 10px;" onmouseover="this.style.cursor='pointer';"></i><span>
-          <i (click)="addVote(comment.id, 'false')" class="fa fa-thumbs-down" style="position: absolute; margin-left: 50px"></i>
-          </span>
+          <a *ngIf='comment.user.username === username' (click)='deleteComment(comment)' onmouseover="this.style.cursor='pointer';">Delete</a><span style='margin-left: 10px'><a *ngIf='comment.user.username === username' (click)='initiateEdit(comment.id, comment)' onmouseover="this.style.cursor='pointer';">Edit</a></span>
+
+          <span><i (click)="addVote(comment.id, 'true')" class="fa fa-thumbs-up" style="position: absolute; margin-left: 10px;" onmouseover="this.style.cursor='pointer';">{{trueVotes[comment.id]}}</i></span><span>
+          <i (click)="addVote(comment.id, 'false')" class="fa fa-thumbs-down" style="position: absolute; margin-left: 50px" onmouseover="this.style.cursor='pointer';">{{falseVotes[comment.id]}}</i>
+        </span>
         </div>
         <hr>
       </div>

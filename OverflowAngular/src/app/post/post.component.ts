@@ -68,6 +68,12 @@ export class PostComponent implements OnInit {
 
   newCatMessage = '';
 
+  votes = {};
+
+  trueVotes = {};
+
+  falseVotes = {};
+
   // GET ALL POSTS AND NUM OF COMMENTS PER POST
   reload = function() {
     this.numPostsByCategory = {};
@@ -94,8 +100,25 @@ export class PostComponent implements OnInit {
   // ADD A VOTE FOR A COMMENT
   addVote = function(commentId, vote) {
     this.postService.addVote(commentId, vote).subscribe(
-      data => this.reload(),
+      data => this.getVotesByComment(commentId, 'true'),
       err => console.error('Vote got an error: ' + err)
+    );
+  };
+
+  // GET VOTES BY COMMENT
+  getVotesByComment = function(commentId, vote) {
+    const voteCount = [];
+    this.postService.getVotesByComment(commentId, vote).subscribe(
+      data => {
+        this.trueVotes[commentId] = data;
+      },
+      err => console.error('Vote Get got an error: ' + err)
+    );
+    this.postService.getVotesByComment(commentId, 'false').subscribe(
+      data => {
+        this.falseVotes[commentId] = data;
+      },
+      err => console.error('Vote Get got an error: ' + err)
     );
   };
 
@@ -103,7 +126,6 @@ export class PostComponent implements OnInit {
   displayPostsBySearch = function(keyword) {
     this.postsByKeyword = [];
     this.posts = this.tempPosts;
-    console.log(this.posts);
     for (let i = 0; i < this.posts.length; i++) {
       if (this.posts[i].name.includes(keyword)) {
         this.postsByKeyword.push(this.posts[i]);
@@ -112,7 +134,6 @@ export class PostComponent implements OnInit {
     this.keyword = null;
     this.posts = this.postsByKeyword;
     this.postsByCategory = this.postsByKeyword; // TESTING
-    console.log(this.posts); // TESTING
     this.start = 0;
     this.end = 4;
   };
@@ -197,23 +218,32 @@ export class PostComponent implements OnInit {
 
   // DISPLAY ALL COMMENTS FOR A SPECIFIC POST
   displayCommentsByPost = function(postId) {
+    this.votes = {};
     this.postService
       .getCommentsByPost(postId)
       .subscribe(
-        data => (this.comments = data),
+        data => {
+          (this.comments = data);
+          for (let i = 0; i < data.length; i++) {
+            this.getVotesByComment(data[i].id, 'true');
+          }
+        },
         err => console.error('Post Comments got an error: ' + err)
       );
   };
 
   // CREATE A NEW POST (TOPIC)
   createPost = function() {
+    const selID = this.selectedCategoryId;
     if (this.post.name && this.post.description) {
       this.postService
         .createPost(this.selectedCategoryId, this.post)
         .subscribe(
           data => {
-            this.reload();
+            // this.reload();
+            this.displayAllPost();
             this.newTopic = false;
+            // this.selectedCategoryId = null; // TESTING
           },
           err => console.error('Create got an error: ' + err)
         );
@@ -326,7 +356,7 @@ export class PostComponent implements OnInit {
 
   // DISPLAY NEXT 4 POSTS
   pagRight = function() {
-    if (this.end < this.posts.length - 1) {
+    if (this.end <= this.posts.length - 1) {
       this.start += 4;
       this.end += 4;
     }
@@ -334,7 +364,7 @@ export class PostComponent implements OnInit {
 
   // DISPLAY NEXT 4 POSTS BY CATEGORY
   pagRightCat = function() {
-    if (this.end < this.postsByCategory.length - 1) {
+    if (this.end <= this.postsByCategory.length - 1) {
       this.start += 4;
       this.end += 4;
     }
