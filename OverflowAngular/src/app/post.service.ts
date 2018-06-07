@@ -182,10 +182,11 @@ export class PostService {
   }
 
   deleteComment(postId, commentId) {
+    console.log('made it to the post service delete');
     if (!this.authService.checkLogin()) {
       this.router.navigateByUrl('login');
     }
-
+    console.log('made it to the post service delete');
     const headers = this.getToken();
     return this.http.delete(this.url + postId + '/comments/' + commentId, {headers}).pipe(
       catchError((err: any) => {

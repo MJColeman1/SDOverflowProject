@@ -24,5 +24,7 @@ public interface CommentService {
 	CommentVote updateVote(int commentId, String username, Boolean vote);
 	
 	int voteCount(int commentId, boolean vote);
+	
+	void deleteComment(int commentId);
 
 }

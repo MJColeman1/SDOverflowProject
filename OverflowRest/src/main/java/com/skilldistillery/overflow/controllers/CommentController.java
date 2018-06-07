@@ -51,6 +51,7 @@ public class CommentController {
 	
 	@RequestMapping(path = "posts/{postId}/comments/{commentId}", method = RequestMethod.DELETE)
 	public Boolean delete(@PathVariable int commentId, @PathVariable int postId, Principal principal) {
+		commentService.deleteComment(commentId);
 		return commentService.destroyCommentByLoggedInUser(postId, commentId, principal.getName());
 	}
 	
@@ -70,4 +71,5 @@ public class CommentController {
 	public int voteCount(@PathVariable int commentId, @PathVariable String vote) {
 		return commentService.voteCount(commentId, Boolean.parseBoolean(vote));
 	}
+	
 }
