@@ -6,6 +6,7 @@ import { Profile } from './models/profile';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { User } from './models/user';
+import { Profiledto } from './models/profiledto';
 
 
 @Injectable({
@@ -34,7 +35,7 @@ export class ProfileService {
   }
 
   // UPDATE A USER'S PROFILE
-  updateProfile(profile: Profile) {
+  updateProfile(dto: Profiledto) {
   const token = this.authService.getToken();
     const headers = new HttpHeaders()
     .set('Authorization', `Basic ${token}`);
@@ -42,11 +43,11 @@ export class ProfileService {
       this.router.navigateByUrl('login');
 
     }
-    return this.http.put<Profile>(this.url, profile, {headers})
+    return this.http.put<Profile>(this.url, dto, {headers})
     .pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('updateProfile Error');
+        return throwError('Error updating profile...');
 
       })
     );

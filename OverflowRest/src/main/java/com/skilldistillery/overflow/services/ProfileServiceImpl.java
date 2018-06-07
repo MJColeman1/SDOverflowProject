@@ -67,37 +67,28 @@ public class ProfileServiceImpl implements ProfileService {
 				employerAddress.setState(dto.getEmployerAddressState());
 				employerAddress.setCountry(dto.getEmployerAddressCountry());
 				employerAddress.setZip(dto.getEmployerAddressZip());
+				employer.setAddress(employerAddress);
+
 			}
 			// ADD EMPLOYER AND THE EMPLOYER ADDRESS
 			profile.setEmployer(employer);
 		}
 		// CHECK IF THERE IS AN EXISTING EMPLOYER, IF NOT MAKE A NEW ONE
-		if (profile.getEmployer() != null) {
+		if (profile.getEmployer() == null) {
 			Employer employer = new Employer();
 			employer.setName(dto.getEmployerName());
 			employer.setHiring(dto.getEmployerHiring());
-			// CHECK IF THERE IS AN EXISTING EMPLOYER ADDRESS, IF SO EDIT IT
-			if (profile.getEmployer().getAddress() != null) {
-				Address managedEmployerAddress = profile.getEmployer().getAddress();
-				managedEmployerAddress.setStreet(dto.getEmployerAddressStreet());
-				managedEmployerAddress.setStreet2(dto.getEmployerAddressStreet2());
-				managedEmployerAddress.setCity(dto.getEmployerAddressCity());
-				managedEmployerAddress.setState(dto.getEmployerAddressState());
-				managedEmployerAddress.setCountry(dto.getEmployerAddressCountry());
-				managedEmployerAddress.setZip(dto.getEmployerAddressZip());
-				employer.setAddress(managedEmployerAddress);
-			}
-			// CHECK IF THERE IS AN EXISTING EMPLOYER ADDRESS, IF NOT MAKE A NEW ONE
-			if (profile.getEmployer().getAddress() == null) {
-				Address employerAddress = new Address();
-				employerAddress.setStreet(dto.getEmployerAddressStreet());
-				employerAddress.setStreet2(dto.getEmployerAddressStreet2());
-				employerAddress.setCity(dto.getEmployerAddressCity());
-				employerAddress.setState(dto.getEmployerAddressState());
-				employerAddress.setCountry(dto.getEmployerAddressCountry());
-				employerAddress.setZip(dto.getEmployerAddressZip());
-			}
+
+			Address employerAddress = new Address();
+			employerAddress.setStreet(dto.getEmployerAddressStreet());
+			employerAddress.setStreet2(dto.getEmployerAddressStreet2());
+			employerAddress.setCity(dto.getEmployerAddressCity());
+			employerAddress.setState(dto.getEmployerAddressState());
+			employerAddress.setCountry(dto.getEmployerAddressCountry());
+			employerAddress.setZip(dto.getEmployerAddressZip());
+			
 			// ADD EMPLOYER AND THE EMPLOYER ADDRESS
+			employer.setAddress(employerAddress);
 			profile.setEmployer(employer);
 		}
 		profile.setFirstName(dto.getProfileFirstName());
