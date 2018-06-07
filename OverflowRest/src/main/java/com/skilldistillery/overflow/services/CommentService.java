@@ -25,6 +25,4 @@ public interface CommentService {
 	
 	int voteCount(int commentId, boolean vote);
 	
-	void deleteComment(int commentId);
-
 }
