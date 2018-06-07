@@ -17,7 +17,6 @@ import com.skilldistillery.overflow.entities.Profile;
 import com.skilldistillery.overflow.entities.ProfileDTO;
 import com.skilldistillery.overflow.entities.Technology;
 import com.skilldistillery.overflow.entities.User;
-import com.skilldistillery.overflow.respositories.ProfileRepository;
 import com.skilldistillery.overflow.services.ProfileService;
 import com.skilldistillery.overflow.services.UserService;
 

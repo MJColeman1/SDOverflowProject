@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.skilldistillery.overflow.entities.Comment;
 import com.skilldistillery.overflow.entities.CommentVote;
-import com.skilldistillery.overflow.entities.User;
 
 public interface CommentService {
 	
