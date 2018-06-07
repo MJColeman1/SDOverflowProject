@@ -56,9 +56,9 @@ dependencies {
 
 remotes {
   ec2host {
-    host = '18.188.70.118' // Change this to your EC2 host's public IP
+    host = '18.220.178.242' // Change this to your EC2 host's public IP
     user = 'ec2-user'
-    identity = file("${System.properties['user.home']}/.ssh/aws.pem")
+    identity = file("${System.properties['user.home']}/.ssh/aws2.pem")
   }
 }
 
