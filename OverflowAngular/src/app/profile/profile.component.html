@@ -57,14 +57,12 @@
 
           <!-- Posts Sidebar -->
           <div class="sidebarblock">
-            <h3>Top Posts</h3>
+            <h3>Your Posts</h3>
             <div class="divline"></div>
             <div class="blocktxt">
               <ul class="cats">
-                <li *ngFor="let post of user.posts">
-                  <!-- <p (click)="showPost(post)">{{post.name}} -->
-                    <!-- <span class="badge pull-right">20</span>
-                  </p> -->
+                <li *ngFor="let post of posts">
+                  <p>{{post.name}}</p>
                 </li>
               </ul>
             </div>

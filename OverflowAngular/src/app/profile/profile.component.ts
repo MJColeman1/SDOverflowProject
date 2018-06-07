@@ -1,3 +1,4 @@
+import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -56,7 +57,8 @@ export class ProfileComponent implements OnInit {
           data.profile.employer.address = new Address();
         }
         this.user = data;
-        console.log(this.user);
+        this.populateUserPosts(this.user.id);
+        // console.log(this.user);
         this.router.navigateByUrl('profile');
       },
       err => console.error(err)
@@ -83,7 +85,7 @@ export class ProfileComponent implements OnInit {
     dto.employerAddressState = form.value.employerAddressState;
     dto.employerAddressCountry = form.value.employerAddressCountry;
     dto.employerAddressZip = form.value.employerAddressZip;
-    console.log(dto);
+    // console.log(dto);
     this.profileService.updateProfile(dto).subscribe(
       data => {
       this.router.navigateByUrl('profile');
@@ -103,17 +105,26 @@ export class ProfileComponent implements OnInit {
     );
   };
 
+  populateUserPosts = function(userId) {
+    this.postService
+      .indexOfPostsByOtherUser(userId)
+      .subscribe(
+        data => (this.posts = data),
+        err => console.error(err));
+  };
+
   constructor(
     private profileService: ProfileService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private employerService: EmployerService
+    private employerService: EmployerService,
+    private postService: PostService
   ) {}
 
   ngOnInit() {
     this.getProfileForLoggedInUser();
     this.populateSelectList();
-    console.log(this.user.posts);
+    // console.log(this.user.posts);
   }
 
 }
