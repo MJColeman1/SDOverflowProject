@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.overflow.entities.Profile;
 import com.skilldistillery.overflow.entities.ProfileDTO;
 import com.skilldistillery.overflow.entities.Technology;
+import com.skilldistillery.overflow.entities.User;
 import com.skilldistillery.overflow.respositories.ProfileRepository;
+import com.skilldistillery.overflow.respositories.UserRepository;
 import com.skilldistillery.overflow.services.ProfileService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4200" })
+@RequestMapping(path = "/api")
 public class ProfileController {
 	
 	@Autowired
@@ -29,12 +32,15 @@ public class ProfileController {
 	@Autowired
 	private ProfileRepository pr;
 	
+	@Autowired
+	private UserRepository ur;
+	
 	@RequestMapping(path="/profile", method=RequestMethod.GET)
-	public Profile getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		Profile p = pr.findProfileByUserUsername(principal.getName());
-		if (p != null) {
+	public User getProfile(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		User u = ur.findByUsername(principal.getName());
+		if (u != null) {
 			res.setStatus(200);
-			return p;
+			return u;
 		}
 		res.setStatus(400);
 		return null;

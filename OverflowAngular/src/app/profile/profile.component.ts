@@ -21,7 +21,9 @@ export class ProfileComponent implements OnInit {
   updateForm = null;
 
   user = new User();
+
   posts: Post[] = [];
+
   selected: Post = new Post();
 
   // GETS OTHER USER INFO FROM POST
@@ -56,6 +58,19 @@ export class ProfileComponent implements OnInit {
     );
   };
 
+  // GET PROFILE FOR A LOGGED IN USER
+  getProfileForLoggedInUser = function() {
+    this.profileService.getProfileAndUser().subscribe(
+      data => {
+        this.user = data;
+        console.log(this.user);
+        this.router.navigateByUrl('profile');
+      },
+      err => console.error(err)
+    );
+  };
+
+  // UPDATE A USER'S PROFILE
   updateProfile = function(profile) {
     this.profileService.update(profile).subscribe(
       data => {
@@ -69,6 +84,7 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getProfileForLoggedInUser();
   }
 
 }
