@@ -31,7 +31,7 @@ mysql -u sdoverflowuser -p
 ```
 
 ## Behavior/Usage
-* People without an account will have a limited experience when interacting with the application. They will only be able to view the 'home', 'about', 'login', and 'register' pages.
+* Users without an account will have a limited experience when interacting with the application. They will only be able to view the 'home', 'about', 'login', and 'register' pages.
 * For the full user experience, you must sign up for an account or be a logged in user.
 * Logged in users will be able to view posts and comments.
 * Logged in users will be able to make posts and comments.
