@@ -11,7 +11,7 @@
 
 ## Setup/Installation Requirements
 
-* In order to edit this project and work with it on your own machine you will need a terminal application such as Terminal or Bash. Since this project has a Gradle nature, you will need to have the Spring Tool Suite installed. You will also need a database server program such as MAMP or LAMP.
+* In order to edit this project and work with it on your own machine you will need a terminal application such as Terminal or Bash. Since this project has a Gradle nature, you will need to have the Spring Tool Suite installed. You will also need a database server program such as MAMP or LAMP. Finally you will need angular installed on your machine.
 * Start by opening the terminal application and typing the command
 ```
 git clone https://github.com/MJColeman1/SDOverflowProject
@@ -29,6 +29,18 @@ mysql> CREATE USER sdoverflowuser@localhost IDENTIFIED BY 'skills';
 mysql> exit;
 mysql -u sdoverflowuser -p
 ```
+* Next open Eclipse. You will need to open a new workspace by selecting `File` from the top navbar and from the dropdown menu select either `Switch Workspace` or `Open Workspace` and from that dropdown menu select `Other`. From the popup menu select `Browse` and then navigate in to the location you downloaded the project and then select `Launch`.
+* Once inside the workspace select `File` from the top navbar. Then `Import`, select the `Gradle` folder and `Existing Gradle Project` and then hit `Next>`. Navigate again to the cloned project and select the `Overflow Rest` project and click `Finish`.
+* Finally right click the `Overflow Rest` project and select `Run As` and then `Spring Boot App`.
+* In order to run this program on the web from your local machine you will have to make a few changes to the code in all the service.ts files in the angular project. Comment out the current private baseUrls and put this line in the files directly above the commented out line.
+```
+private baseUrl = 'http://localhost:8080/';
+```
+* Using your terminal navigate using `cd` in to the angular project and type:
+```
+ng serve -o
+```
+This will serve the project in your default browser.
 
 ## Behavior/Usage
 * Users without an account will have a limited experience when interacting with the application. They will only be able to view the 'home', 'about', 'login', and 'register' pages.
