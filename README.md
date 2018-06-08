@@ -1,4 +1,4 @@
-# SDOverflowProject
+# SD Overflow
 
 ## A web discussion platform developed for students and alumni of Skill Distillery.
 
@@ -9,7 +9,7 @@
 * If you want to interact with the finished program, please visit: [SD Overflow](http://18.216.14.184:8080/OverflowRest/).
 * See the program specifications below for routes to use.
 
-## Setup/Installation requirements
+## Setup/Installation Requirements
 
 * In order to edit this project and work with it on your own machine you will need a terminal application such as Terminal or Bash. Since this project has a Gradle nature, you will need to have the Spring Tool Suite installed. You will also need a database server program such as MAMP or LAMP.
 * Start by opening the terminal application and typing the command
@@ -29,6 +29,19 @@ mysql> CREATE USER sdoverflowuser@localhost IDENTIFIED BY 'skills';
 mysql> exit;
 mysql -u sdoverflowuser -p
 ```
+
+## Behavior/Usage
+* People without an account will have a limited experience when interacting with the application. They will only be able to view the 'home', 'about', 'login', and 'register' pages.
+* For the full user experience, you must sign up for an account or be a logged in user.
+* Logged in users will be able to view posts and comments.
+* Logged in users will be able to make posts and comments.
+* Logged in users will be able to delete their own posts and comments.
+* Logged in users will be able to vote on comments.
+* Logged in users will be able to view their own profile and posts.
+* Logged in users will be able to edit their own profile.
+* Logged in users will be able to view the posts and a limited version of the profiles of other users.
+* Logged in users will be able to view a list of employers and locations of employers.
+* Logged in users will be able to log out.
 
 ## Project Setup
 #### What we did:
@@ -50,7 +63,6 @@ mysql -u sdoverflowuser -p
 * Use ng serve -o in the command line to see the user interface.
 * Add templates or html to the html pages to support the various functionality and routing of the services and components.
 * Create an AuthService to restrict functionality and protect user data.
-
 
 ## Technologies Used
 
