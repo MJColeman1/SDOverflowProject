@@ -39,6 +39,7 @@ You will then be prompted to enter a password in the terminal, type `root`.
 mysql> CREATE USER sdoverflowuser@localhost IDENTIFIED BY 'skills';
 mysql> exit;
 mysql -u sdoverflowuser -p
+```
 
 ## Technologies Used
 
