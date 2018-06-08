@@ -4,25 +4,10 @@
 
 #### By _**Rebecca Allen, Richard Blankenhorn, Mark Coleman, Miranda Martin and Xian Zheng**_
 
-### What we did:
-* Create a Database, in MySQL Workbench, with data inserted into each table for testing purposes.
-* Create a new Java project in Spring.
-* Java project has Gradle nature, and entities package, META-INF folder to house a persistense xml and a test package.
-* Annotate the entities classes based on the tables in the database.
-* Establish One to Many, Many to Many realtionships and annotate accordingly.
-* Create tests for the mapping routes.
-* Create a Spring REST project, with Gradle nature.
-* REST project will need packages for Tests, Repositiories, Controllers and Services.
-* Services is an interface, ServiceImpl is a class. These act as a DAO and DAOImpl.
-* Route the Controllers.
-* The repository extends the JPA Repository which does all the SQL statements for normal CRUD functionality for you.
-* Write SQL statements in each individual repository if you are creating methods that access the database.
-* Test all routes with Postman and make sure you are accessing the database.
-* Create a new Angular project using ng new in the command line.
-* Create components, services and classes using the ngCli.
-* Use ng serve -o in the command line to see the user interface.
-* Add templates or html to the html pages to support the various functionality and routing of the services and components.
-* Create an AuthService to restrict functionality and protect user data.
+## Live Web Interaction
+
+* If you want to interact with the finished program, please visit: [SD Overflow](http://18.216.14.184:8080/OverflowRest/).
+* See the program specifications below for routes to use.
 
 ## Setup/Installation requirements
 
@@ -44,6 +29,28 @@ mysql> CREATE USER sdoverflowuser@localhost IDENTIFIED BY 'skills';
 mysql> exit;
 mysql -u sdoverflowuser -p
 ```
+
+## Project Setup
+#### What we did:
+* Create a Database in MySQL Workbench, with data inserted into each table for testing purposes.
+* Create a new Java project in Spring.
+* Java project has Gradle nature, and entities package, META-INF folder to house a persistense xml and a test package.
+* Annotate the entities classes based on the tables in the database.
+* Establish One to Many, Many to Many relationships and annotate accordingly.
+* Create tests for the mapping routes.
+* Create a Spring REST project, with Gradle nature.
+* REST project will need packages for Tests, Repositiories, Controllers and Services.
+* Service is an interface, ServiceImpl is a class. These act as a DAO and DAOImpl.
+* Route the Controllers.
+* The repository extends the JPA Repository which does all the SQL statements for normal CRUD functionality for you.
+* Write SQL statements in each individual repository if you are creating methods that access the database.
+* Test all routes with Postman and make sure you are accessing the database.
+* Create a new Angular project using ng new in the command line.
+* Create components, services and classes using the ngCli.
+* Use ng serve -o in the command line to see the user interface.
+* Add templates or html to the html pages to support the various functionality and routing of the services and components.
+* Create an AuthService to restrict functionality and protect user data.
+
 
 ## Technologies Used
 
