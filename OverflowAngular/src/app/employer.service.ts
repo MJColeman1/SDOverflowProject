@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Employer } from './models/employer';
@@ -12,7 +13,8 @@ import { catchError, tap } from 'rxjs/operators';
 export class EmployerService {
 
   // SERVICE FIELDS
-  private baseUrl = 'http://localhost:8080/';
+  // private baseUrl = 'http://localhost:8080/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/employers/';
 
   // SERVICE METHODS
